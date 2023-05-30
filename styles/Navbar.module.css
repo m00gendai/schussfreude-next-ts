@@ -1,0 +1,55 @@
+.nav{
+    position: relative;
+    width: 100%;
+    height: 10vh;
+    background: red;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+}
+
+.logo{
+    position: relative;
+    height: 100%;
+    aspect-ratio: 1/1;
+    background: green;
+}
+
+.container{
+    flex-grow: 1;
+    display: flex;
+    justify-content: flex-end;
+    align-content: center;
+    align-items: center;
+    flex-wrap: nowrap;
+}
+
+.link{
+    font-size: 1.25rem;
+    margin: 0 2rem;
+    color: white;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.subcontainer{
+    position: absolute;
+    top: 10vh;
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-start;
+    align-content: flex-start;
+    flex-wrap: wrap;
+    background: red;
+}
+
+.sublink{
+    width: 100%;
+    text-align: right;
+    padding: 1rem 2rem;
+    font-size: 1.25rem;
+    color: white;
+    font-weight: bold;
+    text-decoration: none;
+}
