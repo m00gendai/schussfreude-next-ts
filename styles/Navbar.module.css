@@ -31,3 +31,25 @@
     font-weight: bold;
     text-decoration: none;
 }
+
+.subcontainer{
+    position: absolute;
+    top: 10vh;
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-start;
+    align-content: flex-start;
+    flex-wrap: wrap;
+    background: red;
+}
+
+.sublink{
+    width: 100%;
+    text-align: right;
+    padding: 1rem 2rem;
+    font-size: 1.25rem;
+    color: white;
+    font-weight: bold;
+    text-decoration: none;
+}
