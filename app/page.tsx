@@ -1,10 +1,10 @@
 import Image from 'next/image'
-import styles from '@/styles/page.module.css'
+import s from "@/styles/frontpage.module.css"
 
 export default function Home() {
   return (
     <main>
-      schussfreude.ch
+      <h1 className={s.h1}>schussfreude.ch</h1>
     </main>
   )
 }
