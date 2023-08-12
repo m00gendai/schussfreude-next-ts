@@ -2,7 +2,7 @@
 .navMobile{
     position: relative;
     width: 100%;
-    height: 10vh;
+    height: 3rem;
     background: red;
     display: flex;
     flex-direction: row;
@@ -44,9 +44,23 @@
     text-decoration: none;
 }
 
+.burger{
+    position: relative;
+    margin: 0 2rem;
+    font-size: 2rem;
+    color: white;
+    transition: 0.5s;
+}
+
+.burger:hover{
+    cursor: pointer;
+}
+
 .subcontainer{
     position: absolute;
-    top: 10vh;
+    top: 3rem;
+    left: 0;
+    right: 0;
     width: 100%;
     display: flex;
     justify-content: flex-end;
@@ -54,6 +68,7 @@
     align-content: flex-start;
     flex-wrap: wrap;
     background: red;
+    z-index: 9999;
 }
 
 .sublink{
