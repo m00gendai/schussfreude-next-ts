@@ -8,8 +8,10 @@ import {useState} from "react"
 export default function Navbar_Mobile(){
 
     const [hamburgerOpen, setHamburgerOpen] = useState<boolean>(false)
+    const [rotate, setRotate] = useState<boolean>(false)
 
     function handleHamburgerOpen(){
+        setRotate(!rotate)
         setHamburgerOpen(!hamburgerOpen)
     }
 
@@ -17,7 +19,7 @@ export default function Navbar_Mobile(){
         <nav className={s.navMobile}>
         <div className={s.logo}></div>
         <div className={s.container}>
-            <GiHamburgerMenu style={{margin: "0 2rem", fontSize: "2rem", color: "white"}} onClick={()=>handleHamburgerOpen()}/>
+            <GiHamburgerMenu className={`${s.burger}`} style={rotate ? {transform: "rotate(90deg)"} : {}} onClick={()=>handleHamburgerOpen()}/>
             {hamburgerOpen ? <div className={s.subcontainer}>
                 <Link className={s.sublink} href="/">Home</Link>
                 <Link className={s.sublink} href="/artikel">Artikel</Link>
