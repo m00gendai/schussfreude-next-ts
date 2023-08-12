@@ -1,0 +1,53 @@
+.hero{
+    position: relative;
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-gap: 1rem;
+    margin: 3rem 0 0 0;
+}
+
+@media only screen and (max-aspect-ratio: 13/9){
+    .hero{
+        margin: 3rem 0;
+    }
+}
+
+.item{
+    position: relative;
+    width: 100%;
+    aspect-ratio: 1/1;
+    background: blue;
+}
+
+@media only screen and (max-aspect-ratio: 13/9){
+    .hero{
+        grid-template-columns: 1fr;
+    }
+    .item{
+        aspect-ratio: 21/10;
+    }
+}
+
+@media only screen and (min-aspect-ratio: 13/9){
+    .item:first-child{
+        grid-column-start: 1;
+        grid-column-end: 3;
+        grid-row-start: 1;
+        grid-row-end: 3;
+    }
+}
+
+.caption{
+    position: absolute;
+    bottom: 0;
+    width: calc(100% - 1rem);
+    display: flex;
+    flex-wrap: wrap;
+    white-space: pre;
+    background: rgba(0,0,0,0.5);
+    color: white;
+    font-weight: bolder;
+    font-size: 1.25rem;
+    padding: 0.5rem;
+}
