@@ -1,0 +1,21 @@
+.container{
+    position: relative;
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+    grid-gap: 1rem;
+    margin: 1rem 0 3rem 0;
+}
+
+.item{
+    position: relative;
+    width: 100%;
+    aspect-ratio: 4/3;
+    background: yellow;
+}
+
+@media only screen and (max-aspect-ratio: 13/9){
+    .container{
+        display: none;
+    }
+}
