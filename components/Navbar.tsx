@@ -8,7 +8,6 @@ export default function Navbar(){
         <div className={s.container}>
             <Link className={s.link} href="/">Home</Link>
             <Link className={s.link} href="/Artikel">Artikel</Link>
-            <Link className={s.link} href="/Verzeichnis">Verzeichnis</Link>
             <Link className={s.link} href="/Zeitdokumente">Zeitdokumente</Link>
             <Link className={s.link} href="https://www.waffenforum.ch" target="_blank">waffenforum.ch</Link>
         </div>
