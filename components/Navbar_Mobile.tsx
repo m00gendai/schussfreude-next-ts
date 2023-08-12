@@ -20,8 +20,8 @@ export default function Navbar_Mobile(){
             <GiHamburgerMenu style={{margin: "0 2rem", fontSize: "2rem", color: "white"}} onClick={()=>handleHamburgerOpen()}/>
             {hamburgerOpen ? <div className={s.subcontainer}>
                 <Link className={s.sublink} href="/">Home</Link>
-                <Link className={s.sublink} href="/Artikel">Artikel</Link>
-                <Link className={s.sublink} href="/Zeitdokumente">Zeitdokumente</Link>
+                <Link className={s.sublink} href="/artikel">Artikel</Link>
+                <Link className={s.sublink} href="/zeitdokumente">Zeitdokumente</Link>
                 <Link className={s.sublink} href="https://www.waffenforum.ch" target="_blank">waffenforum.ch</Link>
             </div> : null}
         </div>
