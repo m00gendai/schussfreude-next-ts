@@ -1,7 +1,16 @@
 :root {
   padding: 0;
   margin: 0;
-  --mainColor: red;
+  /* Light mode */
+  --mainColorLight: red; /* Navbar, Footer Divider, etc */
+  --mainColorFontLight: white; /* Mainly concerns Navbar links */
+  --mainColorBackgroundLight: white; /* Page content background */
+  --mainFontColorLight: black; /* Page content font color */
+  /* Dark mode (for future use */
+  --mainColorDark: darkred; /* Navbar, Footer Divider, etc */
+  --mainColorFontDark: gray; /* Mainly concerns Navbar links */
+  --mainColorBackgroundDark: black; /* Page content background */
+  --mainFontColorDark: lightgrey; /* Page content font color */
 }
 
 body{
@@ -11,12 +20,20 @@ body{
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
+  background: var(--mainColorBackgroundLight);
+  color: var(--mainColorFontLight);
 }
 
 main{
   position: relative;
   min-height: 100vh;
   width: 80%;
+}
+
+@media only screen and (max-aspect-ratio: 13/9){
+  main{
+      width: 90%;
+  }
 }
 
 .leftAlign{
