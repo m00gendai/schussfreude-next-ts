@@ -2,7 +2,7 @@
 .footerMobile{
     position: relative;
     width: 100%;
-    border-top: 5px solid var(--mainColor);
+    border-top: 5px solid var(--mainColorLight);
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
 }
@@ -53,17 +53,24 @@
 }
 
 .social{
+    display: flex;
+    margin: 1rem 0;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+}
+
+.container{
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr;
     grid-gap: 1rem;
     position: relative;
-    margin: 1rem 0;
-    width: 100%;
+    width: 75%;
 }
 
 @media only screen and (max-aspect-ratio: 13/9){
-    .social{
-        width: 60%;
+    .container{
+        width: 50%;
     }
 }
 
@@ -71,5 +78,5 @@
     position: relative;
     width: 100%;
     aspect-ratio: 1/1;
-    background: yellow;
+    object-fit: contain;
 }

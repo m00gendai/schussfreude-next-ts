@@ -1,7 +1,18 @@
 :root {
   padding: 0;
   margin: 0;
-  --mainColor: red;
+  /* Light mode */
+  --mainColorLight: red; /* Navbar, Footer Divider, etc */
+  --mainColorFontLight: white; /* Mainly concerns Navbar links */
+  --mainColorBackgroundLight: white; /* Page content background */
+  --mainFontColorLight: black; /* Page content font color */
+  --mainTitleColorLight: black;
+  /* Dark mode (for future use */
+  --mainColorDark: darkred; /* Navbar, Footer Divider, etc */
+  --mainColorFontDark: gray; /* Mainly concerns Navbar links */
+  --mainColorBackgroundDark: black; /* Page content background */
+  --mainFontColorDark: lightgrey; /* Page content font color */
+  --mainTitleColorDark: lightgrey;
 }
 
 body{
@@ -11,6 +22,9 @@ body{
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
+  background: var(--mainColorBackgroundLight);
+  color: var(--mainFontColorLight);
+  font-family: Arial, Helvetica, sans-serif;
 }
 
 main{
@@ -19,10 +33,20 @@ main{
   width: 80%;
 }
 
+@media only screen and (max-aspect-ratio: 13/9){
+  main{
+      width: 90%;
+  }
+}
+
 .leftAlign{
   justify-content: flex-start;
 }
 
 .rightAlign{
   justify-content: flex-end;
+}
+
+h1{
+  color: var(--mainTitleColorLight);
 }

@@ -1,5 +1,6 @@
 import Link from "next/link" 
 import s from "@/styles/Footer.module.css"
+import SocialIcons from "./SocialIcons"
 
 export default function Footer_Mobile(){
     return(
@@ -15,12 +16,7 @@ export default function Footer_Mobile(){
                     <Link className={s.link} href="/dsgvo" title="Datenschutzerklärung">Datenschutzerklärung</Link>
                 </div>
             </div>
-            <div className={s.social}>
-                <Link className={s.socialItem} href="https://waffenforum.ch" target="_blank" title="waffenforum.ch"></Link>
-                <Link className={s.socialItem} href="https://waffenforum.ch" target="_blank" title="waffenforum.ch"></Link>
-                <Link className={s.socialItem} href="https://waffenforum.ch" target="_blank" title="waffenforum.ch"></Link>
-                <Link className={s.socialItem} href="https://waffenforum.ch" target="_blank" title="waffenforum.ch"></Link>
-            </div>
+            <SocialIcons />
         </footer>
     )
 }

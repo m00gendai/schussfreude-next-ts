@@ -1,9 +1,11 @@
 "use client"
 
 import Link from "next/link"
+import Image from "next/image"
 import s from "../styles/Navbar.module.css"
 import {GiHamburgerMenu} from "react-icons/gi"
 import {useState} from "react"
+import Logo from "../public/logoSq.png"
 
 export default function Navbar_Mobile(){
 
@@ -17,7 +19,15 @@ export default function Navbar_Mobile(){
 
     return(
         <nav className={s.navMobile}>
-        <div className={s.logo}></div>
+        <div className={s.logoContainer}>
+            <div className={s.logo}>
+                <Image
+                    src={Logo}
+                    alt={`Schussfreude Logo`}
+                    fill={true}
+                />
+            </div>
+        </div>
         <div className={s.container}>
             <GiHamburgerMenu className={`${s.burger}`} style={rotate ? {transform: "rotate(90deg)"} : {}} onClick={()=>handleHamburgerOpen()}/>
             {hamburgerOpen ? <div className={s.subcontainer}>
