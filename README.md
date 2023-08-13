@@ -1,34 +1,97 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+## schussfreude.ch
 
-## Getting Started
+Rewrite of schussfreude.ch as a headless solution with Next.js (13, App Router), TypeScript (5) and Cockpit CMS (v2).
 
-First, run the development server:
+### env
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-```
+A `.env` file needs to be provided with:
+- API key for Cockpit CMS
+- SMTP password for nodemailer (not implemented yet)
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### packages
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Apart from the default packages, schussfreude uses the following additional packages:
+- [react-icons](https://react-icons.github.io/react-icons/)
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+See `package.json` for details.
 
-## Learn More
+### routes
 
-To learn more about Next.js, take a look at the following resources:
+As a predominately blog oriented platform, schussfreude uses both static and dynamic routes.
+To accomodate for the unified rendering of same-category blog posts, multiple dynamic routes are in place.
+So far, the page structure looks like this, where [slug] indicates a dynamic route:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- /app
+    - layout.tsx 
+    - page.tsx 
+    - not-found.tsx
+    - kontakt
+        - page.tsx
+    - impressum
+        - page.tsx
+    - dsgvo
+        - page.tsx
+    - zeitdokumente
+        - page.tsx
+    - artikel 
+        - page.tsx
+        - allgemein
+            - besuch
+                - [slug]
+                    - page.tsx
+            - sportschiessen
+                - [slug]
+                    - page.tsx
+            - [slug]
+                - page.tsx
+        - apps
+            - [slug]
+                - page.tsx
+        - buecher
+            - [slug]
+                -page.tsx
+        - zeitschriften
+            - swm
+                - [slug]
+                    - page.tsx
+            [slug]
+                - page.tsx
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+### rendering
 
-## Deploy on Vercel
+By default pages, layouts and components in Next.js 13 with App Router are rendered as server components.
+Client components are only used where client side interactivity is intended. This is the case in the following components:
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- Navbar_Mobile.tsx
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+### layout
+
+schussfreude uses a root layout and does not employ nested layouts.
+Screen responsiveness is typically self-regulated by use of flexbox and grid.
+Explicit media queries employ `max-aspect-ratio: 13/9` for mobile (portrait) and `min-aspect-ratio: 13/9` for desktop (landscape) respectively. This ensures that opening a virtual keyboard on mobile (portrait) does not trigger a layout shift.
+
+If separate components for either aspect ratio exist, they are both included in the page/layout/component and rendered conditionally
+with media queries. This ensures that no hydration errors occur. This is the case for:
+
+- Navbar.tsx and Navbar_Mobile.tsx
+- Footer.tsx and Footer_Mobile.tsx
+
+### assets
+
+Generally assets for posts and pages are provided via CMS. 
+Static asset imports using the public directory are used for:
+
+- Logo in Navbar
+- Social Icons
+
+### TypeScript
+
+schussfreude enforces strict TypeScript 5 but allows plain JavaScript when and if necessary.
+Interfaces are preferred over Types. Generally Interfaces include all variable types regardless of usage.
+The `any` type is generally avoided if possible.
+
+#### pull requests
+
+Generally schussfreude.ch is developed and maintained by Marcel Weber alone. You are free to fork the repo (see license), 
+and you may open pull requests, but do not expect them to be approved or even considered.
+
