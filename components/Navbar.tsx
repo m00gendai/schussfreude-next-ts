@@ -1,10 +1,20 @@
 import Link from "next/link"
+import Image from "next/image"
 import s from "../styles/Navbar.module.css"
+import Logo from "../public/logoSq.png"
 
 export default function Navbar(){
     return(
         <nav className={s.nav}>
-        <div className={s.logo}></div>
+        <div className={s.logoContainer}>
+            <div className={s.logo}>
+                <Image
+                    src={Logo}
+                    alt={`Schussfreude Logo`}
+                    fill={true}
+                />
+            </div>
+        </div>
         <div className={s.container}>
             <Link className={s.link} href="/">Home</Link>
             <Link className={s.link} href="/artikel">Artikel</Link>
