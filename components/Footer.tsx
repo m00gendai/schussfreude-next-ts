@@ -1,5 +1,6 @@
 import Link from "next/link" 
 import s from "@/styles/Footer.module.css"
+import SocialIcons from "./SocialIcons"
 
 export default function Footer(){
     return(
@@ -9,12 +10,7 @@ export default function Footer(){
                     <Link className={s.link} href="/kontakt" title="Kontaktformular">Kontakt</Link>
                 </div>
             </div>
-            <div className={s.social}>
-                <Link className={s.socialItem} href="https://waffenforum.ch" target="_blank" title="waffenforum.ch"></Link>
-                <Link className={s.socialItem} href="https://waffenforum.ch" target="_blank" title="waffenforum.ch"></Link>
-                <Link className={s.socialItem} href="https://waffenforum.ch" target="_blank" title="waffenforum.ch"></Link>
-                <Link className={s.socialItem} href="https://waffenforum.ch" target="_blank" title="waffenforum.ch"></Link>
-            </div>
+            <SocialIcons />
             <div className={`${s.linkBox} rightAlign`}>
                 <div className={`${s.linkItem} leftAlign`}>
                     <Link className={s.link} href="/impressum" title="Impressum">Impressum</Link>
