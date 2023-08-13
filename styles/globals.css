@@ -24,6 +24,7 @@ body{
   justify-content: center;
   background: var(--mainColorBackgroundLight);
   color: var(--mainFontColorLight);
+  font-family: Arial, Helvetica, sans-serif;
 }
 
 main{
