@@ -39,14 +39,57 @@ main{
   }
 }
 
+article{
+  position: relative;
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+section{
+  position: relative;
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  align-items: flex-start;
+  border-bottom: 5px solid red;
+  padding: 0 0 2rem 0;
+  color: var(--mainFontColorLight);
+}
+
+section:last-child{
+  border: none;
+}
+
+h1{
+  position: relative;
+  width: 100%;
+  margin: 3rem 0;
+  font-size: 2rem;
+  color: var(--mainTitleColorLight);
+}
+
+h2{
+  position: relative;
+  width: 100%;
+  margin-top: 3rem;
+  font-size: 1.5rem;
+  color: var(--mainTitleColorLight);
+}
+
+.metaText{
+  position: relative;
+  width: 100%;
+  margin: 0;
+}
+
 .leftAlign{
   justify-content: flex-start;
 }
 
 .rightAlign{
   justify-content: flex-end;
-}
-
-h1{
-  color: var(--mainTitleColorLight);
 }
