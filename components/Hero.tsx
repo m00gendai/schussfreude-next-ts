@@ -1,26 +1,55 @@
 import s from "@/styles/Hero.module.css"
+import {Book, Tag, Medium} from "@/interfaces/interface_Book"
+import Link from "next/link"
+import Image from "next/image"
 
-export default function Hero(){
+interface Props{
+    articles: (Book[])
+}
 
-    /* TODO: This will be replaced with API data and is now solely for placeholder purposes */
-    const mockData: string[] = [
-        "Placeholder 1",
-        "Placeholder 2",
-        "Placeholder 3",
-        "Placeholder 4",
-        "Placeholder 5",
-    ]
+export default function Hero({articles}:Props){
+
+    function getCategory(tags:Tag[]){
+        for(let tag of tags){
+            if(tag.item === "Bücher"){
+                return "buecher"
+            }
+        }
+    }
+
+    function getAspectRatio(image:Medium){
+        const orientation: string = image.width > image.height ? "landscape" : image.width < image.height ? "portrait" : "square"
+        if(orientation === "landscape"){
+            return `${image.width/image.height}/1`
+        }
+        if(orientation === "portrait"){
+            return `1/${image.height/image.width}`
+        }
+        return `1/1`
+    }
 
     return(
         <div className={s.hero}>
-            {mockData.map(data=>{
+            {articles.map(article=>{
                 return(
-                    /* TODO: Change key to _id */
-                    <div className={s.item} key={data}>
-                        <div className={s.caption}>
-                            {data}
+                    <Link href={`/artikel/${getCategory(article.tags)}/${article.title.toLowerCase().replaceAll(" ", "-")}`} className={s.item} key={article._id}>
+                        <div className={s.container} style={article.hero.width > article.hero.height ? 
+                                            {height: "100%", aspectRatio: getAspectRatio(article.hero)}
+                                            :
+                                            {width: "100%", aspectRatio: getAspectRatio(article.hero)}}>
+                        <Image 
+                            src={`https://cms.schussfreude.ch/storage/uploads/${article.hero.path}`}
+                            alt={article.hero.description}
+                            width={article.hero.width}
+                            height={article.hero.height}
+                            style={{width: "100%", height: "auto"}}
+                        />
                         </div>
-                    </div>
+                        <div className={s.caption}>
+                            {article.title}
+                        
+                        </div>
+                    </Link>
                 )
             })}
         </div>
