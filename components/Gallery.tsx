@@ -66,7 +66,7 @@ export default function Gallery({images}:Props){
                     <div className={s.grid}>
                         {images.map(image=>{
                             return(
-                                <div className={s.itemFrame}>
+                                <div key={image._id} className={s.itemFrame}>
                                     <div className={s.itemContainer}>
                                         <div className={s.item} style={image.width > image.height ? 
                                             {height: "100%", aspectRatio: getAspectRatio(image)}

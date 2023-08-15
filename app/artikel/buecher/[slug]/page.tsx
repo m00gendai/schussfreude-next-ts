@@ -2,6 +2,7 @@ import { notFound } from 'next/navigation'
 import Link from "next/link"
 import React from 'react'
 import Gallery from '@/components/Gallery'
+import DataTableBooks from '@/components/DataTableBooks'
 
 export interface Book {
   data: Data
@@ -136,77 +137,75 @@ export default async function Page({params}:{params:{slug:string}}) {
         <section>
           <p className={"metaText"}>{`Erstpublikation am: ${convertDate(post.meta)}`}</p>
           <p className={"metaText"}>{`Zuletzt geändert am: ${getDate(post._modified)}`}</p>
-          <p className={"metaText"}>{`Kategorien: `}{post.tags.map((tag, index)=>{return <span>{`${tag.item}${index < post.tags.length-1 ? ", " : ""}`}</span>})}</p>
+          <p className={"metaText"}>{`Kategorien: `}{post.tags.map((tag, index)=>{return <span key={`tagSpan_${index}`}>{`${tag.item}${index < post.tags.length-1 ? ", " : ""}`}</span>})}</p>
+        </section>
+        <section>
+          <h2>Eckdaten</h2>
+          <DataTableBooks data={post.data}/>
         </section>
         <section>
           <h2>Vorwort</h2>
-          {post.intro?.map(item =>{
+          {post.intro?.map((item, index) =>{
             if(item.text){
-              return <div dangerouslySetInnerHTML={{__html: item.text}}></div>
+              return <div key={`introText_${index}`} dangerouslySetInnerHTML={{__html: item.text}}></div>
             }
             if(item.media){
-              return <Gallery images={item.media} />
+              return <Gallery key={`introMedia_${index}`} images={item.media} />
             }
           })}
         </section>
         <section>
         <h2>Von Aussen</h2>
-          {post.outside?.map(item =>{
+          {post.outside?.map((item, index) =>{
             if(item.text){
-              return <div dangerouslySetInnerHTML={{__html: item.text}}></div>
+              return <div key={`outsideText${index}`}dangerouslySetInnerHTML={{__html: item.text}}></div>
             }
             if(item.media){
-              return <Gallery images={item.media} />
+              return <Gallery key={`outsideMedia_${index}`} images={item.media} />
             }
           })}
         </section>
         <section>
         <h2>Inhalt</h2>
-          {post.content?.map(item =>{
+          {post.content?.map((item, index) =>{
             if(item.text){
-              return <div dangerouslySetInnerHTML={{__html: item.text}}></div>
+              return <div key={`contentText_${index}`} dangerouslySetInnerHTML={{__html: item.text}}></div>
             }
             if(item.media){
-              return item.media.map(element=>{
-                return <p>{element.path}</p>
-              })
+              return <Gallery key={`contentMedia_${index}`} images={item.media} />
             }
           })}
         </section>
         <section>
         <h2>Eindrücke</h2>
-          {post.impressions?.map(item =>{
+          {post.impressions?.map((item, index) =>{
             if(item.text){
-              return <div dangerouslySetInnerHTML={{__html: item.text}}></div>
+              return <div key={`impressionsText_${index}`} dangerouslySetInnerHTML={{__html: item.text}}></div>
             }
             if(item.media){
-              return <Gallery images={item.media} />
+              return <Gallery key={`impressionsMedia_${index}`} images={item.media} />
             }
           })}
         </section>
         <section>
         <h2>Preis & Verfügbarkeit</h2>
-          {post.availability?.map(item =>{
+          {post.availability?.map((item, index) =>{
             if(item.text){
-              return <div dangerouslySetInnerHTML={{__html: item.text}}></div>
+              return <div key={`availabilityText_${index}`} dangerouslySetInnerHTML={{__html: item.text}}></div>
             }
             if(item.media){
-              return item.media.map(element=>{
-                return <p>{element.path}</p>
-              })
+              return <Gallery key={`availabilityMedia_${index}`} images={item.media} />
             }
           })}
         </section>
         <section>
         <h2>Persönliches Fazit</h2>
-          {post.conclusion?.map(item =>{
+          {post.conclusion?.map((item, index) =>{
             if(item.text){
-              return <div dangerouslySetInnerHTML={{__html: item.text}}></div>
+              return <div key={`conclusionText_${index}`} dangerouslySetInnerHTML={{__html: item.text}}></div>
             }
             if(item.media){
-              return item.media.map(element=>{
-                return <p>{element.path}</p>
-              })
+              return <Gallery key={`conclusionMedia_${index}`} images={item.media} />
             }
           })}
         </section>
