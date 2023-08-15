@@ -3,8 +3,29 @@ import s from "@/styles/frontpage.module.css"
 import Hero from '@/components/Hero'
 import Categories from '@/components/Categories'
 import Link from "next/link"
+import {Book} from "@/interfaces/interface_Book"
+//&sort=%7B_created%3A-1%7D
+async function getBooks(){
+  const getData = await fetch(`https://cms.schussfreude.ch/api/content/items/books?populate=1000&limit=5`,{
+    "headers": {
+      "api-key": process.env.CMS!,
+    }
+  ,
+  next: { revalidate: 10 } }) // TODO: Increase in prod
+  
+  return await getData.json()
+}
 
-export default function Home() {
+function sortData(a:Book, b:Book){
+  return Math.floor(new Date(b.meta).getTime() / 1000)-Math.floor(new Date(a.meta).getTime() / 1000)
+}
+
+export default async function Home() {
+
+  const books:Book[] = await getBooks()
+
+  const articles:(Book[])= [...books.sort((a,b) => sortData(a, b))]
+
   return (
     <main>
       {/* TODO: This section will be removed on prod */}
@@ -17,7 +38,7 @@ export default function Home() {
         Github Repository (Englisch)
       </Link>
       {/* TODO: This will remain in prod. Delete comment then */}
-      <Hero />
+      <Hero articles={articles}/>
       <Categories />
     </main>
   )
