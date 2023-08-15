@@ -1,0 +1,9 @@
+.table{
+    position: relative;
+    width: 100%;
+}
+
+.table tr td:first-child{
+    width: 20%;
+    margin: 0 1rem 0 0;
+}
