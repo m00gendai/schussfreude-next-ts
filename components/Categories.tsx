@@ -1,27 +1,46 @@
 import s from "@/styles/Categories.module.css"
+import {Tag} from "@/interfaces/interface_Book"
+import Image from "next/image"
 
-export default function Categories(){
+async function getData(){
+    const getData = await fetch(`https://cms.schussfreude.ch/api/content/items/tags?populate=1`,{
+      "headers": {
+        "api-key": process.env.CMS!
+      }  
+    ,
+    next: { revalidate: 10 } }) // TODO: Increase in prod
+    
+    return await getData.json()
+  }
 
-    /* TODO: This will be replaced with API data and is now solely for placeholder purposes */
-    const mockData: string[] = [
-        "Placeholder 1",
-        "Placeholder 2",
-        "Placeholder / Placeholder",
-        "Placeholder 4",
-        "Placeholder 5",
-    ]
+export default async function Categories(){
+
+    const data:Tag[] = await getData()
+    const sortedData:Tag[] = data.sort((a:Tag, b:Tag)=>a.item > b.item ? 1 : a.item < b.item ? -1 : 0)
 
     return(
         <div className={s.container}>
-            {mockData.map(data=>{
-                return(
-                    /* TODO: Change key to _id */
-                    <div className={s.item} key={data}>
-                        <div className={s.inner}>
-                            {data}
+            {sortedData.map(item=>{
+                if(item.type === "main"){
+                    return(
+                        <div className={s.item} key={item._id}>
+                            {item.thumb ?
+                                <Image
+                                    src={`https://cms.schussfreude.ch/storage/uploads/${item.thumb.path}`}
+                                    alt={item.thumb.description}
+                                    width={item.thumb.width}
+                                    height={item.thumb.height}
+                                    style={{width: "100%", height:"auto"}}
+                                />
+                                :
+                                null
+                            }
+                            <div className={s.inner}>
+                                {item.item}
+                            </div>
                         </div>
-                    </div>
-                )
+                    )
+                }
             })}
         </div>
     )
