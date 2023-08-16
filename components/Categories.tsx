@@ -1,6 +1,8 @@
 import s from "@/styles/Categories.module.css"
 import {Tag} from "@/interfaces/interface_Book"
+import { getCategory } from "@/utils"
 import Image from "next/image"
+import Link from "next/link"
 
 async function getData(){
     const getData = await fetch(`https://cms.schussfreude.ch/api/content/items/tags?populate=1`,{
@@ -23,7 +25,7 @@ export default async function Categories(){
             {sortedData.map(item=>{
                 if(item.type === "main"){
                     return(
-                        <div className={s.item} key={item._id}>
+                        <Link href={`/artikel/${getCategory(item)}`} className={s.item} key={item._id}>
                             {item.thumb ?
                                 <Image
                                     src={`https://cms.schussfreude.ch/storage/uploads/${item.thumb.path}`}
@@ -38,7 +40,7 @@ export default async function Categories(){
                             <div className={s.inner}>
                                 {item.item}
                             </div>
-                        </div>
+                        </Link>
                     )
                 }
             })}
