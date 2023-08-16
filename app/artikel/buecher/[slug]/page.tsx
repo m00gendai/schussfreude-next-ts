@@ -3,11 +3,12 @@ import Link from "next/link"
 import React from 'react'
 import Gallery from '@/components/Gallery'
 import DataTableBooks from '@/components/DataTableBooks'
-import {Book} from "@/interfaces/interface_Book"
+import {Book, Tag} from "@/interfaces/interface_Book"
 import {getDate, convertDate} from "@/utils"
+import ArticleGallery from '@/components/ArticleGallery'
 
 async function getData(){
-  const getData = await fetch(`https://cms.schussfreude.ch/api/content/items/books?populate=1000`,{
+  const getData = await fetch(`https://cms.schussfreude.ch/api/content/items/books?populate=1`,{
     "headers": {
       "api-key": process.env.CMS!
     }  
@@ -25,6 +26,22 @@ export default async function Page({params}:{params:{slug:string}}) {
   const postMatch:Book[] = data.filter(item=>{
     return decodeURIComponent(item.title).toLowerCase().replaceAll(" ", "-") === decodedSlug
   })
+
+  const subTags:Tag[] = postMatch[0].tags.filter(item=>{
+    return item.type === "sub"
+  })
+  
+  const similarPosts:Book[] = data.filter(item=>{
+    if(item.title !== postMatch[0].title){
+      return item.tags.map(tag=>{
+        return subTags.map(subTag=>{
+          return tag.item === subTag.item
+        })
+      })
+    }
+  })
+
+  console.log(similarPosts)
 
   if(postMatch.length === 0){ // if above filter yielded no results
     notFound()
@@ -111,7 +128,12 @@ export default async function Page({params}:{params:{slug:string}}) {
             }
           })}
         </section>
+        <section>
+          <h2>Ähnline Artikel</h2>
+          <ArticleGallery articles={similarPosts} />
+        </section>
       </article>
+      
     </main>
   )
 }
