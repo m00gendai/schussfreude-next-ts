@@ -1,10 +1,11 @@
 "use client"
 
 import Image from "next/image"
+import Link from "next/link"
 import s from "@/styles/ArticleGallery.module.css"
 import{Book,Medium} from "@/interfaces/interface_Book"
 import {useState} from "react"
-import { getAspectRatio, sortData } from "@/utils"
+import { getAspectRatio, sortData, getCategory } from "@/utils"
 
 interface Props{
     articles:(Book[])
@@ -30,7 +31,7 @@ export default function ArticleGallery({articles}:Props){
             {
             sortedArticles.map(article=>{
                 return(
-                <div key={article._id} className={s.itemFrame}>
+                <Link href={`/artikel/${getCategory(article.tags)}/${article.title.toLowerCase().replaceAll(" ", "-")}`} key={article._id} className={s.itemFrame}>
                     <div className={s.itemContainer}>
                     <div className={s.item} style={article.hero.width > article.hero.height ? 
                         {height: "100%", aspectRatio: getAspectRatio(article.hero)}
@@ -49,7 +50,7 @@ export default function ArticleGallery({articles}:Props){
                         <div className={s.date}>{article.meta}</div>
                     </div>
                     </div>
-                </div>
+                </Link>
                 )
             })
             }
