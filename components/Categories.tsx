@@ -32,7 +32,7 @@ export default async function Categories(){
                                     alt={item.thumb.description}
                                     width={item.thumb.width}
                                     height={item.thumb.height}
-                                    style={{width: "100%", height:"auto"}}
+                                    style={{width: "auto", height:"100%"}}
                                 />
                                 :
                                 null
