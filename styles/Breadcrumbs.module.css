@@ -1,0 +1,21 @@
+.container{
+    position: relative;
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.crumbs{
+    position: relative;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.separator{
+    position: relative;
+    margin: 0 0.5rem;
+}
