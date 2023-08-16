@@ -65,7 +65,7 @@
     grid-template-columns: 1fr 1fr 1fr 1fr;
     grid-gap: 1rem;
     position: relative;
-    width: 75%;
+    width: 50%;
 }
 
 @media only screen and (max-aspect-ratio: 13/9){
