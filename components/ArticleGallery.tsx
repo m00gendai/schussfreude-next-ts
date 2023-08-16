@@ -1,48 +1,44 @@
 "use client"
 
 import Image from "next/image"
+import Link from "next/link"
 import s from "@/styles/ArticleGallery.module.css"
 import{Book,Medium} from "@/interfaces/interface_Book"
 import {useState} from "react"
+import { getAspectRatio, sortData, getCategory } from "@/utils"
+import { MdUpdate } from "react-icons/md";
 
 interface Props{
     articles:(Book[])
 }
 
-function getAspectRatio(image:Medium){
-    const orientation: string = image.width > image.height ? "landscape" : image.width < image.height ? "portrait" : "square"
-    if(orientation === "landscape"){
-        return `${image.width/image.height}/1`
-    }
-    if(orientation === "portrait"){
-        return `1/${image.height/image.width}`
-    }
-    return `1/1`
-  }
-
 export default function ArticleGallery({articles}:Props){
     const [orderBy, setOrderBy] = useState<string>("new")
     
-    function sortData(a:Book, b:Book){
-        return Math.floor(new Date(orderBy === "new"? b.meta : a.meta).getTime() / 1000)-Math.floor(new Date(orderBy === "new"? a.meta : b.meta).getTime() / 1000)
-    }
+    
 
     function handleOrder(){
         setOrderBy(orderBy === "new" ? "old" : "new")
     }
 
-    const sortedArticles:(Book[]) = articles.sort((a,b) => sortData(a,b))
+    const sortedArticles:(Book[]) = articles.sort(sortData(orderBy))
 
     return(
         <>
         <div className={s.toolbar}>
-            <button className={s.button} onClick={()=>handleOrder()}>{orderBy}</button>
+            <button className={s.button} onClick={()=>handleOrder()}>
+                {orderBy === "new" ? 
+                    <><MdUpdate className={s.icon} /><p className={s.buttonText}>Neueste zuerst</p></>
+                    :
+                    <><MdUpdate className={s.icon} style={{transform: "rotateY(180deg)"}}/><p className={s.buttonText}>Älteste zuerst</p></>
+                }
+            </button>
         </div>
         <div className={s.grid}>
             {
             sortedArticles.map(article=>{
                 return(
-                <div key={article._id} className={s.itemFrame}>
+                <Link href={`/artikel/${getCategory(article.tags)}/${article.title.toLowerCase().replaceAll(" ", "-")}`} key={article._id} className={s.itemFrame}>
                     <div className={s.itemContainer}>
                     <div className={s.item} style={article.hero.width > article.hero.height ? 
                         {height: "100%", aspectRatio: getAspectRatio(article.hero)}
@@ -61,7 +57,7 @@ export default function ArticleGallery({articles}:Props){
                         <div className={s.date}>{article.meta}</div>
                     </div>
                     </div>
-                </div>
+                </Link>
                 )
             })
             }

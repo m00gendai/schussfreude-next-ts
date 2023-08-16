@@ -1,8 +1,8 @@
 .grid{
     position: relative;
-    width: 80%;
+    width: 100%;
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
     grid-gap: 1rem;
 }
 
@@ -15,6 +15,17 @@
     align-items: center;
     box-shadow: 0px 0px 5px 0px black;
     flex-wrap: wrap;
+    text-decoration: none;
+    color: var(--mainFontColorLight);
+}
+
+@media only screen and (max-aspect-ratio: 13/9){
+    .grid{
+        grid-template-columns: 1fr;
+    }
+    .itemFrame{
+        aspect-ratio: 21/10;
+    }
 }
 
 .itemContainer{
@@ -79,11 +90,15 @@
 .button{
     position: relative;
     height: 90%;
-    aspect-ratio: 4/3;
+    aspect-ratio: 16/3;
     border: none;
     outline:none;
     box-shadow: 0px 5px 5px 0px black;
     background: lightgrey;
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    align-items: center;
 }
 
 .button:hover{
@@ -93,4 +108,17 @@
 .button:active{
     height: 85%;
     box-shadow: 0px 0px 5px 0px black;
+}
+
+.icon{
+    position: relative;
+    height: 100%;
+    aspect-ratio: 1/1;
+    font-size: 2rem;
+}
+
+.buttonText{
+    position: relative;
+    flex-grow: 1;
+    font-size: 1rem;
 }

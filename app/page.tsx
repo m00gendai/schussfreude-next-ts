@@ -39,6 +39,7 @@ export default async function Home() {
       </Link>
       {/* TODO: This will remain in prod. Delete comment then */}
       <Hero articles={articles}/>
+      {/* @ts-expect-error Server Component */}
       <Categories />
     </main>
   )

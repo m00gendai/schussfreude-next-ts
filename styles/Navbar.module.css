@@ -25,17 +25,51 @@
     height: 100%;
     aspect-ratio: 1.5/1;
     display: flex;
-    justify-content: center;
-    align-items: center;
+    justify-content: flex-start;
+    align-items: flex-start;
+}
+
+@media only screen and (max-aspect-ratio: 13/9){
+    .logoContainer{
+        justify-content: center;
+        align-items: center;
+    }
 }
 
 .logo{
     position: relative;
-    height: 90%;
+    height: 150%;
     aspect-ratio: 1/1;
     object-fit: contain;
     background: var(--mainColorFontLight);
     border-radius: 100%;
+    margin: 0.5rem 0 0 0.5rem;
+}
+
+@media only screen and (max-aspect-ratio: 13/9){
+    .logo{
+        height: 70%;
+        margin: 0;
+    }
+}
+
+.tagline{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--mainColorFontLight);
+    font-weight: bolder;
+    font-size: 1.25rem;
+}
+@media only screen and (max-width: 300px){
+    .tagline{
+        display: none;
+    }
 }
 
 .container{
@@ -69,7 +103,7 @@
 
 .subcontainer{
     position: absolute;
-    top: 3rem;
+    top: 4rem;
     left: 0;
     right: 0;
     width: 100%;

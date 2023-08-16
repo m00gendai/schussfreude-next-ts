@@ -1,16 +1,5 @@
 import s from "@/styles/DataTable.module.css"
-
-export interface Data {
-    title: string
-    author: string
-    release: string
-    reprint: string
-    publisher: string
-    isbn: string
-    pages: string
-    weight: string
-    dimensions: string
-  }
+import {Data} from "@/interfaces/interface_Book"
 
   interface Props{
     data: Data

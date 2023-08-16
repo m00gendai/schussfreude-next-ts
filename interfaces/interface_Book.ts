@@ -81,6 +81,8 @@ export interface Conclusion {
 
 export interface Tag {
   item: string
+  type: string
+  thumb: Medium
   _modified: number
   _mby: string
   _created: number
