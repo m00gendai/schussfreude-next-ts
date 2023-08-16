@@ -7,13 +7,13 @@ export default function Navbar(){
     return(
         <nav className={s.nav}>
         <div className={s.logoContainer}>
-            <div className={s.logo}>
+            <Link href="/" className={s.logo}>
                 <Image
                     src={Logo}
                     alt={`Schussfreude Logo`}
                     fill={true}
                 />
-            </div>
+            </Link>
         </div>
         <div className={s.container}>
             <Link className={s.link} href="/">Home</Link>

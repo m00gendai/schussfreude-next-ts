@@ -20,13 +20,13 @@ export default function Navbar_Mobile(){
     return(
         <nav className={s.navMobile}>
         <div className={s.logoContainer}>
-            <div className={s.logo}>
+            <Link href="/" className={s.logo}>
                 <Image
                     src={Logo}
                     alt={`Schussfreude Logo`}
                     fill={true}
                 />
-            </div>
+            </Link>
         </div>
         <div className={s.container}>
             <GiHamburgerMenu className={`${s.burger}`} style={rotate ? {transform: "rotate(90deg)"} : {}} onClick={()=>handleHamburgerOpen()}/>
