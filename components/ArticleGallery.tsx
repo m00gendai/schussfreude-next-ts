@@ -40,6 +40,7 @@ export default function ArticleGallery({articles}:Props){
                 return(
                 <Link href={`/artikel/${getCategory(article.tags)}/${article.title.toLowerCase().replaceAll(" ", "-")}`} key={article._id} className={s.itemFrame}>
                     <div className={s.itemContainer}>
+                        {article.hero ?
                     <div className={s.item} style={article.hero.width > article.hero.height ? 
                         {height: "100%", aspectRatio: getAspectRatio(article.hero)}
                         :
@@ -49,7 +50,7 @@ export default function ArticleGallery({articles}:Props){
                         alt={article.hero.description}
                         fill={true}
                         />
-                    </div>
+                    </div> : null}
                     </div>
                     <div className={s.caption}>
                     <div className={s.text}>
