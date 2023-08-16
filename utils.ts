@@ -1,4 +1,5 @@
 import {Tag,Medium, Book} from "@/interfaces/interface_Book"
+import { randomFill } from "crypto"
 
 export function getDate(unix:number){
     const date: Date = new Date(unix*1000)
@@ -10,11 +11,32 @@ export function convertDate(dateString: string){
     return `${date.getDate() < 10 ? "0" : ""}${date.getDate()}.${date.getMonth()+1 < 10 ? "0" : ""}${date.getMonth()+1}.${date.getFullYear()}`
   }
 
- export function getCategory(tags:Tag[]){
-    for(let tag of tags){
-        if(tag.item === "Bücher"){
-            return "buecher"
+  function returnCategory(item: string){
+    if(item === "Bücher"){
+        return "buecher"
+    }
+    if(item === "Apps"){
+        return "apps"
+    }
+    if(item === "Allgemein"){
+        return "allgemein"
+    }
+    if(item === "Zeitschriften"){
+        return "zeitschriften"
+    }
+    if(item === "Zubehör / Hilfsmittel"){
+        return "zubehoer"
+    }
+  }
+
+ export function getCategory(tags:(Tag | Tag[])){
+    if(Array.isArray(tags)){
+        for(let tag of tags){
+            return returnCategory(tag.item)
         }
+    }
+    if(!Array.isArray(tags)){
+        return returnCategory(tags.item)
     }
 }
 
