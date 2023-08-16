@@ -3,97 +3,8 @@ import Link from "next/link"
 import React from 'react'
 import Gallery from '@/components/Gallery'
 import DataTableBooks from '@/components/DataTableBooks'
-
-export interface Book {
-  data: Data
-  intro: Intro[]
-  outside: Outside[]
-  content: Content[]
-  impressions: Impression[]
-  availability: Availability[]
-  conclusion: Conclusion[]
-  tags: Tag[]
-  _modified: number
-  _mby: string
-  _created: number
-  _state: number
-  _cby: string
-  _id: string
-  title: string
-  meta: string
-}
-
-export interface Data {
-  title: string
-  author: string
-  release: string
-  reprint: string
-  publisher: string
-  isbn: string
-  pages: string
-  weight: string
-  dimensions: string
-}
-
-export interface Intro {
-  text: string
-  media: Medium[]
-}
-
-export interface Outside {
-  text: string
-  media: Medium[]
-}
-
-export interface Medium {
-  path: string
-  title: string
-  mime: string
-  type: string
-  description: string
-  tags: string[]
-  size: number
-  colors: string[]
-  width: number
-  height: number
-  _hash: string
-  _created: number
-  _modified: number
-  _cby: string
-  folder: string
-  _id: string
-}
-
-export interface Content {
-  text: string
-  media: Medium[]
-}
-
-export interface Impression {
-  text: string
-  media: Medium[]
-}
-
-export interface Availability {
-  text: string
-  media: Medium[]
-}
-
-export interface Conclusion {
-  text: string
-  media: Medium[]
-}
-
-export interface Tag {
-  item: string
-  _modified: number
-  _mby: string
-  _created: number
-  _state: number
-  _cby: string
-  _id: string
-  _model: string
-}
+import {Book} from "@/interfaces/interface_Book"
+import {getDate, convertDate} from "@/utils"
 
 async function getData(){
   const getData = await fetch(`https://cms.schussfreude.ch/api/content/items/books?populate=1000`,{
@@ -120,15 +31,6 @@ export default async function Page({params}:{params:{slug:string}}) {
   }
 
   const post: Book = postMatch[0]
-
-  function getDate(unix:number){
-    const date: Date = new Date(unix*1000)
-    return `${date.getDate() < 10 ? "0" : ""}${date.getDate()}.${date.getMonth()+1 < 10 ? "0" : ""}${date.getMonth()+1}.${date.getFullYear()}`
-  }
-  function convertDate(dateString: string){
-    const date: Date = new Date(dateString)
-    return `${date.getDate() < 10 ? "0" : ""}${date.getDate()}.${date.getMonth()+1 < 10 ? "0" : ""}${date.getMonth()+1}.${date.getFullYear()}`
-  }
 
   return (
     <main>

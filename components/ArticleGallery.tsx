@@ -4,34 +4,22 @@ import Image from "next/image"
 import s from "@/styles/ArticleGallery.module.css"
 import{Book,Medium} from "@/interfaces/interface_Book"
 import {useState} from "react"
+import { getAspectRatio, sortData } from "@/utils"
 
 interface Props{
     articles:(Book[])
 }
 
-function getAspectRatio(image:Medium){
-    const orientation: string = image.width > image.height ? "landscape" : image.width < image.height ? "portrait" : "square"
-    if(orientation === "landscape"){
-        return `${image.width/image.height}/1`
-    }
-    if(orientation === "portrait"){
-        return `1/${image.height/image.width}`
-    }
-    return `1/1`
-  }
-
 export default function ArticleGallery({articles}:Props){
     const [orderBy, setOrderBy] = useState<string>("new")
     
-    function sortData(a:Book, b:Book){
-        return Math.floor(new Date(orderBy === "new"? b.meta : a.meta).getTime() / 1000)-Math.floor(new Date(orderBy === "new"? a.meta : b.meta).getTime() / 1000)
-    }
+    
 
     function handleOrder(){
         setOrderBy(orderBy === "new" ? "old" : "new")
     }
 
-    const sortedArticles:(Book[]) = articles.sort((a,b) => sortData(a,b))
+    const sortedArticles:(Book[]) = articles.sort(sortData(orderBy))
 
     return(
         <>
