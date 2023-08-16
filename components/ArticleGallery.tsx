@@ -6,6 +6,7 @@ import s from "@/styles/ArticleGallery.module.css"
 import{Book,Medium} from "@/interfaces/interface_Book"
 import {useState} from "react"
 import { getAspectRatio, sortData, getCategory } from "@/utils"
+import { MdUpdate } from "react-icons/md";
 
 interface Props{
     articles:(Book[])
@@ -25,7 +26,13 @@ export default function ArticleGallery({articles}:Props){
     return(
         <>
         <div className={s.toolbar}>
-            <button className={s.button} onClick={()=>handleOrder()}>{orderBy}</button>
+            <button className={s.button} onClick={()=>handleOrder()}>
+                {orderBy === "new" ? 
+                    <><MdUpdate className={s.icon} /><p className={s.buttonText}>Neueste zuerst</p></>
+                    :
+                    <><MdUpdate className={s.icon} style={{transform: "rotateY(180deg)"}}/><p className={s.buttonText}>Älteste zuerst</p></>
+                }
+            </button>
         </div>
         <div className={s.grid}>
             {
