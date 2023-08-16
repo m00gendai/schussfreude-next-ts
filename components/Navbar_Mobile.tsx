@@ -28,13 +28,14 @@ export default function Navbar_Mobile(){
                 />
             </Link>
         </div>
+        <div className={s.tagline}>schussfreude.ch</div>
         <div className={s.container}>
             <GiHamburgerMenu className={`${s.burger}`} style={rotate ? {transform: "rotate(90deg)"} : {}} onClick={()=>handleHamburgerOpen()}/>
             {hamburgerOpen ? <div className={s.subcontainer}>
-                <Link className={s.sublink} href="/">Home</Link>
-                <Link className={s.sublink} href="/artikel">Artikel</Link>
-                <Link className={s.sublink} href="/zeitdokumente">Zeitdokumente</Link>
-                <Link className={s.sublink} href="https://www.waffenforum.ch" target="_blank">waffenforum.ch</Link>
+                <Link className={s.sublink} onClick={()=>handleHamburgerOpen()} href="/">Home</Link>
+                <Link className={s.sublink} onClick={()=>handleHamburgerOpen()} href="/artikel">Artikel</Link>
+                <Link className={s.sublink} onClick={()=>handleHamburgerOpen()} href="/zeitdokumente">Zeitdokumente</Link>
+                <Link className={s.sublink} onClick={()=>handleHamburgerOpen()} href="https://www.waffenforum.ch" target="_blank">waffenforum.ch</Link>
             </div> : null}
         </div>
         </nav>
