@@ -25,22 +25,31 @@
     height: 100%;
     aspect-ratio: 1.5/1;
     display: flex;
-    justify-content: center;
-    align-items: center;
+    justify-content: flex-start;
+    align-items: flex-start;
+}
+
+@media only screen and (max-aspect-ratio: 13/9){
+    .logoContainer{
+        justify-content: center;
+        align-items: center;
+    }
 }
 
 .logo{
     position: relative;
-    height: 90%;
+    height: 150%;
     aspect-ratio: 1/1;
     object-fit: contain;
     background: var(--mainColorFontLight);
     border-radius: 100%;
+    margin: 0.5rem 0 0 0.5rem;
 }
 
 @media only screen and (max-aspect-ratio: 13/9){
     .logo{
         height: 70%;
+        margin: 0;
     }
 }
 
