@@ -6,6 +6,7 @@ import DataTableBooks from '@/components/DataTableBooks'
 import {Book, Tag} from "@/interfaces/interface_Book"
 import {getDate, convertDate} from "@/utils"
 import ArticleGallery from '@/components/ArticleGallery'
+import Swiper_Similar from '@/components/Swiper_Similar'
 
 async function getData(){
   const getData = await fetch(`https://cms.schussfreude.ch/api/content/items/books?populate=1`,{
@@ -130,7 +131,7 @@ export default async function Page({params}:{params:{slug:string}}) {
         </section>
         <section>
           <h2>Ähnline Artikel</h2>
-          <ArticleGallery articles={similarPosts} />
+          <Swiper_Similar articles={similarPosts}/>
         </section>
       </article>
       
