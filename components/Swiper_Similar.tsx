@@ -43,8 +43,8 @@ export default function Swiper_Similar({articles}:Props){
       {
             sortedArticles.map(article=>{
                 return(
-                    <SwiperSlide style={{width: "auto"}}>
-                <Link href={`/artikel/${getCategory(article.tags)}/${article.title.toLowerCase().replaceAll(" ", "-")}`} key={article._id} className={s.itemFrame}>
+                    <SwiperSlide style={{width: "auto"}} key={article._id}>
+                <Link href={`/artikel/${getCategory(article.tags)}/${article.title.toLowerCase().replaceAll(" ", "-")}`} className={s.itemFrame}>
                     <div className={s.itemContainer}>
                         {article.hero ?
                     <div className={s.item} style={article.hero.width > article.hero.height ? 
