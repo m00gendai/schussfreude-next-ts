@@ -12,12 +12,6 @@
     margin: 1rem 0;
 }
 
-@media only screen and (max-aspect-ratio: 13/9){
-    .itemFrame{
-        aspect-ratio: 21/10;
-    }
-}
-
 .itemContainer{
     position: relative;
     height: 75%;
