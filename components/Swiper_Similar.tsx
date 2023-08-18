@@ -14,6 +14,7 @@ import {BiChevronLeftCircle, BiChevronRightCircle} from "react-icons/bi"
 // Import Swiper styles
 import 'swiper/css';
 import "swiper/css/navigation"
+import "swiper/css/scrollbar"
 
 interface Props{
     articles:(Book[])
