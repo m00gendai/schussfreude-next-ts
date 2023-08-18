@@ -12,6 +12,13 @@
     margin: 1rem 0;
 }
 
+@media only screen and (max-aspect-ratio: 13/9){
+    .itemFrame{
+        aspect-ratio: 1/1.5;
+        align-items: flex-start;
+    }
+}
+
 .itemContainer{
     position: relative;
     height: 75%;
@@ -20,6 +27,12 @@
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+@media only screen and (max-aspect-ratio: 13/9){
+    .itemContainer{
+        align-items: flex-start;
+    }
 }
 
 .item{
@@ -45,6 +58,12 @@
     justify-content: flex-start;
     align-items: center;
     flex-wrap: wrap;
+}
+
+@media only screen and (max-aspect-ratio: 13/9){
+    .text{
+        align-items: flex-start;
+    }
 }
 
 .title{
