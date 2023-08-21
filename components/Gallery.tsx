@@ -17,13 +17,16 @@ export default function Gallery({images}:Props){
                 images.length === 1 ? 
                     <>
                     <div className={s.flex}>
-                        <figure className={s.single} style={{aspectRatio: getAspectRatio(images[0])}}>
+                        <figure className={s.single}>
                             <Image
                                 src={`https://cms.schussfreude.ch/storage/uploads/${images[0].path}`}
                                 alt={images[0].description}
                                 width={images[0].width}
                                 height={images[0].height}
-                                style={{width: "100%", height: "100%"}}
+                                style={images[0].width > images[0].height ? 
+                                    {height: "auto", width: "90%"}
+                                    :
+                                    {width: "45%", height: "auto"}}
                                 className={s.image}
                             />
                             <figcaption className={s.caption}>{images[0].description}</figcaption>
