@@ -9,41 +9,41 @@ export default function DataTableBooks({data}:Props){
     return(
         <table className={s.table}>
             <tbody>
-                <tr>
-                    <td>Buchtitel</td>
-                    <td>{data.title}</td>
+                <tr className={s.row}>
+                    <td className={s.cell}>Buchtitel</td>
+                    <td className={s.cell}>{data.title}</td>
                 </tr>
-                <tr>
-                    <td>Autor</td>
-                    <td>{data.author}</td>
+                <tr className={s.row}>
+                    <td className={s.cell}>Autor</td>
+                    <td className={s.cell}>{data.author}</td>
                 </tr>
-                <tr>
-                    <td>Erscheinungsdatum</td>
-                    <td>{data.release}</td>
+                <tr className={s.row}>
+                    <td className={s.cell}>Erscheinungsdatum</td>
+                    <td className={s.cell}>{data.release}</td>
                 </tr>
-                <tr>
-                    <td>Auflage</td>
-                    <td>{data.reprint}</td>
+                <tr className={s.row}>
+                    <td className={s.cell}>Auflage</td>
+                    <td className={s.cell}>{data.reprint}</td>
                 </tr>
-                <tr>
-                    <td>Verlag</td>
-                    <td>{data.publisher}</td>
+                <tr className={s.row}>
+                    <td className={s.cell}>Verlag</td>
+                    <td className={s.cell}>{data.publisher}</td>
                 </tr>
-                <tr>
-                    <td>ISBN</td>
-                    <td>{data.isbn}</td>
+                <tr className={s.row}>
+                    <td className={s.cell}>ISBN</td>
+                    <td className={s.cell}>{data.isbn}</td>
                 </tr>
-                <tr>
-                    <td>Seiten</td>
-                    <td>{data.pages}</td>
+                <tr className={s.row}>
+                    <td className={s.cell}>Seiten</td>
+                    <td className={s.cell}>{data.pages}</td>
                 </tr>
-                <tr>
-                    <td>Gewicht</td>
-                    <td>{data.weight}</td>
+                <tr className={s.row}>
+                    <td className={s.cell}>Gewicht</td>
+                    <td className={s.cell}>{data.weight}</td>
                 </tr>
-                <tr>
-                    <td>Dimensionen</td>
-                    <td>{data.dimensions}</td>
+                <tr className={s.row}>
+                    <td className={s.cell}>Dimensionen</td>
+                    <td className={s.cell}>{data.dimensions}</td>
                 </tr>
             </tbody>
         </table>
