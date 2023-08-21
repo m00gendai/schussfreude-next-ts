@@ -1,9 +1,26 @@
 .table{
     position: relative;
     width: 100%;
+    border-collapse: collapse;
 }
 
-.table tr td:first-child{
+.cell{
+vertical-align: top;
+}
+
+.cell:first-child{
     width: 20%;
-    margin: 0 1rem 0 0;
+    padding: 0 1rem 0 0;
+}
+
+@media only screen and (max-aspect-ratio: 13/9){
+    .row{
+        border-bottom: 1px solid lightgrey;
+    }
+    .cell{
+        padding: 0.5rem 0;
+    }
+    .cell:first-child{
+        padding: 0.5rem 1rem 0.5rem 0;
+    }
 }

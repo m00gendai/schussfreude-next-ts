@@ -114,6 +114,9 @@ h2{
 .similar_prev{
   display: none;
   }
+  .swiper{
+    font-size: 1rem;
+  }
 }
 
 .similar_prev{
