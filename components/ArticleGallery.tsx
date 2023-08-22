@@ -3,13 +3,14 @@
 import Image from "next/image"
 import Link from "next/link"
 import s from "@/styles/ArticleGallery.module.css"
-import{Book,Medium} from "@/interfaces/interface_Book"
+import{Book} from "@/interfaces/interface_Book"
+import{Misc} from "@/interfaces/interface_Misc"
 import {useState} from "react"
 import { getAspectRatio, sortData, getCategory } from "@/utils"
 import { MdUpdate } from "react-icons/md";
 
 interface Props{
-    articles:(Book[])
+    articles:(Book|Misc)[]
 }
 
 export default function ArticleGallery({articles}:Props){
@@ -21,7 +22,7 @@ export default function ArticleGallery({articles}:Props){
         setOrderBy(orderBy === "new" ? "old" : "new")
     }
 
-    const sortedArticles:(Book[]) = articles.sort(sortData(orderBy))
+    const sortedArticles:(Book|Misc)[] = articles.sort(sortData(orderBy))
 
     return(
         <>
@@ -41,14 +42,12 @@ export default function ArticleGallery({articles}:Props){
                 <Link href={`/artikel/${getCategory(article.tags)}/${article.title.toLowerCase().replaceAll(" ", "-")}`} key={article._id} className={s.itemFrame}>
                     <div className={s.itemContainer}>
                         {article.hero ?
-                    <div className={s.item} style={article.hero.width > article.hero.height ? 
-                        {height: "100%", aspectRatio: getAspectRatio(article.hero)}
-                        :
-                        {width: "100%", aspectRatio: getAspectRatio(article.hero)}}>
+                    <div className={s.item}>
                         <Image
                         src={`https://cms.schussfreude.ch/storage/uploads/${article.hero.path}`}
                         alt={article.hero.description}
                         fill={true}
+                        style={{objectFit: "cover"}}
                         />
                     </div> : null}
                     </div>
