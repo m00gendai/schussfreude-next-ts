@@ -67,7 +67,7 @@ export default async function Page({params}:{params:{slug:string}}) {
                   <h2>{paragraph.title}</h2>
                   {paragraph.text ? <div key={`outsideText${index}`}dangerouslySetInnerHTML={{__html: paragraph.text}}></div> : null}
                   {paragraph.media ? <Gallery key={`outsideMedia_${index}`} images={paragraph.media} /> :null}
-                  {paragraph.spoiler ? paragraph.spoiler.map(spoiler => <Spoiler content={spoiler} />) : null}
+                  {paragraph.spoiler ? paragraph.spoiler.map((spoiler, index) => <Spoiler key={`spoiler_${index}`} content={spoiler} />) : null}
                 </section>
               )
             })
