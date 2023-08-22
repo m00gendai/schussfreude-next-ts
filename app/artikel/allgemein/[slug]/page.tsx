@@ -65,13 +65,13 @@ export default async function Page({params}:{params:{slug:string}}) {
                 <section>
                   <h2>{paragraph.title}</h2>
                   {paragraph.text ? <div key={`outsideText${index}`}dangerouslySetInnerHTML={{__html: paragraph.text}}></div> : null}
-                  {paragraph.media ? <Gallery key={`outsideMedia_${index}`} images={paragraph.media} />}
+                  {paragraph.media ? <Gallery key={`outsideMedia_${index}`} images={paragraph.media} /> :null}
                 </section>
               )
             })
-            )
+          })
             
-          })}
+          }
 
        
        
