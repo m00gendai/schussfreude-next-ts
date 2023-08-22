@@ -1,4 +1,5 @@
 import {Tag,Medium, Book} from "@/interfaces/interface_Book"
+import {Misc} from "@/interfaces/interface_Misc"
 
 export function getDate(unix:number){
     const date: Date = new Date(unix*1000)
@@ -51,8 +52,11 @@ export function getAspectRatio(image:Medium){
 }
 
 export function sortData(orderBy:String){
-    return function(a:Book, b:Book){
+    return function(a:(Book|Misc), b:(Book|Misc)){
         return Math.floor(new Date(orderBy === "new"? b.meta : a.meta).getTime() / 1000)-Math.floor(new Date(orderBy === "new"? a.meta : b.meta).getTime() / 1000)
     }
-    
 }
+
+export function sortDataByDate(a:(Book|Misc), b:(Book|Misc)){
+    return Math.floor(new Date(b.meta).getTime() / 1000)-Math.floor(new Date(a.meta).getTime() / 1000)
+  }

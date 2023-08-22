@@ -1,11 +1,12 @@
 import s from "@/styles/Hero.module.css"
-import {Book, Tag, Medium} from "@/interfaces/interface_Book"
+import {Book} from "@/interfaces/interface_Book"
+import {Misc} from "@/interfaces/interface_Misc"
 import Link from "next/link"
 import Image from "next/image"
-import {getCategory, getAspectRatio} from "@/utils"
+import {getCategory} from "@/utils"
 
 interface Props{
-    articles: (Book[])
+    articles: (Book|Misc)[]
 }
 
 export default function Hero({articles}:Props){
@@ -17,21 +18,16 @@ export default function Hero({articles}:Props){
             {articles.map(article=>{
                 return(
                     <Link href={`/artikel/${getCategory(article.tags)}/${article.title.toLowerCase().replaceAll(" ", "-")}`} className={s.item} key={article._id}>
-                        <div className={s.container} style={article.hero.width > article.hero.height ? 
-                                            {height: "100%", aspectRatio: getAspectRatio(article.hero)}
-                                            :
-                                            {width: "100%", aspectRatio: getAspectRatio(article.hero)}}>
+                        <div className={s.container}>
                         <Image 
                             src={`https://cms.schussfreude.ch/storage/uploads/${article.hero.path}`}
                             alt={article.hero.description}
-                            width={article.hero.width}
-                            height={article.hero.height}
-                            style={{width: "100%", height: "auto"}}
+                            fill={true}
+                            style={{objectFit: "cover"}}
                         />
                         </div>
                         <div className={s.caption}>
                             {article.title}
-                        
                         </div>
                     </Link>
                 )
