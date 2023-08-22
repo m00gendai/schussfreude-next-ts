@@ -4,6 +4,10 @@ import Hero from '@/components/Hero'
 import Categories from '@/components/Categories'
 import Link from "next/link"
 import {Book} from "@/interfaces/interface_Book"
+import {Misc} from "@/interfaces/interface_Misc"
+import { sortDataByDate } from '@/utils'
+
+
 //&sort=%7B_created%3A-1%7D
 async function getBooks(){
   const getData = await fetch(`https://cms.schussfreude.ch/api/content/items/books?populate=1000&limit=5`,{
@@ -15,16 +19,25 @@ async function getBooks(){
   
   return await getData.json()
 }
-
-function sortData(a:Book, b:Book){
-  return Math.floor(new Date(b.meta).getTime() / 1000)-Math.floor(new Date(a.meta).getTime() / 1000)
+async function getMisc(){
+  const getData = await fetch(`https://cms.schussfreude.ch/api/content/items/misc?populate=1000&limit=5`,{
+    "headers": {
+      "api-key": process.env.CMS!,
+    }
+  ,
+  next: { revalidate: 10 } }) // TODO: Increase in prod
+  
+  return await getData.json()
 }
+
+
 
 export default async function Home() {
 
   const books:Book[] = await getBooks()
+  const misc:Misc[] = await getMisc()
 
-  const articles:(Book[])= [...books.sort((a,b) => sortData(a, b))]
+  const articles:(Book|Misc)[]= [...books, ...misc].sort((a,b) => sortDataByDate(a, b))
 
   return (
     <main>
