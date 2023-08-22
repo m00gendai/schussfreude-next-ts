@@ -6,6 +6,7 @@ import {Misc, Tag} from "@/interfaces/interface_Misc"
 import {getDate, convertDate} from "@/utils"
 import ArticleGallery from '@/components/ArticleGallery'
 import Swiper_Similar from '@/components/Swiper_Similar'
+import Spoiler from '@/components/Spoiler'
 
 async function getData(){
   const getData = await fetch(`https://cms.schussfreude.ch/api/content/items/misc?populate=1`,{
@@ -60,12 +61,13 @@ export default async function Page({params}:{params:{slug:string}}) {
         </section>
         
           {post.content?.map((item, index) =>{
-            return item.paragraphs.map(paragraph =>{
+            return item.paragraphs.map((paragraph, index) =>{
               return (
-                <section>
+                <section key={`paragraph_${index}`}>
                   <h2>{paragraph.title}</h2>
                   {paragraph.text ? <div key={`outsideText${index}`}dangerouslySetInnerHTML={{__html: paragraph.text}}></div> : null}
                   {paragraph.media ? <Gallery key={`outsideMedia_${index}`} images={paragraph.media} /> :null}
+                  {paragraph.spoiler ? paragraph.spoiler.map((spoiler, index) => <Spoiler key={`spoiler_${index}`} content={spoiler} />) : null}
                 </section>
               )
             })
@@ -78,7 +80,7 @@ export default async function Page({params}:{params:{slug:string}}) {
        
        
         <section>
-          <h2>Ähnline Artikel</h2>
+          <h2>Ähnliche Artikel</h2>
           <Swiper_Similar articles={similarPosts}/>
         </section>
       </article>
