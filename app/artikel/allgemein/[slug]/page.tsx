@@ -61,24 +61,23 @@ export default async function Page({params}:{params:{slug:string}}) {
         </section>
         
           {post.content?.map((item, index) =>{
-            return item.paragraphs.map((paragraph, index) =>{
-              return (
-                <section key={`paragraph_${index}`}>
-                  <h2>{paragraph.title}</h2>
-                  {paragraph.text ? <div key={`outsideText${index}`}dangerouslySetInnerHTML={{__html: paragraph.text}}></div> : null}
-                  {paragraph.media ? <Gallery key={`outsideMedia_${index}`} images={paragraph.media} /> :null}
-                  {paragraph.spoiler ? paragraph.spoiler.map((spoiler, index) => <Spoiler key={`spoiler_${index}`} content={spoiler} />) : null}
-                </section>
-              )
-            })
-          })
-            
-          }
-
-       
-       
-       
-       
+            return (
+              <>
+              <h2>{item.title}</h2>
+              <section key={item.title}>
+                {item.paragraphs.map((paragraph, index) =>{
+                  return (
+                    <section className="subSection" key={`paragraph_${index}`}>
+                      {paragraph.text ? <div key={`outsideText${index}`} dangerouslySetInnerHTML={{__html: paragraph.text}}></div> : null}
+                      {paragraph.media ? <Gallery key={`outsideMedia_${index}`} images={paragraph.media} /> :null}
+                      {paragraph.spoiler ? paragraph.spoiler.map((spoiler, index) => <Spoiler key={`spoiler_${index}`} content={spoiler} />) : null}
+                    </section>
+                  )
+                })}
+              </section>
+              </>
+            )
+          })}
         <section>
           <h2>Ähnliche Artikel</h2>
           <Swiper_Similar articles={similarPosts}/>
