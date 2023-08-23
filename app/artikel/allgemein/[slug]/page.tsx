@@ -78,10 +78,13 @@ export default async function Page({params}:{params:{slug:string}}) {
               </>
             )
           })}
+          {similarPosts.length !== 0 ?
         <section>
           <h2>Ähnliche Artikel</h2>
           <Swiper_Similar articles={similarPosts}/>
         </section>
+        :
+        null}
       </article>
       
     </main>

@@ -25,8 +25,8 @@ export default function Tab({articles, cats}:Props){
     return(
         <div className={s.tab}>
             <div className={s.row}>
-                <button className={s.button} style={renderCat ? {background: "white", color: "red"} : {background: "red", color: "white"}} onClick={()=>handleClick()}>Artikel</button>
-                <button className={s.button} style={renderCat ? {background: "red", color: "white"} : {background: "white", color: "red"}} onClick={()=>handleClick()}>Kategorien</button>
+                <button className={s.button} style={renderCat ? {background: "gainsboro", color: "grey"} : {background: "lightgrey", color: "black"}} onClick={()=>handleClick()}>Artikel</button>
+                <button className={s.button} style={renderCat ? {background: "lightgrey", color: "black"} : {background: "gainsboro", color: "grey"}} onClick={()=>handleClick()}>Kategorien</button>
             </div>
             <div className={s.container}>
              
