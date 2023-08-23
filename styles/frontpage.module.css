@@ -9,3 +9,9 @@
     width: 100%;
     text-align: center;
 }
+
+@media only screen and (max-aspect-ratio: 13/9){
+    .desktop{
+        display: none;
+    }
+}

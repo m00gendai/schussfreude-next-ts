@@ -24,9 +24,9 @@ export default function Gallery({images}:Props){
                                 width={images[0].width}
                                 height={images[0].height}
                                 style={images[0].width > images[0].height ? 
-                                    {height: "auto", width: "90%"}
+                                    {height: "auto", width: "100%"}
                                     :
-                                    {width: "45%", height: "auto"}}
+                                    {width: "50%", height: "auto"}}
                                 className={s.image}
                             />
                             <figcaption className={s.caption}>{images[0].description}</figcaption>

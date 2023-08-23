@@ -9,7 +9,8 @@
 
 @media only screen and (max-aspect-ratio: 13/9){
     .container{
-        display: none;
+        grid-template-columns: 1fr;
+        margin: 3rem 0;
     }
 }
 
@@ -21,9 +22,15 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    object-fit: cover;
     overflow: hidden;
 }
+
+@media only screen and (max-aspect-ratio: 13/9){
+    .item{
+        aspect-ratio: 21/10;
+    }
+}
+
 
 .inner{
     position: absolute;
@@ -39,5 +46,11 @@
     font-size: 1.25rem;
     background:rgba(0,0,0,0.5);
     text-shadow: 2px 2px black;
+}
+
+@media only screen and (max-aspect-ratio: 13/9){
+    .inner{
+        aspect-ratio: 21/10;
+    }
 }
 

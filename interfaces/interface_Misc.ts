@@ -53,11 +53,11 @@ export interface Tag {
 }
 
 export interface Content {
+  title: string
   paragraphs: Paragraph[]
 }
 
 export interface Paragraph {
-  title: string
   text: string[]
   media: Medium[]
   spoiler: Spoiler[]
