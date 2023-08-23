@@ -21,6 +21,7 @@
     align-items: center;
     flex-wrap: nowrap;
     margin-bottom: -2rem;
+    z-index: 2;
 }
 
 .container{
