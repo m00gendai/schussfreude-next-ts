@@ -80,6 +80,16 @@ h2{
   color: var(--mainTitleColorLight);
 }
 
+blockquote{
+  margin: 1rem 0;
+  border-left: 5px solid red;
+  font-style: italic;
+}
+
+blockquote p{
+  margin: 0 0 0 1rem;
+}
+
 .metaText{
   position: relative;
   width: 100%;
@@ -92,6 +102,11 @@ h2{
 
 .rightAlign{
   justify-content: flex-end;
+}
+
+.subSection{
+  border: none;
+  padding: 0
 }
 
 /* Swiper.js navigation button classes */
