@@ -10,6 +10,12 @@
     text-align: center;
 }
 
+.desktop{
+    position:relative;
+    width: 100%;
+    max-width: 1200px;
+}
+
 @media only screen and (max-aspect-ratio: 13/9){
     .desktop{
         display: none;
