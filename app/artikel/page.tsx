@@ -6,6 +6,32 @@ import {Misc} from "@/interfaces/interface_Misc"
 import s from "@/styles/artikel.module.css"
 import ArticleGallery from '@/components/ArticleGallery'
 import { sortDataByDate } from '@/utils'
+import { Metadata } from 'next'
+
+const title:string = "Gesamtübersicht Artikel"
+const desc:string = "Alle Artikel von schussfreude.ch in einer Übersicht."
+
+export const metadata:Metadata = {
+  title: title,
+  description: desc,
+  openGraph: {
+    title: title,
+    description: desc,
+    images:[
+      {
+        url: `/logoSq.png`,
+      }
+    ],
+    locale: "de_CH",
+    type: "website",
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: title,
+    description: desc,
+    images: [`/logoSq.png`],
+  },
+}
 
 async function getBooks(){
   const getData = await fetch(`https://cms.schussfreude.ch/api/content/items/books?populate=1`,{
