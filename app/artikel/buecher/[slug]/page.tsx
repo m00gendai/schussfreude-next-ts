@@ -1,12 +1,11 @@
 import { notFound } from 'next/navigation'
-import Link from "next/link"
 import React from 'react'
 import Gallery from '@/components/Gallery'
 import DataTableBooks from '@/components/DataTableBooks'
 import {Book, Tag} from "@/interfaces/interface_Book"
-import {getDate, convertDate} from "@/utils"
-import ArticleGallery from '@/components/ArticleGallery'
+import {getDate, convertDate, stringReplacer} from "@/utils"
 import Swiper_Similar from '@/components/Swiper_Similar'
+import {Metadata} from "next"
 
 async function getData(){
   const getData = await fetch(`https://cms.schussfreude.ch/api/content/items/books?populate=1`,{
@@ -19,6 +18,48 @@ async function getData(){
   return await getData.json()
 }
 
+export async function generateMetadata({params}:{params:{slug:string}}):Promise<Metadata>{
+
+  const data: Book[] = await getData()
+  const decodedSlug: string = decodeURIComponent(params.slug).toLowerCase()
+
+  const postMatch:Book[] = data.filter(item=>{
+    return decodeURIComponent(item.title).toLowerCase().replaceAll(" ", "-") === decodedSlug
+  })
+
+  if(postMatch.length === 0){ // if above filter yielded no results
+    return{
+      title: "Inhalt nicht gefunden"
+    }
+  }
+
+  const post: Book = postMatch[0]
+
+  return{
+    title: post.title,
+    description: stringReplacer(post.intro[0].text),
+    openGraph: {
+      title: post.title,
+      description: stringReplacer(post.intro[0].text).split("&nbsp;")[0],
+      images:[
+        {
+          url: `https://cms.schussfreude.ch/storage/uploads/${post.hero.path}`,
+          width: post.hero.width,
+          height: post.hero.height
+        }
+      ],
+      locale: "de_CH",
+      type: "article"
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: post.title,
+      description: stringReplacer(post.intro[0].text),
+      images: [`https://cms.schussfreude.ch/storage/uploads/${post.hero.path}`],
+    },
+  }
+}
+
 export default async function Page({params}:{params:{slug:string}}) {
 
   const data: Book[] = await getData()
@@ -27,6 +68,10 @@ export default async function Page({params}:{params:{slug:string}}) {
   const postMatch:Book[] = data.filter(item=>{
     return decodeURIComponent(item.title).toLowerCase().replaceAll(" ", "-") === decodedSlug
   })
+
+  if(postMatch.length === 0){ // if above filter yielded no results
+    notFound()
+  }
 
   const subTags:Tag[] = postMatch[0].tags.filter(item=>{
     return item.type === "sub"
@@ -41,12 +86,6 @@ export default async function Page({params}:{params:{slug:string}}) {
       })
     }
   })
-
-  console.log(similarPosts)
-
-  if(postMatch.length === 0){ // if above filter yielded no results
-    notFound()
-  }
 
   const post: Book = postMatch[0]
 

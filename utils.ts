@@ -60,3 +60,16 @@ export function sortData(orderBy:String){
 export function sortDataByDate(a:(Book|Misc), b:(Book|Misc)){
     return Math.floor(new Date(b.meta).getTime() / 1000)-Math.floor(new Date(a.meta).getTime() / 1000)
   }
+
+export function stringReplacer(string:string){
+    return string
+        .replaceAll("<p>", "")
+        .replaceAll("</p>", "")
+        .replaceAll("&uuml;", "ü")
+        .replaceAll("&auml;", "ä")
+        .replaceAll("&ouml;", "ö")
+        .replaceAll("&Uuml;", "Ü")
+        .replaceAll("&Auml;", "Ä")
+        .replaceAll("&Ouml;", "Ö")
+        .replaceAll("&ndash;", "-")
+    }

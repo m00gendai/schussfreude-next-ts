@@ -20,13 +20,24 @@ export default function Tab({articles, cats}:Props){
     function handleClick(){
         setRenderCat(!renderCat)
     }
-    console.log(renderCat)
 
     return(
         <div className={s.tab}>
             <div className={s.row}>
-                <button className={s.button} style={renderCat ? {background: "gainsboro", color: "grey"} : {background: "lightgrey", color: "black"}} onClick={()=>handleClick()}>Artikel</button>
-                <button className={s.button} style={renderCat ? {background: "lightgrey", color: "black"} : {background: "gainsboro", color: "grey"}} onClick={()=>handleClick()}>Kategorien</button>
+                <button className={s.button} onClick={()=>handleClick()}>
+                    <span 
+                        className={`${s.label} rightAlign`}
+                        style={renderCat ? {fontSize: "0.75rem"} : {fontSize: "1.25rem"}}
+                    >
+                        Artikel
+                    </span>
+                    <span 
+                        className={`${s.label} leftAlign`}
+                        style={renderCat ? {fontSize: "1.25rem"} : {fontSize: "0.75rem"}}
+                    >
+                        Kategorien
+                    </span>
+                </button>
             </div>
             <div className={s.container}>
              
