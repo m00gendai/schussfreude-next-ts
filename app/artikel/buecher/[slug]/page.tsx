@@ -69,6 +69,10 @@ export default async function Page({params}:{params:{slug:string}}) {
     return decodeURIComponent(item.title).toLowerCase().replaceAll(" ", "-") === decodedSlug
   })
 
+  if(postMatch.length === 0){ // if above filter yielded no results
+    notFound()
+  }
+
   const subTags:Tag[] = postMatch[0].tags.filter(item=>{
     return item.type === "sub"
   })
@@ -82,12 +86,6 @@ export default async function Page({params}:{params:{slug:string}}) {
       })
     }
   })
-
-  console.log(similarPosts)
-
-  if(postMatch.length === 0){ // if above filter yielded no results
-    notFound()
-  }
 
   const post: Book = postMatch[0]
 
