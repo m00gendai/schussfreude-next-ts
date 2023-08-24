@@ -68,4 +68,8 @@ export function stringReplacer(string:string){
         .replaceAll("&uuml;", "ü")
         .replaceAll("&auml;", "ä")
         .replaceAll("&ouml;", "ö")
+        .replaceAll("&Uuml;", "Ü")
+        .replaceAll("&Auml;", "Ä")
+        .replaceAll("&Ouml;", "Ö")
+        .replaceAll("&ndash;", "-")
     }
