@@ -22,6 +22,7 @@ As a predominately blog oriented platform, schussfreude uses both static and dyn
 To accomodate for the unified rendering of same-category blog posts, multiple dynamic routes are in place.
 So far, the page structure looks like this, where [slug] indicates a dynamic route:
 
+```
 app/
 ├── layout.tsx
 ├── page.tsx
@@ -60,7 +61,7 @@ app/
         ├── page.tsx
         └── [slug]/
             └── page.tsx
-
+```
 ### rendering
 
 By default pages, layouts and components in Next.js 13 with App Router are rendered as server components.
