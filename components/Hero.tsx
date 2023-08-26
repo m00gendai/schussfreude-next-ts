@@ -1,12 +1,13 @@
 import s from "@/styles/Hero.module.css"
 import {Book} from "@/interfaces/interface_Book"
 import {Misc} from "@/interfaces/interface_Misc"
+import{App} from "@/interfaces/interface_App"
 import Link from "next/link"
 import Image from "next/image"
 import {getCategory} from "@/utils"
 
 interface Props{
-    articles: (Book|Misc)[]
+    articles: (Book|Misc|App)[]
 }
 
 export default function Hero({articles}:Props){
