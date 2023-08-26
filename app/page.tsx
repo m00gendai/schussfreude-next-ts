@@ -5,6 +5,7 @@ import Categories from '@/components/Categories'
 import Link from "next/link"
 import {Book, Tag} from "@/interfaces/interface_Book"
 import {Misc} from "@/interfaces/interface_Misc"
+import {App} from "@/interfaces/interface_App"
 import { sortDataByDate } from '@/utils'
 import Tab from '@/components/Tab'
 import {Metadata} from "next"
@@ -47,7 +48,7 @@ async function getCategories(){
 
 //&sort=%7B_created%3A-1%7D
 async function getBooks(){
-  const getData = await fetch(`https://cms.schussfreude.ch/api/content/items/books?populate=1000&limit=5`,{
+  const getData = await fetch(`https://cms.schussfreude.ch/api/content/items/books?populate=1&limit=5`,{
     "headers": {
       "api-key": process.env.CMS!,
     }
@@ -57,7 +58,17 @@ async function getBooks(){
   return await getData.json()
 }
 async function getMisc(){
-  const getData = await fetch(`https://cms.schussfreude.ch/api/content/items/misc?populate=1000&limit=5`,{
+  const getData = await fetch(`https://cms.schussfreude.ch/api/content/items/misc?populate=1&limit=5`,{
+    "headers": {
+      "api-key": process.env.CMS!,
+    }
+  ,
+  next: { revalidate: 10 } }) // TODO: Increase in prod
+  
+  return await getData.json()
+}
+async function getApps(){
+  const getData = await fetch(`https://cms.schussfreude.ch/api/content/items/apps?populate=1&limit=5`,{
     "headers": {
       "api-key": process.env.CMS!,
     }
@@ -68,14 +79,14 @@ async function getMisc(){
 }
 
 
-
 export default async function Home() {
 
   const books:Book[] = await getBooks()
   const misc:Misc[] = await getMisc()
+  const apps:App[] = await getApps()
   const cats:Tag[] = await getCategories()
 
-  const articles:(Book|Misc)[]= [...books, ...misc].sort((a,b) => sortDataByDate(a, b))
+  const articles:(Book|Misc|App)[]= [...books, ...misc, ...apps].sort((a,b) => sortDataByDate(a, b))
 
   return (
     <main>
