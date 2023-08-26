@@ -3,6 +3,7 @@ import Link from "next/link"
 import React from 'react'
 import {Book} from "@/interfaces/interface_Book"
 import {Misc} from "@/interfaces/interface_Misc"
+import {App} from "@/interfaces/interface_App"
 import s from "@/styles/artikel.module.css"
 import ArticleGallery from '@/components/ArticleGallery'
 import { sortDataByDate } from '@/utils'
@@ -53,13 +54,24 @@ async function getMisc(){
   
   return await getData.json()
 }
+async function getApps(){
+  const getData = await fetch(`https://cms.schussfreude.ch/api/content/items/apps?populate=1`,{
+    "headers": {
+      "api-key": process.env.CMS!,
+    }
+  ,
+  next: { revalidate: 10 } }) // TODO: Increase in prod
+  
+  return await getData.json()
+}
 
 export default async function Artikel() {
 
   const books:Book[] = await getBooks()
   const misc:Misc[] = await getMisc()
+  const apps:App[] = await getApps()
 
-  const articles:(Book|Misc)[] = [...books, ...misc].sort((a,b) => sortDataByDate(a, b))
+  const articles:(Book|Misc|App)[] = [...books, ...misc, ...apps].sort((a,b) => sortDataByDate(a, b))
 
   return (
     <main>
