@@ -126,7 +126,7 @@ export default async function Page({params}:{params:{slug:string}}) {
         <section>
           <h2>Übersicht der Jahrgänge</h2>
           {post.volumes.map(volume=>{
-            return <a href={`#swm_${volume.volume}`}>{volume.volume}</a>
+            return <a key={`anchor_${volume.volume}`} href={`#swm_${volume.volume}`}>{volume.volume}</a>
           })}
         {
           post.volumes.map(volume =>{
