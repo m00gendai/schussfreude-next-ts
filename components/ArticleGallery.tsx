@@ -6,13 +6,15 @@ import s from "@/styles/ArticleGallery.module.css"
 import{Book} from "@/interfaces/interface_Book"
 import{Misc} from "@/interfaces/interface_Misc"
 import{App} from "@/interfaces/interface_App"
-import {Accessory, Tag} from "@/interfaces/interface_Accessory"
+import {Accessory} from "@/interfaces/interface_Accessory"
+import {Magazine} from "@/interfaces/interface_Magazine"
+import {SWM} from "@/interfaces/interface_SWM"
 import {useState} from "react"
-import { getAspectRatio, sortData, getCategory } from "@/utils"
+import { getAspectRatio, sortData, getCategory, magazineUrlReplacer } from "@/utils"
 import { MdUpdate } from "react-icons/md";
 
 interface Props{
-    articles:(Book|Misc)[]
+    articles:(Book|Misc|App|Accessory|Magazine|SWM)[]
 }
 
 export default function ArticleGallery({articles}:Props){
@@ -24,7 +26,7 @@ export default function ArticleGallery({articles}:Props){
         setOrderBy(orderBy === "new" ? "old" : "new")
     }
 
-    const sortedArticles:(Book|Misc|App|Accessory)[] = articles.sort(sortData(orderBy))
+    const sortedArticles:(Book|Misc|App|Accessory|Magazine|SWM)[] = articles.sort(sortData(orderBy))
 
     return(
         <>
@@ -41,7 +43,7 @@ export default function ArticleGallery({articles}:Props){
             {
             sortedArticles.map(article=>{
                 return(
-                <Link href={`/artikel/${getCategory(article.tags)}/${article.title.toLowerCase().replaceAll(" ", "-")}`} key={article._id} className={s.itemFrame}>
+                <Link href={`/artikel/${getCategory(article.tags)}/${magazineUrlReplacer(article.title)}`} key={article._id} className={s.itemFrame}>
                     <div className={s.itemContainer}>
                         {article.hero ?
                     <div className={s.item}>

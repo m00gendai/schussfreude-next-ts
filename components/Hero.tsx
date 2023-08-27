@@ -3,12 +3,14 @@ import {Book} from "@/interfaces/interface_Book"
 import {Misc} from "@/interfaces/interface_Misc"
 import{App} from "@/interfaces/interface_App"
 import {Accessory} from "@/interfaces/interface_Accessory"
+import {Magazine} from "@/interfaces/interface_Magazine"
+import {SWM} from "@/interfaces/interface_SWM"
 import Link from "next/link"
 import Image from "next/image"
-import {getCategory} from "@/utils"
+import {getCategory, magazineUrlReplacer} from "@/utils"
 
 interface Props{
-    articles: (Book|Misc|App|Accessory)[]
+    articles: (Book|Misc|App|Accessory|Magazine|SWM)[]
 }
 
 export default function Hero({articles}:Props){
@@ -20,7 +22,7 @@ export default function Hero({articles}:Props){
             {articles.map((article, index)=>{
                 if(index <= 4){
                     return(
-                        <Link href={`/artikel/${getCategory(article.tags)}/${article.title.toLowerCase().replaceAll(" ", "-")}`} className={s.item} key={article._id}>
+                        <Link href={`/artikel/${getCategory(article.tags)}/${magazineUrlReplacer(article.title)}`} className={s.item} key={article._id}>
                             <div className={s.container}>
                             <Image 
                                 src={`https://cms.schussfreude.ch/storage/uploads/${article.hero.path}`}
