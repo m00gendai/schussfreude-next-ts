@@ -15,7 +15,7 @@ export default function Categories({cats}:Props){
     return(
         <div className={s.container}>
             {sortedData.map(item=>{
-                if(item.type === "main"){
+                if(item.type === "main" && item.item !== "SWM"){
                     return(
                         <Link href={`/artikel/${getCategory(item)}`} className={s.item} key={item._id}>
                             {item.thumb ?

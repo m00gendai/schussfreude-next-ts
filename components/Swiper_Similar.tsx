@@ -8,7 +8,10 @@ import Image from "next/image"
 import Link from "next/link"
 import s from "@/styles/Swiper_Similar.module.css"
 import{Book,Medium} from "@/interfaces/interface_Book"
-import {Misc} from "@/interfaces/interface_Misc"
+import{Misc} from "@/interfaces/interface_Misc"
+import{App} from "@/interfaces/interface_App"
+import {Accessory} from "@/interfaces/interface_Accessory"
+import {Magazine} from "@/interfaces/interface_Magazine"
 import { getAspectRatio, sortData, getCategory } from "@/utils"
 import {BiChevronLeftCircle, BiChevronRightCircle} from "react-icons/bi"
 
@@ -18,12 +21,12 @@ import "swiper/css/navigation"
 import "swiper/css/scrollbar"
 
 interface Props{
-    articles:(Book[]|Misc[])
+    articles:(Book[]|Misc[]|App[]|Accessory[]|Magazine[])
 }
 
 export default function Swiper_Similar({articles}:Props){
 
-    const sortedArticles:(Book[]|Misc[]) = articles
+    const sortedArticles:(Book[]|Misc[]|App[]|Accessory[]|Magazine[]) = articles
 
     return(
         <Swiper

@@ -2,6 +2,10 @@
 
 import {Book, Tag} from "@/interfaces/interface_Book"
 import {Misc} from "@/interfaces/interface_Misc"
+import {App} from "@/interfaces/interface_App"
+import {Accessory} from "@/interfaces/interface_Accessory"
+import {Magazine} from "@/interfaces/interface_Magazine"
+import {SWM} from "@/interfaces/interface_SWM"
 import s from "@/styles/Tab.module.css"
 import Categories from "@/components/Categories"
 import Hero from "@/components/Hero"
@@ -9,7 +13,7 @@ import {useState} from "react"
 import { render } from "react-dom"
 
 interface Props{
-    articles: (Book|Misc)[]
+    articles: (Book|Misc|App|Accessory|Magazine|SWM)[]
     cats: Tag[]
 }
 
