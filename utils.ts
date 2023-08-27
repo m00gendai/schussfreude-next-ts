@@ -1,5 +1,9 @@
-import {Tag,Medium, Book} from "@/interfaces/interface_Book"
-import {Misc} from "@/interfaces/interface_Misc"
+import{Book, Tag, Medium} from "@/interfaces/interface_Book"
+import{Misc} from "@/interfaces/interface_Misc"
+import{App} from "@/interfaces/interface_App"
+import {Accessory} from "@/interfaces/interface_Accessory"
+import {Magazine} from "@/interfaces/interface_Magazine"
+import {SWM} from "@/interfaces/interface_SWM"
 
 export function getDate(unix:number){
     const date: Date = new Date(unix*1000)
@@ -27,12 +31,17 @@ export function convertDate(dateString: string){
     if(item === "Zubehör / Hilfsmittel"){
         return "zubehoer"
     }
+    if(item === "SWM"){
+        return "zeitschriften/swm"
+    }
   }
 
  export function getCategory(tags:(Tag | Tag[])){
     if(Array.isArray(tags)){
         for(let tag of tags){
-            return returnCategory(tag.item)
+            if(tag.type === "main"){
+                return returnCategory(tag.item)
+            }
         }
     }
     if(!Array.isArray(tags)){
@@ -52,19 +61,17 @@ export function getAspectRatio(image:Medium){
 }
 
 export function sortData(orderBy:String){
-    return function(a:(Book|Misc), b:(Book|Misc)){
+    return function(a:(Book|Misc|App|Accessory|Magazine|SWM), b:(Book|Misc|App|Accessory|Magazine|SWM)){
         return Math.floor(new Date(orderBy === "new"? b.meta : a.meta).getTime() / 1000)-Math.floor(new Date(orderBy === "new"? a.meta : b.meta).getTime() / 1000)
     }
 }
 
-export function sortDataByDate(a:(Book|Misc), b:(Book|Misc)){
+export function sortDataByDate(a:(Book|Misc|App|Accessory|Magazine|SWM), b:(Book|Misc|App|Accessory|Magazine|SWM)){
     return Math.floor(new Date(b.meta).getTime() / 1000)-Math.floor(new Date(a.meta).getTime() / 1000)
   }
 
 export function stringReplacer(string:string){
     return string
-        .replaceAll("<p>", "")
-        .replaceAll("</p>", "")
         .replaceAll("&uuml;", "ü")
         .replaceAll("&auml;", "ä")
         .replaceAll("&ouml;", "ö")
@@ -72,4 +79,25 @@ export function stringReplacer(string:string){
         .replaceAll("&Auml;", "Ä")
         .replaceAll("&Ouml;", "Ö")
         .replaceAll("&ndash;", "-")
+        .replaceAll("&hellip;", "...")
+        .replaceAll("&amp;", "&")
+        .replaceAll("<p>", "")
+        .replaceAll("</p>", "")
+        .replaceAll("<blockquote>", "\"")
+        .replaceAll("</blockquote>", "\"")
+        .replaceAll("<br>", "\n\r")
+        .replaceAll("<ul>", "")
+        .replaceAll("</ul>", "")
+        .replaceAll("<li>", "| ")
+        .replaceAll("</li>", " |")
+
     }
+
+export function magazineUrlReplacer(string:string){
+    return string
+        .toLowerCase()
+        .replaceAll(" ", "-")
+        .replaceAll("/", "-")
+        .replaceAll("(", "")
+        .replaceAll(")", "")
+}

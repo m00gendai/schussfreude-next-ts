@@ -1,0 +1,30 @@
+.gallery{
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.container{
+    position: relative;
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    width: 100%;
+    box-shadow: 0px 5px 5px 0px black;
+}
+
+@media only screen and (max-aspect-ratio: 13/9){
+    .container{
+        grid-template-columns: 1fr;
+    }
+  }
+
+.image{
+    position: relative;
+    height: 50vh;
+    margin: 0.5rem;
+}
+
+.text{
+    position: relative;
+    margin: 0.5rem;
+}
