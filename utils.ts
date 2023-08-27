@@ -72,4 +72,8 @@ export function stringReplacer(string:string){
         .replaceAll("&Auml;", "Ä")
         .replaceAll("&Ouml;", "Ö")
         .replaceAll("&ndash;", "-")
+        .replaceAll("&hellip;", "...")
+        .replaceAll("<blockquote>", "\"")
+        .replaceAll("</blockquote>", "\"")
+        .replaceAll("<br>", "\n\r")
     }
