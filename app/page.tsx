@@ -6,6 +6,7 @@ import Link from "next/link"
 import {Book, Tag} from "@/interfaces/interface_Book"
 import {Misc} from "@/interfaces/interface_Misc"
 import {App} from "@/interfaces/interface_App"
+import {Accessory} from "@/interfaces/interface_Accessory"
 import { sortDataByDate } from '@/utils'
 import Tab from '@/components/Tab'
 import {Metadata} from "next"
@@ -77,16 +78,26 @@ async function getApps(){
   
   return await getData.json()
 }
-
+async function getAccessories(){
+  const getData = await fetch(`https://cms.schussfreude.ch/api/content/items/accessories?populate=1&limit=5`,{
+    "headers": {
+      "api-key": process.env.CMS!,
+    }
+  ,
+  next: { revalidate: 10 } }) // TODO: Increase in prod
+  
+  return await getData.json()
+}
 
 export default async function Home() {
 
   const books:Book[] = await getBooks()
   const misc:Misc[] = await getMisc()
   const apps:App[] = await getApps()
+  const accesories:Accessory[] = await getAccessories()
   const cats:Tag[] = await getCategories()
 
-  const articles:(Book|Misc|App)[]= [...books, ...misc, ...apps].sort((a,b) => sortDataByDate(a, b))
+  const articles:(Book|Misc|App)[]= [...books, ...misc, ...apps, ...accesories].sort((a,b) => sortDataByDate(a, b))
 
   return (
     <main>

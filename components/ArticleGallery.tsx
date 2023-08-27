@@ -6,6 +6,7 @@ import s from "@/styles/ArticleGallery.module.css"
 import{Book} from "@/interfaces/interface_Book"
 import{Misc} from "@/interfaces/interface_Misc"
 import{App} from "@/interfaces/interface_App"
+import {Accessory, Tag} from "@/interfaces/interface_Accessory"
 import {useState} from "react"
 import { getAspectRatio, sortData, getCategory } from "@/utils"
 import { MdUpdate } from "react-icons/md";
@@ -23,7 +24,7 @@ export default function ArticleGallery({articles}:Props){
         setOrderBy(orderBy === "new" ? "old" : "new")
     }
 
-    const sortedArticles:(Book|Misc|App)[] = articles.sort(sortData(orderBy))
+    const sortedArticles:(Book|Misc|App|Accessory)[] = articles.sort(sortData(orderBy))
 
     return(
         <>
