@@ -47,7 +47,7 @@
     bottom: 0;
     width: calc(100% - 1rem);
     display: flex;
-    background: rgba(0,0,0,0.5);
+    background: rgba(0,0,0,0.8);
     color: white;
     font-weight: bolder;
     font-size: 1.25rem;
