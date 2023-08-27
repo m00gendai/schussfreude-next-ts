@@ -1,7 +1,9 @@
 .gallery{
     position: relative;
+    width: 100%;
     display: flex;
     flex-wrap: wrap;
+    background: var(--mainColorBackgroundLight);
 }
 
 .container{
@@ -9,7 +11,9 @@
     display: grid;
     grid-template-columns: 1fr 2fr;
     width: 100%;
-    box-shadow: 0px 5px 5px 0px black;
+
+    text-decoration: none;
+    color: var(--mainFontColorLight);
 }
 
 @media only screen and (max-aspect-ratio: 13/9){

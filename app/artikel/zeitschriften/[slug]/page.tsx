@@ -125,11 +125,14 @@ export default async function Page({params}:{params:{slug:string}}) {
         </section>
         <section>
           <h2>Übersicht der Jahrgänge</h2>
+          {post.volumes.map(volume=>{
+            return <a key={`anchor_${volume.volume}`} href={`#swm_${volume.volume}`}>{volume.volume}</a>
+          })}
         {
           post.volumes.map(volume =>{
             return (
               <section key={`volume_${volume.volume}`}>
-                <h3>{volume.volume}</h3>
+                <h3 id={`swm_${volume.volume}`}>{volume.volume}</h3>
                 <Gallery images={volume.panorama} />
                 {issues.map(issue=>{
                   return <MagazineGallery key={issue._id} issue={issue} />
