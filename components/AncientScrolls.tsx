@@ -9,7 +9,7 @@ interface Props{
 }
 
 export default function ancientScrolls({doc}:Props){
-    console.log(doc)
+
     return(
         <details className={d.details}>
             <summary className={d.summary}>

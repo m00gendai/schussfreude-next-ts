@@ -2,7 +2,8 @@ import { notFound } from 'next/navigation'
 import React from 'react'
 import Gallery from '@/components/Gallery'
 import DataTableBooks from '@/components/DataTableBooks'
-import {Book, Tag} from "@/interfaces/interface_Book"
+import {Book} from "@/interfaces/interface_Book"
+import {Tag} from "@/interfaces/interface_globals"
 import {getDate, convertDate, stringReplacer} from "@/utils"
 import Swiper_Similar from '@/components/Swiper_Similar'
 import {Metadata} from "next"

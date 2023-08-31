@@ -1,5 +1,5 @@
 import React from 'react'
-import {Accessory, Tag} from "@/interfaces/interface_Accessory"
+import {Accessory} from "@/interfaces/interface_Accessory"
 import ArticleGallery from '@/components/ArticleGallery'
 import {headers} from "next/headers"
 import Breadcrumbs from '@/components/Breadcrumbs'
