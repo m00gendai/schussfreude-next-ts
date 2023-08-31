@@ -1,7 +1,8 @@
 import { notFound } from 'next/navigation'
 import React from 'react'
 import Gallery from '@/components/Gallery'
-import {Accessory, Tag} from "@/interfaces/interface_Accessory"
+import {Accessory} from "@/interfaces/interface_Accessory"
+import {Tag} from "@/interfaces/interface_globals"
 import {getDate, convertDate, stringReplacer} from "@/utils"
 import Swiper_Similar from '@/components/Swiper_Similar'
 import Spoiler from '@/components/Spoiler'

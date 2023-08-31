@@ -1,7 +1,8 @@
 import { notFound } from 'next/navigation'
 import React from 'react'
 import Gallery from '@/components/Gallery'
-import {SWM, Tag} from "@/interfaces/interface_SWM"
+import {SWM} from "@/interfaces/interface_SWM"
+import {Tag} from "@/interfaces/interface_globals"
 import {getDate, convertDate, stringReplacer, magazineUrlReplacer} from "@/utils"
 import Swiper_Similar from '@/components/Swiper_Similar'
 import {Metadata} from "next"

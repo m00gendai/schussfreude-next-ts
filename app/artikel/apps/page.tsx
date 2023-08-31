@@ -1,5 +1,6 @@
 import React from 'react'
-import {App, Tag} from "@/interfaces/interface_App"
+import {App} from "@/interfaces/interface_App"
+import {Tag} from "@/interfaces/interface_globals"
 import ArticleGallery from '@/components/ArticleGallery'
 import {headers} from "next/headers"
 import Breadcrumbs from '@/components/Breadcrumbs'

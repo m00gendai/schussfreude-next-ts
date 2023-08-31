@@ -1,5 +1,5 @@
 import s from "@/styles/Categories.module.css"
-import {Tag} from "@/interfaces/interface_Book"
+import {Tag} from "@/interfaces/interface_globals"
 import { getCategory } from "@/utils"
 import Image from "next/image"
 import Link from "next/link"

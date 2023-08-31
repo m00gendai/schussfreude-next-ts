@@ -3,12 +3,13 @@ import s from "@/styles/frontpage.module.css"
 import Hero from '@/components/Hero'
 import Categories from '@/components/Categories'
 import Link from "next/link"
-import {Book, Tag} from "@/interfaces/interface_Book"
+import {Book} from "@/interfaces/interface_Book"
 import {Misc} from "@/interfaces/interface_Misc"
 import {App} from "@/interfaces/interface_App"
 import {Accessory} from "@/interfaces/interface_Accessory"
 import {Magazine} from "@/interfaces/interface_Magazine"
 import {SWM} from "@/interfaces/interface_SWM"
+import {Tag} from "@/interfaces/interface_globals"
 import { sortDataByDate } from '@/utils'
 import Tab from '@/components/Tab'
 import {Metadata} from "next"
