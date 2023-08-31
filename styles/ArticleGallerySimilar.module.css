@@ -1,3 +1,8 @@
+.wrapper{
+    position: relative;
+    width: 100%;
+}
+
 .grid{
     /**
    * Courtesy of https://css-tricks.com/an-auto-filling-css-grid-with-max-columns/
