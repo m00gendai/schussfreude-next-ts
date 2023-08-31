@@ -129,7 +129,7 @@ export default async function Home() {
       {/* TODO: This section will be removed on prod */}
       <h1 className={s.h1}>schussfreude.ch</h1>
       <p className={s.p}>Vorschau der neuen schussfreude.ch-Seite.</p>
-      <Link style={{width: "100%", display: "block", textAlign: "center"}} href="https://a.kerika.com/acc_55R5PgME5wtTsnMjPWxYKX/board/brd_55i66YcDPJOkUPnv5C84UP" target="_blank" title="Status">
+      <Link style={{width: "100%", display: "block", textAlign: "center"}} href="https://trello.com/b/HtQ0vFoJ/schussfreudech" target="_blank" title="Status">
         Status Fortschritt (Englisch)
       </Link>
       <Link style={{width: "100%", display: "block", textAlign: "center"}} href="https://github.com/m00gendai/schussfreude-next-ts" target="_blank" title="Github">

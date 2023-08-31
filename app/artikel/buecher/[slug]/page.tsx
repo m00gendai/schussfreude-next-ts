@@ -7,6 +7,7 @@ import {Tag} from "@/interfaces/interface_globals"
 import {getDate, convertDate, stringReplacer} from "@/utils"
 import Swiper_Similar from '@/components/Swiper_Similar'
 import {Metadata} from "next"
+import ArticleGallerySimilar from '@/components/ArticleGallerySimilar'
 
 async function getData(){
   const getData = await fetch(`https://cms.schussfreude.ch/api/content/items/books?populate=1`,{
@@ -171,7 +172,10 @@ export default async function Page({params}:{params:{slug:string}}) {
         </section>
         <section>
           <h2>Ähnline Artikel</h2>
-          <Swiper_Similar articles={similarPosts}/>
+          <div className="sliderWrapper">
+            <Swiper_Similar articles={similarPosts}/>
+          </div>
+          <ArticleGallerySimilar articles={similarPosts} />
         </section>
       </article>
       
