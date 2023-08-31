@@ -1,5 +1,5 @@
 import React from 'react'
-import {Book,Medium} from "@/interfaces/interface_Book"
+import {Book} from "@/interfaces/interface_Book"
 import ArticleGallery from '@/components/ArticleGallery'
 import {headers} from "next/headers"
 import Breadcrumbs from '@/components/Breadcrumbs'

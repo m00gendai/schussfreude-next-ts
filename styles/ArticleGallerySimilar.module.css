@@ -1,0 +1,153 @@
+.wrapper{
+    position: relative;
+    width: 100%;
+}
+
+.grid{
+    /**
+   * Courtesy of https://css-tricks.com/an-auto-filling-css-grid-with-max-columns/
+   */
+  --grid-layout-gap: 1rem;
+  --grid-column-count: 3;
+  --grid-item--min-width: 200px;
+
+  --gap-count: calc(var(--grid-column-count) - 1);
+  --total-gap-width: calc(var(--gap-count) * var(--grid-layout-gap));
+  --grid-item--max-width: calc((100% - var(--total-gap-width)) / var(--grid-column-count));
+
+    position: relative;
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(max(var(--grid-item--min-width), var(--grid-item--max-width)), 1fr));
+    grid-gap: var(--grid-layout-gap);
+}
+
+@media only screen and (max-aspect-ratio: 13/9){
+    .wrapper{
+      display: none;
+    }
+  }
+
+.itemFrame{
+    position: relative;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    align-content: flex-start;
+    box-shadow: 0px 0px 5px 0px black;
+    flex-wrap: wrap;
+    text-decoration: none;
+    color: var(--mainFontColorLight);
+}
+
+.itemContainer{
+    position: relative;
+    width: 100%;
+    aspect-ratio: 1/1;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0.5rem;
+}
+
+@media only screen and (max-aspect-ratio: 13/9){
+    .grid{
+        grid-template-columns: 1fr;
+    }
+    .itemFrame{
+        aspect-ratio: 21/10;
+    }
+    .itemContainer{
+        aspect-ratio: 21/10;
+    }
+}
+
+.item{
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+.caption{
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    text-align: left;
+    overflow: hidden;
+    margin: 0.5rem;
+    width: 100%;
+}
+
+.text{
+    position: relative;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.title{
+    font-size: 1.5rem;
+    font-weight: bolder;
+    position: relative;
+    width: 100%;
+}
+
+.date{
+    font-size: 0.75rem;
+    position: relative;
+    width: 100%;
+    margin: 0.5rem 0;
+}
+
+.toolbar{
+    position: relative;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    height: 3rem;
+    margin: 3rem 0 0 0;
+}
+
+.button{
+    position: relative;
+    height: 90%;
+    aspect-ratio: 16/3;
+    border: none;
+    outline:none;
+    box-shadow: 0px 5px 5px 0px black;
+    background: lightgrey;
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.button:hover{
+    cursor: pointer;
+}
+
+.button:active{
+    height: 85%;
+    box-shadow: 0px 0px 5px 0px black;
+}
+
+.icon{
+    position: relative;
+    height: 100%;
+    aspect-ratio: 1/1;
+    font-size: 2rem;
+}
+
+.buttonText{
+    position: relative;
+    flex-grow: 1;
+    font-size: 1rem;
+}

@@ -1,11 +1,13 @@
 import { notFound } from 'next/navigation'
 import React from 'react'
 import Gallery from '@/components/Gallery'
-import {Misc, Tag} from "@/interfaces/interface_Misc"
+import {Misc} from "@/interfaces/interface_Misc"
+import {Tag} from "@/interfaces/interface_globals"
 import {getDate, convertDate, stringReplacer} from "@/utils"
 import Swiper_Similar from '@/components/Swiper_Similar'
 import Spoiler from '@/components/Spoiler'
 import {Metadata} from "next"
+import ArticleGallerySimilar from '@/components/ArticleGallerySimilar'
 
 async function getData(){
   const getData = await fetch(`https://cms.schussfreude.ch/api/content/items/misc?populate=1`,{
@@ -120,7 +122,10 @@ export default async function Page({params}:{params:{slug:string}}) {
           {similarPosts.length !== 0 ?
         <section>
           <h2>Ähnliche Artikel</h2>
-          <Swiper_Similar articles={similarPosts}/>
+          <div className="sliderWrapper">
+            <Swiper_Similar articles={similarPosts}/>
+          </div>
+          <ArticleGallerySimilar articles={similarPosts} />
         </section>
         :
         null}

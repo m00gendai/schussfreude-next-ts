@@ -3,12 +3,13 @@ import s from "@/styles/frontpage.module.css"
 import Hero from '@/components/Hero'
 import Categories from '@/components/Categories'
 import Link from "next/link"
-import {Book, Tag} from "@/interfaces/interface_Book"
+import {Book} from "@/interfaces/interface_Book"
 import {Misc} from "@/interfaces/interface_Misc"
 import {App} from "@/interfaces/interface_App"
 import {Accessory} from "@/interfaces/interface_Accessory"
 import {Magazine} from "@/interfaces/interface_Magazine"
 import {SWM} from "@/interfaces/interface_SWM"
+import {Tag} from "@/interfaces/interface_globals"
 import { sortDataByDate } from '@/utils'
 import Tab from '@/components/Tab'
 import {Metadata} from "next"
@@ -128,7 +129,7 @@ export default async function Home() {
       {/* TODO: This section will be removed on prod */}
       <h1 className={s.h1}>schussfreude.ch</h1>
       <p className={s.p}>Vorschau der neuen schussfreude.ch-Seite.</p>
-      <Link style={{width: "100%", display: "block", textAlign: "center"}} href="https://a.kerika.com/acc_55R5PgME5wtTsnMjPWxYKX/board/brd_55i66YcDPJOkUPnv5C84UP" target="_blank" title="Status">
+      <Link style={{width: "100%", display: "block", textAlign: "center"}} href="https://trello.com/b/HtQ0vFoJ/schussfreudech" target="_blank" title="Status">
         Status Fortschritt (Englisch)
       </Link>
       <Link style={{width: "100%", display: "block", textAlign: "center"}} href="https://github.com/m00gendai/schussfreude-next-ts" target="_blank" title="Github">

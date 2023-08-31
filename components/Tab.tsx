@@ -1,6 +1,7 @@
 "use client"
 
-import {Book, Tag} from "@/interfaces/interface_Book"
+import {Book} from "@/interfaces/interface_Book"
+import{Tag} from "@/interfaces/interface_globals"
 import {Misc} from "@/interfaces/interface_Misc"
 import {App} from "@/interfaces/interface_App"
 import {Accessory} from "@/interfaces/interface_Accessory"

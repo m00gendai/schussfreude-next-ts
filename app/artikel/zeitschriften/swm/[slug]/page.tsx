@@ -1,11 +1,13 @@
 import { notFound } from 'next/navigation'
 import React from 'react'
 import Gallery from '@/components/Gallery'
-import {SWM, Tag} from "@/interfaces/interface_SWM"
+import {SWM} from "@/interfaces/interface_SWM"
+import {Tag} from "@/interfaces/interface_globals"
 import {getDate, convertDate, stringReplacer, magazineUrlReplacer} from "@/utils"
 import Swiper_Similar from '@/components/Swiper_Similar'
 import {Metadata} from "next"
 import MagazineGallery from '@/components/MagazineGallery'
+import ArticleGallerySimilar from '@/components/ArticleGallerySimilar'
 
 async function getData(){
   const getData = await fetch(`https://cms.schussfreude.ch/api/content/items/swm?populate=1`,{
@@ -119,7 +121,10 @@ export default async function Page({params}:{params:{slug:string}}) {
         {similarPosts.length !== 0 ?
         <section>
           <h2>Ähnliche Artikel</h2>
-         
+          <div className="sliderWrapper">
+            <Swiper_Similar articles={similarPosts}/>
+          </div>
+          <ArticleGallerySimilar articles={similarPosts} />
         </section>
         :
         null}

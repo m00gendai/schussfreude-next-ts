@@ -133,6 +133,17 @@ blockquote p{
 
 /* Swiper.js navigation button classes */
 
+.sliderWrapper{
+  overflow: hidden;
+}
+
+@media only screen and (min-aspect-ratio: 13/9){
+  .sliderWrapper{
+    display: none;
+  }
+}
+
+
 .similar_next,
 .similar_prev{
   position: absolute;
