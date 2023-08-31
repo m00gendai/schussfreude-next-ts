@@ -63,15 +63,15 @@ export default async function Page() {
         <h1>{`Zeitdokumente`}</h1>
         {
           artifacts.map(artifact =>{
-            return artifact.item.map(element =>{
+            return artifact.item.map((element, index) =>{
               return(
-                <section>
+                <section key={`${element.type}_${index}`}>
                 <h2>{element.type}</h2>
                 <div dangerouslySetInnerHTML={{__html: element.intro}}></div>
                 {
                   documents.map(doc=>{
                     if(doc.type === element.type){
-                      return <AncientScrolls doc={doc} />
+                      return <AncientScrolls doc={doc} key={doc._id}/>
                     }
                   })
                 }
