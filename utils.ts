@@ -1,9 +1,10 @@
-import{Book, Tag, Medium} from "@/interfaces/interface_Book"
+import{Book} from "@/interfaces/interface_Book"
 import{Misc} from "@/interfaces/interface_Misc"
 import{App} from "@/interfaces/interface_App"
 import {Accessory} from "@/interfaces/interface_Accessory"
 import {Magazine} from "@/interfaces/interface_Magazine"
 import {SWM} from "@/interfaces/interface_SWM"
+import {Tag, Medium} from "@/interfaces/interface_globals"
 
 export function getDate(unix:number){
     const date: Date = new Date(unix*1000)

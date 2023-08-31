@@ -3,7 +3,7 @@
 import s from "@/styles/Gallery.module.css"
 import Image from 'next/image'
 import { getAspectRatio } from "@/utils"
-import {Medium} from "@/interfaces/interface_Book"
+import {Medium} from "@/interfaces/interface_globals"
 
 interface Props{
     images: Medium[]
