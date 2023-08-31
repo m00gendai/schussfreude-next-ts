@@ -55,8 +55,6 @@ export default async function Page() {
   const artifacts: Artifact[] = await getData()
   const documents: Script[] = await getDocs()
 
-  console.log(artifacts[0].item[0].content)
-  console.log(documents)
   return (
     <main>
       <article>
@@ -66,7 +64,7 @@ export default async function Page() {
             return artifact.item.map((element, index) =>{
               return(
                 <section key={`${element.type}_${index}`}>
-                <h2>{element.type}</h2>
+                <h2 style={index === 0 ? {marginTop: 0}:{}}>{element.type}</h2>
                 <div dangerouslySetInnerHTML={{__html: element.intro}}></div>
                 {
                   documents.map(doc=>{
