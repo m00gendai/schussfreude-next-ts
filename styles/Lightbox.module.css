@@ -1,0 +1,106 @@
+.veil{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: rgba(0,0,0,0.8);
+    z-index: 999;
+}
+
+.modal{
+    position: relative;
+    width: calc(100vw - 4rem);
+    height: calc(100vh - 4rem);
+    background: white;
+    border: 0.5rem solid black;
+}
+
+.imageWrapper{
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+.closeWrapper{
+    position: absolute;
+    top: 0;
+    right: 0;
+    z-index:99999;
+    user-select: none;
+    transform: translate(50%, -50%);
+    background: red;
+    color: white;
+    padding: 0.5rem;
+    width: 1rem;
+    height: 1rem;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.closeWrapper:hover{
+    cursor: pointer;
+}
+
+.prev,
+.next{
+    position: absolute;
+    top: 0;
+    width: 20vw;
+    display: flex;
+    align-items: center;
+    color: white;
+    text-shadow: 2px 2px black;
+    z-index:9999;
+    height: 100%;
+    font-size: 5rem;
+    user-select: none;
+}
+.prev{
+    left: 0;
+    justify-content: flex-start;
+}
+.next{
+    right: 0;
+    justify-content: flex-end;
+}
+.prev:hover,
+.next:hover{
+    cursor: pointer;
+}
+
+.caption{
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    background: rgba(0,0,0,0.8);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+}
+
+.text{
+    position: relative;
+    width: 100%;
+    margin: 1rem;
+}
+
+.lever{
+    position: absolute;
+    background: rgba(0,0,0,0.8);
+    color: white;
+    padding: 0.25rem 1rem;
+    top:0;
+    left: 50%;
+    transform: translate(-50%, -100%);
+    user-select: none;
+}
+.lever:hover{
+    cursor: pointer;
+}
