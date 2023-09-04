@@ -68,7 +68,7 @@ export default function Lightbox({images, lightBoxIndex, setLightBoxIndex, setSh
                         src={`https://cms.schussfreude.ch/storage/uploads/${currentImg.path}`}
                         alt={currentImg.title}
                         fill={true}
-                        style={{objectFit: "contain"}}
+                        style={{objectFit: "contain", border: "none", boxShadow: "none"}}
                     />
                     {
                         currentImg.description ?
