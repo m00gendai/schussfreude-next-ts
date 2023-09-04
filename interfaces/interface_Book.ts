@@ -1,6 +1,7 @@
-import {Medium, Tag} from "@/interfaces/interface_globals"
+import {Medium, Tag, Document} from "@/interfaces/interface_globals"
 
 export interface Book {
+  seo: string
   data: Data
   intro: Intro[]
   outside: Outside[]
@@ -35,29 +36,35 @@ export interface Data {
 export interface Intro {
   text: string
   media: Medium[]
+  documents: Document[]
 }
 
 export interface Outside {
   text: string
   media: Medium[]
+  documents: Document[]
 }
 
 export interface Content {
   text: string
   media: Medium[]
+  documents: Document[]
 }
 
 export interface Impression {
   text: string
   media: Medium[]
+  documents: Document[]
 }
 
 export interface Availability {
   text: string
   media: Medium[]
+  documents: Document[]
 }
 
 export interface Conclusion {
   text: string
   media: Medium[]
+  documents: Document[]
 }

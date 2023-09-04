@@ -4,6 +4,7 @@ import {Medium} from "@/interfaces/interface_globals"
 import s from "@/styles/Lightbox.module.css"
 import { useState } from 'react';
 import Image from "next/image"
+import { BiChevronDown, BiChevronLeft, BiChevronRight, BiChevronUp } from "react-icons/bi";
 
 interface Props{
     images: Medium[]
@@ -15,7 +16,7 @@ interface Props{
 export default function Lightbox({images, lightBoxIndex, setLightBoxIndex, setShowLightBox}:Props){
 
     const [currentImg, setCurrentImg] = useState<Medium>(images[lightBoxIndex])
-    const [showCaption, setShowCaption] = useState<boolean>(true)
+    const [showCaption, setShowCaption] = useState<boolean>(false)
 
     function handleClose(){
         setShowLightBox(false)
@@ -41,17 +42,43 @@ export default function Lightbox({images, lightBoxIndex, setLightBoxIndex, setSh
             <div className={s.modal}>
                 <div className={s.closeWrapper} onClick={()=>handleClose()}>X</div>
                 <div className={s.imageWrapper}>
-                    {images.length > 1 ? <div className={s.prev} onClick={()=>handleNavigation("prev")}>{`<`}</div> : null}
-                    {images.length > 1 ? <div className={s.next} onClick={()=>handleNavigation("next")}>{`>`}</div> : null}
+                    {
+                        images.length > 1 ? 
+                            <div 
+                                className={s.prev} 
+                                onClick={()=>handleNavigation("prev")}
+                            >
+                                <BiChevronLeft />
+                            </div> 
+                        : 
+                            null
+                    }
+                    {
+                        images.length > 1 ? 
+                            <div 
+                                className={s.next} 
+                                onClick={()=>handleNavigation("next")}
+                            >
+                                <BiChevronRight />
+                            </div> 
+                        :   
+                        null
+                    }
                 <Image
                         src={`https://cms.schussfreude.ch/storage/uploads/${currentImg.path}`}
                         alt={currentImg.title}
                         fill={true}
-                        style={{objectFit: "contain"}}
+                        style={{objectFit: "contain", border: "none", boxShadow: "none"}}
                     />
-                    {currentImg.description ?
-                    <div className={s.caption} style={showCaption ? {height: "auto"} : { height: "0"}}>
-                        <div className={s.lever} onClick={()=>handleLever()}>{`Bildunterschrift`}</div>
+                    {
+                        currentImg.description ?
+                            <div 
+                                className={s.caption} 
+                                style={showCaption ? {height: "auto"} : { height: "0"}}
+                            >
+                                <div 
+                                    className={s.lever} 
+                                    onClick={()=>handleLever()}>{showCaption ? <BiChevronDown />:<BiChevronUp />}{`Bildunterschrift`}{showCaption ? <BiChevronDown />:<BiChevronUp />}</div>
                         {showCaption ? <div className={s.text}>
                             {currentImg.description}
                         </div> : null}

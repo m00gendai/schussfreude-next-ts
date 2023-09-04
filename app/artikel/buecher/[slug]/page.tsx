@@ -7,10 +7,12 @@ import {Tag} from "@/interfaces/interface_globals"
 import {getDate, convertDate, stringReplacer} from "@/utils"
 import Swiper_Similar from '@/components/Swiper_Similar'
 import {Metadata} from "next"
+import Link from "next/link"
 import ArticleGallerySimilar from '@/components/ArticleGallerySimilar'
+import DocumentGallery from '@/components/DocumentGallery'
 
 async function getData(){
-  const getData = await fetch(`https://cms.schussfreude.ch/api/content/items/books?populate=1`,{
+  const getData = await fetch(`https://cms.schussfreude.ch/api/content/items/books?populate=1000`,{
     "headers": {
       "api-key": process.env.CMS!
     }  
@@ -39,10 +41,10 @@ export async function generateMetadata({params}:{params:{slug:string}}):Promise<
 
   return{
     title: post.title,
-    description: stringReplacer(post.intro[0].text),
+    description: stringReplacer(post.seo),
     openGraph: {
       title: post.title,
-      description: stringReplacer(post.intro[0].text).split("&nbsp;")[0],
+      description: stringReplacer(post.seo).split("&nbsp;")[0],
       images:[
         {
           url: `https://cms.schussfreude.ch/storage/uploads/${post.hero.path}`,
@@ -56,7 +58,7 @@ export async function generateMetadata({params}:{params:{slug:string}}):Promise<
     twitter: {
       card: 'summary_large_image',
       title: post.title,
-      description: stringReplacer(post.intro[0].text),
+      description: stringReplacer(post.seo),
       images: [`https://cms.schussfreude.ch/storage/uploads/${post.hero.path}`],
     },
   }
@@ -78,12 +80,12 @@ export default async function Page({params}:{params:{slug:string}}) {
   const subTags:Tag[] = postMatch[0].tags.filter(item=>{
     return item.type === "sub"
   })
-  
+
   const similarPosts:Book[] = data.filter(item=>{
     if(item.title !== postMatch[0].title){
-      return item.tags.map(tag=>{
-        return subTags.map(subTag=>{
-          return tag.item === subTag.item
+      return subTags.filter(subtag=>{
+        return item.tags.filter(tag=>{
+          return tag.type === "sub" && tag.item === subtag.item
         })
       })
     }
@@ -107,67 +109,91 @@ export default async function Page({params}:{params:{slug:string}}) {
         <section>
           <h2>Vorwort</h2>
           {post.intro?.map((item, index) =>{
-            if(item.text){
-              return <div key={`introText_${index}`} dangerouslySetInnerHTML={{__html: item.text}}></div>
-            }
-            if(item.media){
-              return <Gallery key={`introMedia_${index}`} images={item.media} />
-            }
+            return(
+              <>
+              {item.text ? <div key={`introText_${index}`}dangerouslySetInnerHTML={{__html: item.text}}></div> 
+              : null}
+              {item.media ? <Gallery key={`introMedia_${index}`} images={item.media} /> 
+              : null}
+              {item.documents ? <DocumentGallery key={`introDocs_${index}`} docs={item.documents} />
+              : null}
+              </>
+            )
           })}
         </section>
         <section>
         <h2>Von Aussen</h2>
           {post.outside?.map((item, index) =>{
-            if(item.text){
-              return <div key={`outsideText${index}`}dangerouslySetInnerHTML={{__html: item.text}}></div>
-            }
-            if(item.media){
-              return <Gallery key={`outsideMedia_${index}`} images={item.media} />
-            }
+            return (
+              <>
+              {item.text ? <div key={`outsideText_${index}`}dangerouslySetInnerHTML={{__html: item.text}}></div> 
+              : null}
+              {item.media ? <Gallery key={`outsideMedia_${index}`} images={item.media} /> 
+              : null}
+              {item.documents ? <DocumentGallery key={`outsideDocs_s${index}`} docs={item.documents} />
+              : null}
+              </>
+            )
           })}
         </section>
         <section>
         <h2>Inhalt</h2>
-          {post.content?.map((item, index) =>{
-            if(item.text){
-              return <div key={`contentText_${index}`} dangerouslySetInnerHTML={{__html: item.text}}></div>
-            }
-            if(item.media){
-              return <Gallery key={`contentMedia_${index}`} images={item.media} />
-            }
+        {post.content?.map((item, index) =>{
+            return (
+              <>
+              {item.text ? <div key={`contentText_${index}`}dangerouslySetInnerHTML={{__html: item.text}}></div> 
+              : null}
+              {item.media ? <Gallery key={`contentMedia_${index}`} images={item.media} /> 
+              : null}
+              {item.documents ? <DocumentGallery key={`contentDocs_${index}`} docs={item.documents} />
+              : null}
+              </>
+            )
           })}
         </section>
         <section>
         <h2>Eindrücke</h2>
-          {post.impressions?.map((item, index) =>{
-            if(item.text){
-              return <div key={`impressionsText_${index}`} dangerouslySetInnerHTML={{__html: item.text}}></div>
-            }
-            if(item.media){
-              return <Gallery key={`impressionsMedia_${index}`} images={item.media} />
-            }
+        {post.impressions?.map((item, index) =>{
+            return (
+              <>
+              {item.text ? <div key={`insideText_${index}`}dangerouslySetInnerHTML={{__html: item.text}}></div> 
+              : null}
+              {item.media ? <Gallery key={`insideMedia_${index}`} images={item.media} /> 
+              : null}
+              {item.documents ? <DocumentGallery key={`insideDocs_${index}`} docs={item.documents} />
+              : null}
+              </>
+            )
           })}
         </section>
         <section>
         <h2>Preis & Verfügbarkeit</h2>
-          {post.availability?.map((item, index) =>{
-            if(item.text){
-              return <div key={`availabilityText_${index}`} dangerouslySetInnerHTML={{__html: item.text}}></div>
-            }
-            if(item.media){
-              return <Gallery key={`availabilityMedia_${index}`} images={item.media} />
-            }
+        {post.availability?.map((item, index) =>{
+            return (
+              <>
+              {item.text ? <div key={`availabilityText_${index}`}dangerouslySetInnerHTML={{__html: item.text}}></div> 
+              : null}
+              {item.media ? <Gallery key={`availabilityMedia_${index}`} images={item.media} /> 
+              : null}
+              {item.documents ? <DocumentGallery key={`availabilityDocs_${index}`} docs={item.documents} />
+              : null}
+              </>
+            )
           })}
         </section>
         <section>
         <h2>Persönliches Fazit</h2>
-          {post.conclusion?.map((item, index) =>{
-            if(item.text){
-              return <div key={`conclusionText_${index}`} dangerouslySetInnerHTML={{__html: item.text}}></div>
-            }
-            if(item.media){
-              return <Gallery key={`conclusionMedia_${index}`} images={item.media} />
-            }
+        {post.conclusion?.map((item, index) =>{
+            return (
+              <>
+              {item.text ? <div key={`conclusionText_${index}`}dangerouslySetInnerHTML={{__html: item.text}}></div> 
+              : null}
+              {item.media ? <Gallery key={`conclusionMedia_${index}`} images={item.media} /> 
+              : null}
+              {item.documents ? <DocumentGallery key={`conclusionDocs_${index}`} docs={item.documents} />
+              : null}
+              </>
+            )
           })}
         </section>
         <section>
