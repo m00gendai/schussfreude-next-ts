@@ -9,6 +9,7 @@ import Swiper_Similar from '@/components/Swiper_Similar'
 import {Metadata} from "next"
 import Link from "next/link"
 import ArticleGallerySimilar from '@/components/ArticleGallerySimilar'
+import DocumentGallery from '@/components/DocumentGallery'
 
 async function getData(){
   const getData = await fetch(`https://cms.schussfreude.ch/api/content/items/books?populate=1000`,{
@@ -79,12 +80,12 @@ export default async function Page({params}:{params:{slug:string}}) {
   const subTags:Tag[] = postMatch[0].tags.filter(item=>{
     return item.type === "sub"
   })
-  
+
   const similarPosts:Book[] = data.filter(item=>{
     if(item.title !== postMatch[0].title){
-      return item.tags.map(tag=>{
-        return subTags.map(subTag=>{
-          return tag.item === subTag.item
+      return subTags.filter(subtag=>{
+        return item.tags.filter(tag=>{
+          return tag.type === "sub" && tag.item === subtag.item
         })
       })
     }
@@ -108,21 +109,15 @@ export default async function Page({params}:{params:{slug:string}}) {
         <section>
           <h2>Vorwort</h2>
           {post.intro?.map((item, index) =>{
-            return (
-              item.text ? <div key={`outsideText${index}`}dangerouslySetInnerHTML={{__html: item.text}}></div> 
-              : null
-            )})
-          }
-          {post.intro?.map((item, index) =>{
-            return (
-              item.media ? <Gallery key={`introMedia_${index}`} images={item.media} /> 
-              : null
-            )})
-            }
-          {post.intro?.map((item, index) =>{
-            return (
-              item.documents? <Link href={`https://cms.schussfreude.ch/storage/uploads/${item.documents[0].path}`} target={`_blank`}>{item.documents[0].title}</Link>
-              : null
+            return(
+              <>
+              {item.text ? <div key={`introText_${index}`}dangerouslySetInnerHTML={{__html: item.text}}></div> 
+              : null}
+              {item.media ? <Gallery key={`introMedia_${index}`} images={item.media} /> 
+              : null}
+              {item.documents ? <DocumentGallery key={`introDocs_${index}`} docs={item.documents} />
+              : null}
+              </>
             )
           })}
         </section>
@@ -130,20 +125,14 @@ export default async function Page({params}:{params:{slug:string}}) {
         <h2>Von Aussen</h2>
           {post.outside?.map((item, index) =>{
             return (
-              item.text ? <div key={`outsideText${index}`}dangerouslySetInnerHTML={{__html: item.text}}></div> 
-              : null
-            )})
-          }
-          {post.outside?.map((item, index) =>{
-            return (
-              item.media ? <Gallery key={`introMedia_${index}`} images={item.media} /> 
-              : null
-            )})
-            }
-          {post.outside?.map((item, index) =>{
-            return (
-              item.documents? <Link href={`https://cms.schussfreude.ch/storage/uploads/${item.documents[0].path}`} target={`_blank`}>{item.documents[0].title}</Link>
-              : null
+              <>
+              {item.text ? <div key={`outsideText_${index}`}dangerouslySetInnerHTML={{__html: item.text}}></div> 
+              : null}
+              {item.media ? <Gallery key={`outsideMedia_${index}`} images={item.media} /> 
+              : null}
+              {item.documents ? <DocumentGallery key={`outsideDocs_s${index}`} docs={item.documents} />
+              : null}
+              </>
             )
           })}
         </section>
@@ -151,20 +140,14 @@ export default async function Page({params}:{params:{slug:string}}) {
         <h2>Inhalt</h2>
         {post.content?.map((item, index) =>{
             return (
-              item.text ? <div key={`outsideText${index}`}dangerouslySetInnerHTML={{__html: item.text}}></div> 
-              : null
-            )})
-          }
-          {post.content?.map((item, index) =>{
-            return (
-              item.media ? <Gallery key={`introMedia_${index}`} images={item.media} /> 
-              : null
-            )})
-            }
-          {post.content?.map((item, index) =>{
-            return (
-              item.documents? <Link href={`https://cms.schussfreude.ch/storage/uploads/${item.documents[0].path}`} target={`_blank`}>{item.documents[0].title}</Link>
-              : null
+              <>
+              {item.text ? <div key={`contentText_${index}`}dangerouslySetInnerHTML={{__html: item.text}}></div> 
+              : null}
+              {item.media ? <Gallery key={`contentMedia_${index}`} images={item.media} /> 
+              : null}
+              {item.documents ? <DocumentGallery key={`contentDocs_${index}`} docs={item.documents} />
+              : null}
+              </>
             )
           })}
         </section>
@@ -172,20 +155,14 @@ export default async function Page({params}:{params:{slug:string}}) {
         <h2>Eindrücke</h2>
         {post.impressions?.map((item, index) =>{
             return (
-              item.text ? <div key={`outsideText${index}`}dangerouslySetInnerHTML={{__html: item.text}}></div> 
-              : null
-            )})
-          }
-          {post.impressions?.map((item, index) =>{
-            return (
-              item.media ? <Gallery key={`introMedia_${index}`} images={item.media} /> 
-              : null
-            )})
-            }
-          {post.impressions?.map((item, index) =>{
-            return (
-              item.documents? <Link href={`https://cms.schussfreude.ch/storage/uploads/${item.documents[0].path}`} target={`_blank`}>{item.documents[0].title}</Link>
-              : null
+              <>
+              {item.text ? <div key={`insideText_${index}`}dangerouslySetInnerHTML={{__html: item.text}}></div> 
+              : null}
+              {item.media ? <Gallery key={`insideMedia_${index}`} images={item.media} /> 
+              : null}
+              {item.documents ? <DocumentGallery key={`insideDocs_${index}`} docs={item.documents} />
+              : null}
+              </>
             )
           })}
         </section>
@@ -193,20 +170,14 @@ export default async function Page({params}:{params:{slug:string}}) {
         <h2>Preis & Verfügbarkeit</h2>
         {post.availability?.map((item, index) =>{
             return (
-              item.text ? <div key={`outsideText${index}`}dangerouslySetInnerHTML={{__html: item.text}}></div> 
-              : null
-            )})
-          }
-          {post.availability?.map((item, index) =>{
-            return (
-              item.media ? <Gallery key={`introMedia_${index}`} images={item.media} /> 
-              : null
-            )})
-            }
-          {post.availability?.map((item, index) =>{
-            return (
-              item.documents? <Link href={`https://cms.schussfreude.ch/storage/uploads/${item.documents[0].path}`} target={`_blank`}>{item.documents[0].title}</Link>
-              : null
+              <>
+              {item.text ? <div key={`availabilityText_${index}`}dangerouslySetInnerHTML={{__html: item.text}}></div> 
+              : null}
+              {item.media ? <Gallery key={`availabilityMedia_${index}`} images={item.media} /> 
+              : null}
+              {item.documents ? <DocumentGallery key={`availabilityDocs_${index}`} docs={item.documents} />
+              : null}
+              </>
             )
           })}
         </section>
@@ -214,20 +185,14 @@ export default async function Page({params}:{params:{slug:string}}) {
         <h2>Persönliches Fazit</h2>
         {post.conclusion?.map((item, index) =>{
             return (
-              item.text ? <div key={`outsideText${index}`}dangerouslySetInnerHTML={{__html: item.text}}></div> 
-              : null
-            )})
-          }
-          {post.conclusion?.map((item, index) =>{
-            return (
-              item.media ? <Gallery key={`introMedia_${index}`} images={item.media} /> 
-              : null
-            )})
-            }
-          {post.conclusion?.map((item, index) =>{
-            return (
-              item.documents? <Link href={`https://cms.schussfreude.ch/storage/uploads/${item.documents[0].path}`} target={`_blank`}>{item.documents[0].title}</Link>
-              : null
+              <>
+              {item.text ? <div key={`conclusionText_${index}`}dangerouslySetInnerHTML={{__html: item.text}}></div> 
+              : null}
+              {item.media ? <Gallery key={`conclusionMedia_${index}`} images={item.media} /> 
+              : null}
+              {item.documents ? <DocumentGallery key={`conclusionDocs_${index}`} docs={item.documents} />
+              : null}
+              </>
             )
           })}
         </section>
