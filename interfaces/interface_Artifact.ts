@@ -1,3 +1,5 @@
+import { Document } from "./interface_globals";
+
 export interface Artifact {
   _modified: number;
   _mby: string;
@@ -49,21 +51,3 @@ export interface Thumbnail {
   _id: string;
 }
 
-export interface Document {
-  path: string;
-  title: string;
-  mime: string;
-  type: string;
-  description: string;
-  tags: string[];
-  size: number;
-  colors: string[] | null;
-  width: string | null;
-  height: string | null;
-  _hash: string;
-  _created: number;
-  _modified: number;
-  _cby: string;
-  folder: string;
-  _id: string;
-}
