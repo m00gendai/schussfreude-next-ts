@@ -2,7 +2,7 @@
 
 import {Medium} from "@/interfaces/interface_globals"
 import s from "@/styles/Lightbox.module.css"
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Image from "next/image"
 import { BiChevronDown, BiChevronLeft, BiChevronRight, BiChevronUp, BiLinkExternal, BiX } from "react-icons/bi";
 
@@ -30,30 +30,27 @@ export default function Lightbox({images, lightBoxIndex, setLightBoxIndex, setSh
         setShowCaption(!showCaption)
     }
 
-    function handleNavigation(direction:string){
-        if(direction === "prev"){
-            setLightBoxIndex(lightBoxIndex => lightBoxIndex === 0 ? images.length-1 : lightBoxIndex-1)
+    function handleNavigation(int:number){
             setCurrentImg(images[lightBoxIndex])
-        }
-        if(direction === "next"){
-            setLightBoxIndex(lightBoxIndex => lightBoxIndex === images.length-1 ? 0 : lightBoxIndex+1)
-            setCurrentImg(images[lightBoxIndex])
-        }
     }
+
+    useEffect(()=>{
+        handleNavigation(lightBoxIndex)
+    },[lightBoxIndex])
 
     return(
         <div className={s.veil}>
             <div className={s.modal}>
-                <button className={s.closeWrapper} title="Schliessen" onClick={()=>handleClose()}><BiX style={{color: "rgba(255,255,255,0.5)", fontSize: "2rem"}}/></button>
-                <button className={s.fullWrapper} title="Vollbild" onClick={()=>handleFull()}><BiLinkExternal style={{color: "rgba(255,255,255,0.5)", fontSize: "2rem"}}/></button>
+                <button className={s.closeWrapper} title="Schliessen" onClick={()=>handleClose()}><BiX style={{color: "rgba(255,255,255,0.5)", fontSize: "5rem"}}/></button>
+                <button className={s.fullWrapper} title="Vollbild" onClick={()=>handleFull()}><BiLinkExternal style={{color: "rgba(255,255,255,0.5)", fontSize: "5rem"}}/></button>
                 <div className={s.imageWrapper}>
                     {
                         images.length > 1 ? 
                             <div 
                                 className={s.prev} 
-                                onClick={()=>handleNavigation("prev")}
+                                onClick={()=>setLightBoxIndex(lightBoxIndex === 0 ? images.length-1 : lightBoxIndex-1)}
                             >
-                                <BiChevronLeft style={{color: "rgba(255,255,255,0.5)"}}/>
+                                <BiChevronLeft />
                             </div> 
                         : 
                             null
@@ -62,9 +59,9 @@ export default function Lightbox({images, lightBoxIndex, setLightBoxIndex, setSh
                         images.length > 1 ? 
                             <div 
                                 className={s.next} 
-                                onClick={()=>handleNavigation("next")}
+                                onClick={()=>setLightBoxIndex(lightBoxIndex === images.length-1 ? 0 : lightBoxIndex+1)}
                             >
-                                <BiChevronRight style={{color: "rgba(255,255,255,0.5)"}}/>
+                                <BiChevronRight />
                             </div> 
                         :   
                         null

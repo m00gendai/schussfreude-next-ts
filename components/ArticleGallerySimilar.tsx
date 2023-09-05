@@ -58,11 +58,11 @@ export default function ArticleGallery({articles}:Props){
             })
             }
         </div>
-        <div className={s.toolbar}>
+        {articles.length > 3 ? <div className={s.toolbar}>
             <button className={s.button} onClick={()=>loadAll()}>
                 {`Alle anzeigen (${sortedArticles.length})`}
-            </button>
-        </div>
+            </button> 
+        </div>: null}
         </div>
     )
 }
