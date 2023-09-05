@@ -48,7 +48,7 @@ export default function Lightbox({images, lightBoxIndex, setLightBoxIndex, setSh
                                 className={s.prev} 
                                 onClick={()=>handleNavigation("prev")}
                             >
-                                <BiChevronLeft />
+                                <BiChevronLeft style={{color: "rgba(255,255,255,0.5)"}}/>
                             </div> 
                         : 
                             null
@@ -59,7 +59,7 @@ export default function Lightbox({images, lightBoxIndex, setLightBoxIndex, setSh
                                 className={s.next} 
                                 onClick={()=>handleNavigation("next")}
                             >
-                                <BiChevronRight />
+                                <BiChevronRight style={{color: "rgba(255,255,255,0.5)"}}/>
                             </div> 
                         :   
                         null
