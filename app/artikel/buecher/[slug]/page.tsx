@@ -199,13 +199,18 @@ export default async function Page({params}:{params:{slug:string}}) {
             )
           })}
         </section>
-        <section>
-          <h2>Ähnline Artikel</h2>
-          <div className="sliderWrapper">
-            <Swiper_Similar articles={similarPosts}/>
-          </div>
-          <ArticleGallerySimilar articles={similarPosts} />
-        </section>
+        {
+          similarPosts.length > 0 ? 
+            <section>
+              <h2>Ähnline Artikel</h2>
+              <div className="sliderWrapper">
+                <Swiper_Similar articles={similarPosts}/>
+              </div>
+              <ArticleGallerySimilar articles={similarPosts} />
+            </section>
+          :
+          null
+        }
       </article>
       
     </main>
