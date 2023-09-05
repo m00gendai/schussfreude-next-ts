@@ -1,4 +1,4 @@
-import {Medium, Tag} from "@/interfaces/interface_globals"
+import {Medium, Tag, Document} from "@/interfaces/interface_globals"
 
 export interface App {
   title: string
@@ -40,6 +40,7 @@ export interface Content {
 export interface Paragraph {
   text: string[]
   media: Medium[]
+  documents: Document[]
   spoiler: Spoiler[]
 }
 
@@ -47,6 +48,7 @@ export interface Spoiler {
   title: string
   text: string
   media: Medium[]
+  documents: Document[]
 }
 
 export interface Source {
