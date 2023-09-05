@@ -44,9 +44,9 @@ export default function Gallery({images}:Props){
                                 width={images[0].width}
                                 height={images[0].height}
                                 style={images[0].width > images[0].height ? 
-                                    {height: "auto", width: "100%"}
+                                    {height: "auto", width: "100%", background: `linear-gradient(123deg, ${images[0].colors.map(color => color)})`}
                                     :
-                                    {width: "50%", height: "auto"}}
+                                    {width: "50%", height: "auto", background: `linear-gradient(123deg, ${images[0].colors.map(color => color)})`}}
                                 className={s.image}
                                 onClick={()=>handleClick(0)}
                             />
@@ -62,7 +62,8 @@ export default function Gallery({images}:Props){
                                 <div key={image._id} className={s.itemFrame}>
                                     <div className={s.itemContainer}
                                     style={{
-                                        background: `linear-gradient(123deg, ${image.colors.map(color => color)})`}}
+                                        background: `linear-gradient(123deg, ${image.colors.map(color => color)})`
+                                    }}
                                     >
                                             <Image
                                                 src={`https://cms.schussfreude.ch/storage/uploads/${image.path}`}
