@@ -60,18 +60,17 @@ export default function Gallery({images}:Props){
                         {images.map((image, index)=>{
                             return(
                                 <div key={image._id} className={s.itemFrame}>
-                                    <div className={s.itemContainer}>
-                                        <div className={s.item} style={image.width > image.height ? 
-                                            {height: "100%", aspectRatio: getAspectRatio(image)}
-                                            :
-                                            {width: "100%", aspectRatio: getAspectRatio(image)}}>
+                                    <div className={s.itemContainer}
+                                    style={{
+                                        background: `linear-gradient(123deg, ${image.colors.map(color => color)})`}}
+                                    >
                                             <Image
                                                 src={`https://cms.schussfreude.ch/storage/uploads/${image.path}`}
                                                 alt={image.description}
                                                 fill={true}
+                                                style={{objectFit: "cover"}}
                                                 onClick={()=>handleClick(index)}
                                             />
-                                        </div>
                                     </div>
                                 </div>
                             )
