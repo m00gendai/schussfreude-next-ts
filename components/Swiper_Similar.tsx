@@ -51,23 +51,19 @@ export default function Swiper_Similar({articles}:Props){
                 return(
                     <SwiperSlide style={{width: "auto"}} key={article._id}>
                 <Link href={`/artikel/${getCategory(article.tags)}/${article.title.toLowerCase().replaceAll(" ", "-")}`} className={s.itemFrame}>
-                    <div className={s.itemContainer}>
                         {article.hero ?
-                    <div className={s.item} style={article.hero.width > article.hero.height ? 
-                        {height: "100%", aspectRatio: getAspectRatio(article.hero)}
-                        :
-                        {width: "100%", aspectRatio: getAspectRatio(article.hero)}}>
+                    <div className={s.item}>
                         <Image
                         src={`https://cms.schussfreude.ch/storage/uploads/${article.hero.path}`}
                         alt={article.hero.description}
                         fill={true}
+                        style={{objectFit: "cover"}}
                         />
                     </div> : null}
-                    </div>
+             
                     <div className={s.caption}>
-                    <div className={s.text}>
                         <div className={s.title}>{article.title}</div>
-                    </div>
+                        <div className={s.date}>{article.meta}</div>
                     </div>
                 </Link>
                 
@@ -76,17 +72,6 @@ export default function Swiper_Similar({articles}:Props){
                 )
             })
             }
-            {/** ATTN: Styles for these button are in globals.css because otherwise they do not register with swiper */}
-            <div className={`similar_next`}>
-                <div className={`similar_next_container`}>
-            <BiChevronRightCircle />
-                </div>
-            </div>
-            <div className={`similar_prev`}>
-                <div className={`similar_prev_container`}>
-            <BiChevronLeftCircle />
-                </div>
-            </div>
     </Swiper>
 
     )
