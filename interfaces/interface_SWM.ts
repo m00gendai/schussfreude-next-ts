@@ -1,4 +1,4 @@
-import {Medium, Tag} from "@/interfaces/interface_globals"
+import {Medium, Tag, Document} from "@/interfaces/interface_globals"
 
 export interface SWM {
     title: string
@@ -21,9 +21,11 @@ export interface SWM {
   export interface Outside {
     text: string
     media: Medium[]
+    documents: Document[]
   }
   
   export interface Additions {
     text: string
     media: Medium[]
+    documents: Document[]
   }

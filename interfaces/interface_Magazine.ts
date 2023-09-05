@@ -1,4 +1,4 @@
-import {Medium, Tag} from "@/interfaces/interface_globals"
+import {Medium, Tag, Document} from "@/interfaces/interface_globals"
 import {SWM} from "@/interfaces/interface_SWM"
 
 export interface Magazine {
@@ -20,6 +20,7 @@ export interface Magazine {
 export interface Intro {
   text: string
   media: Medium[]
+  documents: Document[]
 }
 
 export interface Volume {
@@ -31,4 +32,5 @@ export interface Volume {
 export interface Availability {
   text: string
   media: Medium[]
+  documents: Document[]
 }
