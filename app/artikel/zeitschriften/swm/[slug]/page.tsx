@@ -8,6 +8,7 @@ import Swiper_Similar from '@/components/Swiper_Similar'
 import {Metadata} from "next"
 import MagazineGallery from '@/components/MagazineGallery'
 import ArticleGallerySimilar from '@/components/ArticleGallerySimilar'
+import DocumentGallery from '@/components/DocumentGallery'
 
 async function getData(){
   const getData = await fetch(`https://cms.schussfreude.ch/api/content/items/swm?populate=1`,{
@@ -103,7 +104,8 @@ export default async function Page({params}:{params:{slug:string}}) {
         <section>
           <h2>von Aussen</h2>
           <div dangerouslySetInnerHTML={{__html: post.outside.text}}></div>
-          <Gallery images={post.outside.media} />
+          {post.outside.media ? <Gallery images={post.outside.media} /> :null}
+          {post.outside.documents ? <DocumentGallery docs={post.outside.documents} /> : null}
         </section>
         <section>
           <h2>Inhalt</h2>
@@ -116,7 +118,8 @@ export default async function Page({params}:{params:{slug:string}}) {
         <section>
           <h2>Beilagen</h2>
           <div dangerouslySetInnerHTML={{__html: post.additions.text}}></div>
-          <Gallery images={post.additions.media} />
+          {post.additions.media ? <Gallery images={post.additions.media} /> :null}
+          {post.additions.documents ? <DocumentGallery docs={post.additions.documents} /> : null}
         </section>
         {similarPosts.length !== 0 ?
         <section>
