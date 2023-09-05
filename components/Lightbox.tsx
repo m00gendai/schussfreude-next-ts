@@ -4,7 +4,7 @@ import {Medium} from "@/interfaces/interface_globals"
 import s from "@/styles/Lightbox.module.css"
 import { useState } from 'react';
 import Image from "next/image"
-import { BiChevronDown, BiChevronLeft, BiChevronRight, BiChevronUp } from "react-icons/bi";
+import { BiChevronDown, BiChevronLeft, BiChevronRight, BiChevronUp, BiLinkExternal, BiX } from "react-icons/bi";
 
 interface Props{
     images: Medium[]
@@ -20,6 +20,10 @@ export default function Lightbox({images, lightBoxIndex, setLightBoxIndex, setSh
 
     function handleClose(){
         setShowLightBox(false)
+    }
+
+    function handleFull(){
+        window.open(`https://cms.schussfreude.ch/storage/uploads/${currentImg.path}`)
     }
     
     function handleLever(){
@@ -40,7 +44,8 @@ export default function Lightbox({images, lightBoxIndex, setLightBoxIndex, setSh
     return(
         <div className={s.veil}>
             <div className={s.modal}>
-                <div className={s.closeWrapper} onClick={()=>handleClose()}>X</div>
+                <button className={s.closeWrapper} title="Schliessen" onClick={()=>handleClose()}><BiX style={{color: "rgba(255,255,255,0.5)", fontSize: "2rem"}}/></button>
+                <button className={s.fullWrapper} title="Vollbild" onClick={()=>handleFull()}><BiLinkExternal style={{color: "rgba(255,255,255,0.5)", fontSize: "2rem"}}/></button>
                 <div className={s.imageWrapper}>
                     {
                         images.length > 1 ? 
