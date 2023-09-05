@@ -9,6 +9,7 @@ import Spoiler from '@/components/Spoiler'
 import {Metadata} from "next"
 import DataTableApps from '@/components/DataTableApps'
 import ArticleGallerySimilar from '@/components/ArticleGallerySimilar'
+import DocumentGallery from '@/components/DocumentGallery'
 
 async function getData(){
   const getData = await fetch(`https://cms.schussfreude.ch/api/content/items/apps?populate=1`,{
@@ -115,6 +116,7 @@ export default async function Page({params}:{params:{slug:string}}) {
                     <section className="subSection" key={`paragraph_${index}`}>
                       {paragraph.text ? <div key={`outsideText${index}`} dangerouslySetInnerHTML={{__html: paragraph.text}}></div> : null}
                       {paragraph.media ? <Gallery key={`outsideMedia_${index}`} images={paragraph.media} /> :null}
+                      {paragraph.documents ? <DocumentGallery key={`outsideDocument_${index}`} docs={paragraph.documents} /> : null}
                       {paragraph.spoiler ? paragraph.spoiler.map((spoiler, index) => <Spoiler key={`spoiler_${index}`} content={spoiler} />) : null}
                     </section>
                   )

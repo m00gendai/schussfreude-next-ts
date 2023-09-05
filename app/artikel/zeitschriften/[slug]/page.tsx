@@ -9,6 +9,7 @@ import {Metadata} from "next"
 import MagazineGallery from '@/components/MagazineGallery'
 import { SWM } from '@/interfaces/interface_SWM'
 import ArticleGallerySimilar from '@/components/ArticleGallerySimilar'
+import DocumentGallery from '@/components/DocumentGallery'
 
 async function getData(){
   const getData = await fetch(`https://cms.schussfreude.ch/api/content/items/magazines?populate=1`,{
@@ -117,12 +118,16 @@ export default async function Page({params}:{params:{slug:string}}) {
         <section>
           <h2>Vorwort</h2>
           {post.intro?.map((item, index) =>{
-            if(item.text){
-              return <div key={`introText_${index}`} dangerouslySetInnerHTML={{__html: item.text}}></div>
-            }
-            if(item.media){
-              return <Gallery key={`introMedia_${index}`} images={item.media} />
-            }
+            return(
+              <>
+              {item.text ? <div key={`introText_${index}`}dangerouslySetInnerHTML={{__html: item.text}}></div> 
+              : null}
+              {item.media ? <Gallery key={`introMedia_${index}`} images={item.media} /> 
+              : null}
+              {item.documents ? <DocumentGallery key={`introDocs_${index}`} docs={item.documents} />
+              : null}
+              </>
+            )
           })}
         </section>
         <section>
