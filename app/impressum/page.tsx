@@ -54,7 +54,7 @@ export default async function Impressum() {
         {
           data[0].tiles.map((tile, index)=>{
             return (
-              <div className={s.tile}>
+              <div className={s.tile} key={tile.title}>
                 <h3 dangerouslySetInnerHTML={{__html:tile.title}} style={{width: "100%"}}></h3>
                 <div dangerouslySetInnerHTML={{__html:tile.text}} style={{width: "100%"}}></div>
                 <Link href={tile.link} target="_blank" style={{margin: "0 0 1rem 0", width: "100%"}}>{tile.link}</Link>
