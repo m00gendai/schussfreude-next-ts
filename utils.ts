@@ -6,6 +6,9 @@ import {Magazine} from "@/interfaces/interface_Magazine"
 import {SWM} from "@/interfaces/interface_SWM"
 import {Tag, Medium} from "@/interfaces/interface_globals"
 
+const date:Date = new Date()
+export const currentYear:number = date.getFullYear()
+
 export function getDate(unix:number){
     const date: Date = new Date(unix*1000)
     return `${date.getDate() < 10 ? "0" : ""}${date.getDate()}.${date.getMonth()+1 < 10 ? "0" : ""}${date.getMonth()+1}.${date.getFullYear()}`
