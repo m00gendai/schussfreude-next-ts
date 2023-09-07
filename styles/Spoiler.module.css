@@ -6,12 +6,22 @@
     background: lightgrey;
 }
 
+@media only screen and (max-aspect-ratio: 13/9){
+    .details{
+        margin: 0.25rem 0;
+    }
+}
+
 .summary{
     font-weight: bolder;
-    margin: 1rem;
     width: 100%;
-    height: 100%;
+    height: 3rem;
     font-size: 0.875rem;
+    user-select: none;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    text-indent: 1rem;
 }
 
 .summary:hover{

@@ -13,8 +13,7 @@ import{App} from "@/interfaces/interface_App"
 import {Accessory} from "@/interfaces/interface_Accessory"
 import {Magazine} from "@/interfaces/interface_Magazine"
 import {SWM} from "@/interfaces/interface_SWM"
-import { getAspectRatio, sortData, getCategory } from "@/utils"
-import {BiChevronLeftCircle, BiChevronRightCircle} from "react-icons/bi"
+import { getCategory } from "@/utils"
 
 // Import Swiper styles
 import 'swiper/css';
@@ -37,7 +36,7 @@ export default function Swiper_Similar({articles}:Props){
             height: "auto",
         }}
         modules={[Navigation, Pagination, Scrollbar]}
-        spaceBetween={25}
+        spaceBetween={0}
         slidesPerView={"auto"}
         navigation={{
             prevEl: '.similar_prev',

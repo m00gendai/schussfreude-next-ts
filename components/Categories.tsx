@@ -1,6 +1,6 @@
 import s from "@/styles/Categories.module.css"
 import {Tag} from "@/interfaces/interface_globals"
-import { getCategory } from "@/utils"
+import { getCategory, gradientPlaceholder, toRGB } from "@/utils"
 import Image from "next/image"
 import Link from "next/link"
 
@@ -16,8 +16,9 @@ export default function Categories({cats}:Props){
         <div className={s.container}>
             {sortedData.map(item=>{
                 if(item.type === "main" && item.item !== "SWM"){
+                    const rgb:string[] = item.thumb.colors.map(color => toRGB(color))
                     return(
-                        <Link href={`/artikel/${getCategory(item)}`} className={s.item} key={item._id}>
+                        <Link href={`/artikel/${getCategory(item)}`} className={s.item} key={item._id} style={gradientPlaceholder(rgb)}>
                             {item.thumb ?
                                 <Image
                                     src={`https://cms.schussfreude.ch/storage/uploads/${item.thumb.path}`}

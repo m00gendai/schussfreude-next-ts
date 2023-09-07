@@ -10,7 +10,7 @@ import {Accessory} from "@/interfaces/interface_Accessory"
 import {Magazine} from "@/interfaces/interface_Magazine"
 import {SWM} from "@/interfaces/interface_SWM"
 import {useState} from "react"
-import { getAspectRatio, sortData, getCategory, magazineUrlReplacer } from "@/utils"
+import { getAspectRatio, sortData, getCategory, magazineUrlReplacer, toRGB, gradientPlaceholder } from "@/utils"
 import { MdUpdate } from "react-icons/md";
 
 interface Props{
@@ -42,11 +42,12 @@ export default function ArticleGallery({articles}:Props){
         <div className={s.grid}>
             {
             sortedArticles.map(article=>{
+                const rgb:string[] = article.hero.colors.map(color => toRGB(color))
                 return(
                 <Link href={`/artikel/${getCategory(article.tags)}/${magazineUrlReplacer(article.title)}`} key={article._id} className={s.itemFrame}>
                     <div className={s.itemContainer}>
                         {article.hero ?
-                    <div className={s.item}>
+                    <div className={s.item} style={gradientPlaceholder(rgb)}>
                         <Image
                         src={`https://cms.schussfreude.ch/storage/uploads/${article.hero.path}`}
                         alt={article.hero.description}

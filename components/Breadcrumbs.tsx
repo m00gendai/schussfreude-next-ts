@@ -1,32 +1,37 @@
 "use client"
 
 import s from "@/styles/Breadcrumbs.module.css"
+import { usePathname, useRouter } from "next/navigation"
+import Link from "next/link"
+import { Router } from "next/router"
+import { AppRouterInstance } from "next/dist/shared/lib/app-router-context"
+import { BiChevronsRight } from "react-icons/bi"
 
-interface Props{
-    url: string[]
-}
+export default function Breadcrumbs(){
 
-function handleClick(url:string[], crumb:string, index:number){
-    console.log(url)
-    console.log(crumb)
-    console.log(index)
-}
+    const router:AppRouterInstance = useRouter()
+    const pathName = usePathname()
+    const pathArray = pathName.substring(1, pathName.length-1).split("/")
 
-export default function Breadcrumbs({url}:Props){
+
+    function handleClick(path:string){
+        const item:number = pathArray.indexOf(path)
+        const slicedPath:string[] = pathArray.slice(0,item+1)
+        const breaderifiedUrl:string = slicedPath.join("/")
+        router.push(breaderifiedUrl)
+    }
     return(
         <div className={s.container}>
             {
-                url.slice(3).map((crumb, index)=>{
-                    return (
-                        <div className={s.crumbs} key={`crumb_${index}`}>
-                            <p onClick={()=>handleClick(url, crumb, index)}>
-                                {`${crumb.charAt(0).toLocaleUpperCase()}${crumb.substring(1,crumb.length)}`}
-                            </p>
-                            {
-                                index < url.slice(3).length-1 ? <p className={s.separator}>{`>>`}</p> : ""
-                            }
-                        </div>
-                    )
+                pathArray.map((path, index)=>{
+                    if(index < pathArray.length-1){
+                        return (
+                            <>
+                            <p onClick={()=>handleClick(path)}>{`${path}`}</p>
+                            {index < pathArray.length-2 ? <BiChevronsRight />: null}
+                            </>
+                        )
+                    }
                 })
             }
         </div>
