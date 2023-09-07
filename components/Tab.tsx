@@ -10,7 +10,7 @@ import {SWM} from "@/interfaces/interface_SWM"
 import s from "@/styles/Tab.module.css"
 import Categories from "@/components/Categories"
 import Hero from "@/components/Hero"
-import {useState} from "react"
+import {TouchEventHandler, useState} from "react"
 import { render } from "react-dom"
 
 interface Props{
@@ -23,6 +23,10 @@ export default function Tab({articles, cats}:Props){
     const [renderCat, setRenderCat] = useState<boolean>(false)
 
     function handleClick(){
+        setRenderCat(!renderCat)
+    }
+
+    function handleSwipe(){
         setRenderCat(!renderCat)
     }
 
@@ -41,10 +45,10 @@ export default function Tab({articles, cats}:Props){
                         style={renderCat ? {fontSize: "1.25rem"} : {fontSize: "0.75rem"}}
                     >
                         Kategorien
-                    </span>
+                    </span>onMouseMove
                 </button>
             </div>
-            <div className={s.container}>
+            <div className={s.container} onTouchEnd={()=>handleSwipe()}>
              
                 {renderCat ? <Categories cats={cats} /> : <Hero articles={articles} />}
             </div>
