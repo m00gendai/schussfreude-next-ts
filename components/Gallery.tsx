@@ -77,7 +77,8 @@ export default function Gallery({images}:Props){
                                             display: "flex",
                                             justifyContent: "center",
                                             alignItems: "center"
-                                        }}/> : null}
+                                        }}
+                                        title={`Bildunterschrift vorhanden: Auf das Bild klicken, um sie zu lesen!`}/> : null}
                                             <Image
                                                 src={`https://cms.schussfreude.ch/storage/uploads/${image.path}`}
                                                 alt={image.description}
