@@ -9,6 +9,7 @@ import {Metadata} from "next"
 import MagazineGallery from '@/components/MagazineGallery'
 import ArticleGallerySimilar from '@/components/ArticleGallerySimilar'
 import DocumentGallery from '@/components/DocumentGallery'
+import Breadcrumbs from '@/components/Breadcrumbs'
 
 async function getData(){
   const getData = await fetch(`https://cms.schussfreude.ch/api/content/items/swm?populate=1`,{
@@ -95,11 +96,11 @@ export default async function Page({params}:{params:{slug:string}}) {
   return (
     <main>
       <article>
+      <Breadcrumbs />
         <h1>{post.title}</h1>
         <section>
           <p className={"metaText"}>{`Erstpublikation am: ${convertDate(post.meta)}`}</p>
           <p className={"metaText"}>{`Zuletzt geändert am: ${getDate(post._modified)}`}</p>
-          {/*<p className={"metaText"}>{`Kategorien: `}{post.tags.map((tag, index)=>{return <span key={`tagSpan_${index}`}>{`${tag.item}${index < post.tags.length-1 ? ", " : ""}`}</span>})}</p>*/}
         </section>
         <section>
           <h2>von Aussen</h2>
