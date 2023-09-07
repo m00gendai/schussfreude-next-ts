@@ -6,6 +6,7 @@ import { toRGB, gradientPlaceholder } from "@/utils"
 import {Medium} from "@/interfaces/interface_globals"
 import Lightbox from "./Lightbox"
 import { useState } from "react"
+import { BiBorderRadius, BiMessageDetail } from "react-icons/bi"
 
 interface Props{
     images: Medium[]
@@ -64,6 +65,19 @@ export default function Gallery({images}:Props){
                                     <div className={s.itemContainer}
                                     style={gradientPlaceholder(rgb)}
                                     >
+                                        {image.description ? <BiMessageDetail style={{
+                                            zIndex: 2,
+                                            position: "absolute",
+                                            top: "0.25rem",
+                                            right: "0.25rem",
+                                            color: "green",
+                                            background: "white",
+                                            borderRadius: "50%",
+                                            padding: "0.25rem",
+                                            display: "flex",
+                                            justifyContent: "center",
+                                            alignItems: "center"
+                                        }}/> : null}
                                             <Image
                                                 src={`https://cms.schussfreude.ch/storage/uploads/${image.path}`}
                                                 alt={image.description}
