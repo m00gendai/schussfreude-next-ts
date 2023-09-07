@@ -2,7 +2,7 @@
 
 import s from "@/styles/Gallery.module.css"
 import Image from 'next/image'
-import { getAspectRatio } from "@/utils"
+import { toRGB, gradientPlaceholder } from "@/utils"
 import {Medium} from "@/interfaces/interface_globals"
 import Lightbox from "./Lightbox"
 import { useState } from "react"
@@ -44,9 +44,9 @@ export default function Gallery({images}:Props){
                                 width={images[0].width}
                                 height={images[0].height}
                                 style={images[0].width > images[0].height ? 
-                                    {height: "auto", width: "100%", background: `linear-gradient(123deg, ${images[0].colors.map(color => color)})`}
+                                    {height: "auto", width: "100%", background: gradientPlaceholder(images[0].colors.map(color => color)).background}
                                     :
-                                    {width: "50%", height: "auto", background: `linear-gradient(123deg, ${images[0].colors.map(color => color)})`}}
+                                    {width: "50%", height: "auto", background: gradientPlaceholder(images[0].colors.map(color => color)).background}}
                                 className={s.image}
                                 onClick={()=>handleClick(0)}
                             />
@@ -58,12 +58,11 @@ export default function Gallery({images}:Props){
                 :
                     <div className={s.grid}>
                         {images.map((image, index)=>{
+                            const rgb:string[] = image.colors.map(color => toRGB(color))
                             return(
                                 <div key={image._id} className={s.itemFrame}>
                                     <div className={s.itemContainer}
-                                    style={{
-                                        background: `linear-gradient(123deg, ${image.colors.map(color => color)})`
-                                    }}
+                                    style={gradientPlaceholder(rgb)}
                                     >
                                             <Image
                                                 src={`https://cms.schussfreude.ch/storage/uploads/${image.path}`}
