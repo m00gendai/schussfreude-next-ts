@@ -10,8 +10,9 @@ import {SWM} from "@/interfaces/interface_SWM"
 import s from "@/styles/Tab.module.css"
 import Categories from "@/components/Categories"
 import Hero from "@/components/Hero"
-import {TouchEventHandler, useState} from "react"
+import {TouchEvent, TouchEventHandler, useState} from "react"
 import { render } from "react-dom"
+import { BiChevronLeft, BiChevronRight } from "react-icons/bi"
 
 interface Props{
     articles: (Book|Misc|App|Accessory|Magazine|SWM)[]
@@ -22,33 +23,54 @@ export default function Tab({articles, cats}:Props){
 
     const [renderCat, setRenderCat] = useState<boolean>(false)
 
-    function handleClick(){
-        setRenderCat(!renderCat)
-    }
+    /* 
+        The left/right swipe detection logic si from
+        https://stackoverflow.com/questions/70612769/how-do-i-recognize-swipe-events-in-react 
+        I adapted it for TS and my use case
+    */
+    const [touchStart, setTouchStart] = useState<number | null>(null)
+    const [touchEnd, setTouchEnd] = useState<number | null>(null)
+    const minSwipeDistance:number = 50 
 
-    function handleSwipe(){
+
+    const onTouchStart = (e:TouchEvent) => {
+        setTouchEnd(null) // otherwise the swipe is fired even with usual touch events
+        setTouchStart(e.targetTouches[0].clientX)
+    }
+  
+  const onTouchMove = (e:TouchEvent) => setTouchEnd(e.targetTouches[0].clientX)
+  
+  const onTouchEnd = () => {
+    if (!touchStart || !touchEnd){
+        return
+    } 
+    const distance = touchStart - touchEnd
+    const isLeftSwipe = distance > minSwipeDistance
+    const isRightSwipe = distance < -minSwipeDistance
+    if (isRightSwipe && renderCat){
         setRenderCat(!renderCat)
     }
+    if(isLeftSwipe && !renderCat){
+        setRenderCat(!renderCat)
+    }
+  }
+
+  const onClicketyClack = () =>{
+    setRenderCat(!renderCat)
+  }
 
     return(
         <div className={s.tab}>
             <div className={s.row}>
-                <button className={s.button} onClick={()=>handleClick()}>
-                    <span 
-                        className={`${s.label} rightAlign`}
-                        style={renderCat ? {fontSize: "0.75rem"} : {fontSize: "1.25rem"}}
-                    >
-                        Artikel
-                    </span>
-                    <span 
-                        className={`${s.label} leftAlign`}
-                        style={renderCat ? {fontSize: "1.25rem"} : {fontSize: "0.75rem"}}
-                    >
-                        Kategorien
-                    </span>onMouseMove
-                </button>
+                <span className={`${s.index} leftAlign`}>
+                    {renderCat ? <span className={s.label} onClick={onClicketyClack}><BiChevronLeft />{`Neueste Artikel`}</span> : null}
+                </span>
+                
+                <span className={`${s.index} rightAlign`}>
+                    {renderCat ? null : <span className={s.label} onClick={onClicketyClack}>{`Artikelkategorien`}<BiChevronRight /></span>}
+                </span>
             </div>
-            <div className={s.container} onTouchEnd={()=>handleSwipe()}>
+            <div className={s.container} onTouchStart={onTouchStart} onTouchMove={onTouchMove} onTouchEnd={onTouchEnd}>
              
                 {renderCat ? <Categories cats={cats} /> : <Hero articles={articles} />}
             </div>

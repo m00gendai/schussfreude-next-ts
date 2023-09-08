@@ -127,14 +127,17 @@ export default async function Home() {
   return (
     <main>
       {/* TODO: This section will be removed on prod */}
-      <h1 className={s.h1}>schussfreude.ch</h1>
-      <p className={s.p}>Vorschau der neuen schussfreude.ch-Seite.</p>
-      <Link style={{width: "100%", display: "block", textAlign: "center"}} href="https://trello.com/b/HtQ0vFoJ/schussfreudech" target="_blank" title="Status">
-        Status Fortschritt (Englisch)
-      </Link>
-      <Link style={{width: "100%", display: "block", textAlign: "center"}} href="https://github.com/m00gendai/schussfreude-next-ts" target="_blank" title="Github">
-        Github Repository (Englisch)
-      </Link>
+      <div className={s.notice}>
+        <h1 className={s.h1}>schussfreude.ch</h1>
+        <p className={s.p}>Vorschau der neuen schussfreude.ch-Seite.</p>
+        <Link style={{display: "block", textAlign: "center"}} href="https://trello.com/b/HtQ0vFoJ/schussfreudech" target="_blank" title="Status">
+          Status Fortschritt (Englisch)
+        </Link>
+        <div style={{width: "100%"}}></div>
+        <Link style={{display: "block", textAlign: "center"}} href="https://github.com/m00gendai/schussfreude-next-ts" target="_blank" title="Github">
+          Github Repository (Englisch)
+        </Link>
+      </div>
       {/* TODO: This will remain in prod. Delete comment then */}
       <div className={s.desktop}>
         <Hero articles={articles}/>
