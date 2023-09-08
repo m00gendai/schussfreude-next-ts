@@ -27,7 +27,7 @@ export default function Breadcrumbs(){
                     if(index < pathArray.length-1){
                         return (
                             <>
-                            <p onClick={()=>handleClick(path)}>{`${path}`}</p>
+                            <p onClick={()=>handleClick(path)} title={`Zurück zu ${path}`}>{`${path}`}</p>
                             {index < pathArray.length-2 ? <BiChevronsRight />: null}
                             </>
                         )
