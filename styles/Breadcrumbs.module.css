@@ -1,10 +1,17 @@
 .container{
-    position: absolute;
-    top: 0;
-    left: 0;
+    position: relative;
     width: 100%;
     display: flex;
-    justify-content: flex-end;
+    justify-content: flex-start;
     align-items: center;
     flex-wrap: wrap;
+}
+
+.container p{
+    color: blue;
+    user-select: none;
+}
+
+.container p:hover{
+    cursor: pointer;
 }

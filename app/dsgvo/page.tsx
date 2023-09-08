@@ -1,6 +1,7 @@
 import { Metadata } from "next"
 import React from 'react'
 import {DSGVO} from "@/interfaces/interface_DSGVO"
+import Breadcrumbs from "@/components/Breadcrumbs"
 
 async function getData(){
   const getData = await fetch(`https://cms.schussfreude.ch/api/content/items/dsgvo`,{
@@ -47,6 +48,8 @@ export default async function Dsgvo() {
     <main>
       <article>
       <h1>Datenschutzerklärung</h1>
+      <Breadcrumbs />
+      <section></section>
       {
         data[0].section.map((section, index)=>{
           return (

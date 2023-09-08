@@ -2,6 +2,7 @@ import React from 'react'
 import {Artifact, Script} from "@/interfaces/interface_Artifact"
 import {Metadata} from "next"
 import AncientScrolls from '@/components/AncientScrolls'
+import Breadcrumbs from '@/components/Breadcrumbs'
 
 async function getData(){
   const getData = await fetch(`https://cms.schussfreude.ch/api/content/items/artifacts?populate=1`,{
@@ -59,12 +60,14 @@ export default async function Page() {
     <main>
       <article>
         <h1>{`Zeitdokumente`}</h1>
+        <Breadcrumbs />
+        <section></section>
         {
           artifacts.map(artifact =>{
             return artifact.item.map((element, index) =>{
               return(
                 <section key={`${element.type}_${index}`}>
-                <h2 style={index === 0 ? {marginTop: 0}:{}}>{element.type}</h2>
+                <h2>{element.type}</h2>
                 <div dangerouslySetInnerHTML={{__html: element.intro}}></div>
                 {
                   documents.map(doc=>{

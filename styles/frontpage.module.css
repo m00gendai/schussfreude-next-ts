@@ -2,6 +2,19 @@
     position: relative;
     width: 100%;
     text-align: center;
+    margin: 0;
+}
+
+.notice{
+    width: 100%;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    margin: 2rem 0;
+    padding: 1rem 0;
+    border: 2px solid red;
 }
 
 .p{

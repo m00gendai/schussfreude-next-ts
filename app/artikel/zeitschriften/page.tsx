@@ -48,8 +48,8 @@ export default async function Page({params}:{params:{slug:string}}) {
 
     return (
         <main>
-           {/*} <Breadcrumbs url={urlSplit} /> */}
         <h1>{`Zeitschriften`}</h1>
+        <Breadcrumbs />
         <section>
             <ArticleGallery articles={articles} />
         </section>
