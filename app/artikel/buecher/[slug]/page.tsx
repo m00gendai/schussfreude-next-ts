@@ -10,6 +10,7 @@ import {Metadata} from "next"
 import Link from "next/link"
 import ArticleGallerySimilar from '@/components/ArticleGallerySimilar'
 import DocumentGallery from '@/components/DocumentGallery'
+import Breadcrumbs from '@/components/Breadcrumbs'
 
 async function getData(){
   const getData = await fetch(`https://cms.schussfreude.ch/api/content/items/books?populate=1000`,{
@@ -100,6 +101,7 @@ export default async function Page({params}:{params:{slug:string}}) {
     <main>
       <article>
         <h1>{post.title}</h1>
+        <Breadcrumbs />
         <section>
           <p className={"metaText"}>{`Erstpublikation am: ${convertDate(post.meta)}`}</p>
           <p className={"metaText"}>{`Zuletzt geändert am: ${getDate(post._modified)}`}</p>

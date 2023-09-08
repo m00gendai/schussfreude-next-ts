@@ -96,8 +96,8 @@ export default async function Page({params}:{params:{slug:string}}) {
   return (
     <main>
       <article>
-      <Breadcrumbs />
         <h1>{post.title}</h1>
+        <Breadcrumbs />
         <section>
           <p className={"metaText"}>{`Erstpublikation am: ${convertDate(post.meta)}`}</p>
           <p className={"metaText"}>{`Zuletzt geändert am: ${getDate(post._modified)}`}</p>

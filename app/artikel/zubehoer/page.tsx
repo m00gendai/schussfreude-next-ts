@@ -48,8 +48,8 @@ export default async function Page() {
 
     return (
         <main>
-           {/*} <Breadcrumbs url={urlSplit} /> */}
-        <h1>{`Allgemein`}</h1>
+        <h1>{`Zubehör / Hilfsmittel`}</h1>
+        <Breadcrumbs />
         <section>
             <ArticleGallery articles={articles} />
         </section>
