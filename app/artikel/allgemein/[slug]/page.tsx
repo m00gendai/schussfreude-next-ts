@@ -1,5 +1,6 @@
 import { notFound } from 'next/navigation'
 import React from 'react'
+import Link from "next/link"
 import Gallery from '@/components/Gallery'
 import {Misc} from "@/interfaces/interface_Misc"
 import {Tag} from "@/interfaces/interface_globals"
@@ -12,7 +13,7 @@ import DocumentGallery from '@/components/DocumentGallery'
 import Breadcrumbs from '@/components/Breadcrumbs'
 
 async function getData(){
-  const getData = await fetch(`https://cms.schussfreude.ch/api/content/items/misc?populate=1`,{
+  const getData = await fetch(`https://cms.schussfreude.ch/api/content/items/misc?populate=1000`,{
     "headers": {
       "api-key": process.env.CMS!
     }  
@@ -123,6 +124,31 @@ export default async function Page({params}:{params:{slug:string}}) {
               </>
             )
           })}
+          {post.links ? <section>
+            <h2>Weiterführende Links</h2>
+          {post.links?.map((link, index)=>{
+            return(
+                <Link className="additionalLink" key={`link_${index}`} target={`_blank`} href={link.url} title={link.text}>{link.text}</Link>
+            )
+          })}
+          </section> : null}
+          {post.sources ? <section>
+            <h2>Quellenangaben</h2>
+            <p>Sofern nicht anders angegeben gehört Bild- und Tonmaterial schussfreude.ch oder ist Public Domain.</p>
+            <div className="sourcesContainer">
+            {post.sources?.map((source, index)=>{
+              return(
+                
+                  <div className="sourceItem" key={`sourceItem_${index}`}>
+                    {source.source.link ? <Link className="sourceLink" target={`_blank`} href={source.source.link}>{source.source.owner}</Link> : <p className="sourceLink">{source.source.owner}</p>}
+                    <div className="sourceContent" dangerouslySetInnerHTML={{__html: source.content}}></div>
+                  </div>
+               
+                
+              )
+            })}
+            </div>
+          </section> : null}
           {similarPosts.length !== 0 ?
         <section>
           <h2>Ähnliche Artikel</h2>

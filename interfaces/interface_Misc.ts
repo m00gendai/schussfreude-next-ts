@@ -41,6 +41,19 @@ export interface Spoiler {
 }
 
 export interface Source {
-  source: any
+  source: Owner
   content: string
+}
+
+export interface Owner {
+  owner: string,
+  link: string,
+  _state: number,
+  _modified: number,
+  _mby: string,
+  _created: number,
+  _cby: string,
+  _id: string,
+  _model: string
+
 }
