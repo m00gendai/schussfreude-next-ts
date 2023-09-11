@@ -139,7 +139,7 @@ export default async function Page({params}:{params:{slug:string}}) {
             {post.sources?.map((source, index)=>{
               return(
                 
-                  <div className="sourceItem">
+                  <div className="sourceItem" key={`sourceItem_${index}`}>
                     {source.source.link ? <Link className="sourceLink" target={`_blank`} href={source.source.link}>{source.source.owner}</Link> : <p className="sourceLink">{source.source.owner}</p>}
                     <div className="sourceContent" dangerouslySetInnerHTML={{__html: source.content}}></div>
                   </div>
