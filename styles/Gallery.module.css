@@ -45,12 +45,19 @@
     position: relative;
     width: 100%;
     display: flex;
+    flex-wrap: wrap;
     justify-content: center;
     text-align: center;
     font-style: italic;
     margin: 1rem 0 0 0;
     overflow: hidden;
     font-size: 0.75rem;
+}
+
+.caption strong{
+    display: inline-block;
+    width: 100%;
+    margin: 0 0 1rem 0;
 }
 
 .text{
