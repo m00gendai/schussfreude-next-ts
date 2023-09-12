@@ -1,4 +1,4 @@
-import {Medium, Tag, Document} from "@/interfaces/interface_globals"
+import {Medium, Tag, Document, Source} from "@/interfaces/interface_globals"
 
 export interface Misc {
   title: string
@@ -38,22 +38,4 @@ export interface Spoiler {
   text: string
   media: Medium[]
   documents: Document[]
-}
-
-export interface Source {
-  source: Owner
-  content: string
-}
-
-export interface Owner {
-  owner: string,
-  link: string,
-  _state: number,
-  _modified: number,
-  _mby: string,
-  _created: number,
-  _cby: string,
-  _id: string,
-  _model: string
-
 }
