@@ -12,6 +12,7 @@ import ArticleGallerySimilar from '@/components/ArticleGallerySimilar'
 import DocumentGallery from '@/components/DocumentGallery'
 import Breadcrumbs from '@/components/Breadcrumbs'
 import Sources from '@/components/Sources'
+import AdditionalLinks from '@/components/AdditionalLinks'
 
 async function getData(){
   const getData = await fetch(`https://cms.schussfreude.ch/api/content/items/misc?populate=1000`,{
@@ -125,14 +126,7 @@ export default async function Page({params}:{params:{slug:string}}) {
               </>
             )
           })}
-          {post.links ? <section>
-            <h2>Weiterführende Links</h2>
-          {post.links?.map((link, index)=>{
-            return(
-                <Link className="additionalLink" key={`link_${index}`} target={`_blank`} href={link.url} title={link.text}>{link.text}</Link>
-            )
-          })}
-          </section> : null}
+          {post.links ? <AdditionalLinks links={post.links} /> : null}
           {post.sources.length > 0 ? <Sources sources={post.sources} /> : null}
           {similarPosts.length !== 0 ?
         <section>
