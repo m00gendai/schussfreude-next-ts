@@ -14,7 +14,7 @@
 .modal{
     position: relative;
     width: calc(100vw - 4rem);
-    height: calc(100vh - 4rem);
+    height: calc(100dvh - 4rem);
     background: white;
     border: 0.5rem solid black;
 }
@@ -100,6 +100,11 @@
     position: relative;
     width: 100%;
     margin: 1rem;
+}
+.text strong{
+    display: inline-block;
+    width: 100%;
+    margin: 0 0 1rem 0;
 }
 
 .lever{
