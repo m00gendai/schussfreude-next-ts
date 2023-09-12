@@ -12,6 +12,10 @@
     user-select: none;
 }
 
+.container p::first-letter{
+    text-transform: capitalize;
+}
+
 .container p:hover{
     cursor: pointer;
 }
