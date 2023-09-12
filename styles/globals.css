@@ -97,7 +97,9 @@ h3{
 h4{
   position: relative;
   width: 100%;
-  margin-top: 1rem;
+  margin-top: 1.5rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid lightgrey;
   font-size: 1.125rem;
   color: var(--mainTitleColorLight);
 }
