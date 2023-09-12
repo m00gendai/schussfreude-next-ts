@@ -21,12 +21,12 @@ import "swiper/css/navigation"
 import "swiper/css/scrollbar"
 
 interface Props{
-    articles:(Book[]|Misc[]|App[]|Accessory[]|Magazine[]|SWM[])
+    articles: (Book | Misc | App | Accessory | Magazine | SWM)[]
 }
 
 export default function Swiper_Similar({articles}:Props){
 
-    const sortedArticles:(Book[]|Misc[]|App[]|Accessory[]|Magazine[]|SWM[]) = articles
+    const sortedArticles: (Book | Misc | App | Accessory | Magazine | SWM)[] = articles
 
     return(
         <Swiper
