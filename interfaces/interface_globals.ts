@@ -65,3 +65,11 @@ export interface Owner {
   _id: string,
   _model: string
 }
+
+export interface Spoiler {
+  title: string
+  text: string
+  media: Medium[]
+  icon: Medium
+  documents: Document[]
+}
