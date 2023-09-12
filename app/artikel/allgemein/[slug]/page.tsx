@@ -11,6 +11,7 @@ import {Metadata} from "next"
 import ArticleGallerySimilar from '@/components/ArticleGallerySimilar'
 import DocumentGallery from '@/components/DocumentGallery'
 import Breadcrumbs from '@/components/Breadcrumbs'
+import Sources from '@/components/Sources'
 
 async function getData(){
   const getData = await fetch(`https://cms.schussfreude.ch/api/content/items/misc?populate=1000`,{
@@ -132,23 +133,7 @@ export default async function Page({params}:{params:{slug:string}}) {
             )
           })}
           </section> : null}
-          {post.sources ? <section>
-            <h2>Quellenangaben</h2>
-            <p>Sofern nicht anders angegeben gehört Bild- und Tonmaterial schussfreude.ch oder ist Public Domain.</p>
-            <div className="sourcesContainer">
-            {post.sources?.map((source, index)=>{
-              return(
-                
-                  <div className="sourceItem" key={`sourceItem_${index}`}>
-                    {source.source.link ? <Link className="sourceLink" target={`_blank`} href={source.source.link}>{source.source.owner}</Link> : <p className="sourceLink">{source.source.owner}</p>}
-                    <div className="sourceContent" dangerouslySetInnerHTML={{__html: source.content}}></div>
-                  </div>
-               
-                
-              )
-            })}
-            </div>
-          </section> : null}
+          {post.sources.length > 0 ? <Sources sources={post.sources} /> : null}
           {similarPosts.length !== 0 ?
         <section>
           <h2>Ähnliche Artikel</h2>
