@@ -73,3 +73,8 @@ export interface Spoiler {
   icon: Medium
   documents: Document[]
 }
+
+export interface LinkUrl{
+  url: string
+  text: string
+}
