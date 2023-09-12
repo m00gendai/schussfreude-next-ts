@@ -45,9 +45,9 @@ export default function Gallery({images}:Props){
                                 width={images[0].width}
                                 height={images[0].height}
                                 style={images[0].width > images[0].height ? 
-                                    {height: "auto", width: "100%", background: gradientPlaceholder(images[0].colors.map(color => color)).background}
+                                    {height: "100%", width: "100%", background: gradientPlaceholder(images[0].colors.map(color => color)).background}
                                     :
-                                    {width: "50%", height: "auto", background: gradientPlaceholder(images[0].colors.map(color => color)).background}}
+                                    {width: "50%", height: "100%", background: gradientPlaceholder(images[0].colors.map(color => color)).background}}
                                 className={s.image}
                                 onClick={()=>handleClick(0)}
                             />

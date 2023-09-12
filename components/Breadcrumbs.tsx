@@ -2,8 +2,7 @@
 
 import s from "@/styles/Breadcrumbs.module.css"
 import { usePathname, useRouter } from "next/navigation"
-import Link from "next/link"
-import { Router } from "next/router"
+import {SlDirections} from "react-icons/sl"
 import { AppRouterInstance } from "next/dist/shared/lib/app-router-context"
 import { BiChevronsRight } from "react-icons/bi"
 
@@ -22,6 +21,7 @@ export default function Breadcrumbs(){
     }
     return(
         <div className={s.container}>
+            <SlDirections style={{fontSize: "1.5rem", marginRight: "1rem"}}/>
             {
                 pathArray.map((path, index)=>{
                     if(index < pathArray.length-1){

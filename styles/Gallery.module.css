@@ -19,7 +19,6 @@
 .single{
     position: relative;
     width: 50%;
-    object-fit: contain;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
@@ -49,7 +48,7 @@
     justify-content: center;
     text-align: center;
     font-style: italic;
-    margin: 1rem 0 0 0;
+    margin: 2rem 0 0 0;
     overflow: hidden;
     font-size: 0.75rem;
 }
