@@ -41,8 +41,8 @@ export default function Lightbox({images, lightBoxIndex, setLightBoxIndex, setSh
     return(
         <div className={s.veil}>
             <div className={s.modal}>
-                <button className={s.closeWrapper} title="Schliessen" onClick={()=>handleClose()}><BiX style={{color: "rgba(255,255,255,0.5)", fontSize: "5rem"}}/></button>
-                <button className={s.fullWrapper} title="Vollbild" onClick={()=>handleFull()}><BiLinkExternal style={{color: "rgba(255,255,255,0.5)", fontSize: "5rem"}}/></button>
+                <button className={s.closeWrapper} title="Schliessen" onClick={()=>handleClose()}><BiX style={{color: "rgba(255,255,255,0.5)", fontSize: "5rem", stroke: "black", strokeWidth: ".5px"}}/></button>
+                <button className={s.fullWrapper} title="Vollbild" onClick={()=>handleFull()}><BiLinkExternal style={{color: "rgba(255,255,255,0.5)", fontSize: "5rem", stroke: "black", strokeWidth: ".5px"}}/></button>
                 <div className={s.imageWrapper}>
                     {
                         images.length > 1 ? 
@@ -50,7 +50,7 @@ export default function Lightbox({images, lightBoxIndex, setLightBoxIndex, setSh
                                 className={s.prev} 
                                 onClick={()=>setLightBoxIndex(lightBoxIndex === 0 ? images.length-1 : lightBoxIndex-1)}
                             >
-                                <BiChevronLeft />
+                                <BiChevronLeft style={{stroke: "black", strokeWidth: ".5px"}}/>
                             </div> 
                         : 
                             null
@@ -61,7 +61,7 @@ export default function Lightbox({images, lightBoxIndex, setLightBoxIndex, setSh
                                 className={s.next} 
                                 onClick={()=>setLightBoxIndex(lightBoxIndex === images.length-1 ? 0 : lightBoxIndex+1)}
                             >
-                                <BiChevronRight />
+                                <BiChevronRight style={{stroke: "black", strokeWidth: ".5px"}}/>
                             </div> 
                         :   
                         null
