@@ -12,12 +12,12 @@ export default function Spoiler({content}:Props){
         <details key={content.title} className={s.details}>
             <summary className={s.summary}>
                 <div className={s.icon}>
-                    <Image
+                    {content.icon ? <Image
                         src={`https://cms.schussfreude.ch/storage/uploads/${content.icon.path}`}
                         alt={`Icon`}
                         fill={true}
                         style={{objectFit: "contain"}}
-                    />
+                    /> : null}
                 </div>
             {content.title}
             </summary>
