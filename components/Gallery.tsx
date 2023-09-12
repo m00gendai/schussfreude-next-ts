@@ -51,7 +51,7 @@ export default function Gallery({images}:Props){
                                 className={s.image}
                                 onClick={()=>handleClick(0)}
                             />
-                            <figcaption className={s.caption}>{images[0].description}</figcaption>
+                            <figcaption className={s.caption} dangerouslySetInnerHTML={{__html: images[0].description}}></figcaption>
                         </figure>
                         
                     </div> 

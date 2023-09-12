@@ -81,9 +81,7 @@ export default function Lightbox({images, lightBoxIndex, setLightBoxIndex, setSh
                                 <div 
                                     className={s.lever} 
                                     onClick={()=>handleLever()}>{showCaption ? <BiChevronDown />:<BiChevronUp />}{`Bildunterschrift`}{showCaption ? <BiChevronDown />:<BiChevronUp />}</div>
-                        {showCaption ? <div className={s.text}>
-                            {currentImg.description}
-                        </div> : null}
+                        {showCaption ? <div className={s.text} dangerouslySetInnerHTML={{__html: currentImg.description}}></div> : null}
                     </div>
                     : null}
                 </div>

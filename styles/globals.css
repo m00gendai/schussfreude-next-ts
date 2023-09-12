@@ -97,7 +97,9 @@ h3{
 h4{
   position: relative;
   width: 100%;
-  margin-top: 1rem;
+  margin-top: 1.5rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid lightgrey;
   font-size: 1.125rem;
   color: var(--mainTitleColorLight);
 }
@@ -143,33 +145,4 @@ blockquote p{
   .sliderWrapper{
     display: none;
   }
-}
-
-.additionalLink{
-  position: relative;
-  width: 100%;
-}
-
-.sourcesContainer{
-  position: relative;
-  width: 100%;
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  grid-gap: 1rem;
-}
-
-.sourceItem{
-  position: relative;
-  width: 100%;
-  display: flex;
-  justify-content: flex-start;
-  align-items: flex-start;
-  align-content: flex-start;
-  flex-wrap: wrap;
-}
-
-.sourceLink{
-  position: relative;
-  width: 100%;
-  margin: 0;
 }

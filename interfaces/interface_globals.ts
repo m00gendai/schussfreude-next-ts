@@ -48,3 +48,33 @@ export interface Document {
   folder: string;
   _id: string;
 }
+
+export interface Source {
+  source: Owner
+  content: string
+}
+
+export interface Owner {
+  owner: string,
+  link: string,
+  _state: number,
+  _modified: number,
+  _mby: string,
+  _created: number,
+  _cby: string,
+  _id: string,
+  _model: string
+}
+
+export interface Spoiler {
+  title: string
+  text: string
+  media: Medium[]
+  icon: Medium
+  documents: Document[]
+}
+
+export interface LinkUrl{
+  url: string
+  text: string
+}
