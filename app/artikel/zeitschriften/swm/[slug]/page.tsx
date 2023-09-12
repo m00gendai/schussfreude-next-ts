@@ -4,12 +4,10 @@ import Gallery from '@/components/Gallery'
 import {SWM} from "@/interfaces/interface_SWM"
 import {Tag} from "@/interfaces/interface_globals"
 import {getDate, convertDate, stringReplacer, magazineUrlReplacer} from "@/utils"
-import Swiper_Similar from '@/components/Swiper_Similar'
 import {Metadata} from "next"
-import MagazineGallery from '@/components/MagazineGallery'
-import ArticleGallerySimilar from '@/components/ArticleGallerySimilar'
 import DocumentGallery from '@/components/DocumentGallery'
 import Breadcrumbs from '@/components/Breadcrumbs'
+import SimilarPosts from '@/components/SimilarPosts'
 
 async function getData(){
   const getData = await fetch(`https://cms.schussfreude.ch/api/content/items/swm?populate=1`,{
@@ -122,16 +120,7 @@ export default async function Page({params}:{params:{slug:string}}) {
           {post.additions.media ? <Gallery images={post.additions.media} /> :null}
           {post.additions.documents ? <DocumentGallery docs={post.additions.documents} /> : null}
         </section>
-        {similarPosts.length !== 0 ?
-        <section>
-          <h2>Ähnliche Artikel</h2>
-          <div className="sliderWrapper">
-            <Swiper_Similar articles={similarPosts}/>
-          </div>
-          <ArticleGallerySimilar articles={similarPosts} />
-        </section>
-        :
-        null}
+          {similarPosts.length !== 0 ? <SimilarPosts similarPosts={similarPosts} /> : null}
       </article>
       
     </main>

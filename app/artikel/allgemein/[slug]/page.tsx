@@ -4,10 +4,8 @@ import Gallery from '@/components/Gallery'
 import {Misc} from "@/interfaces/interface_Misc"
 import {Tag} from "@/interfaces/interface_globals"
 import {getDate, convertDate, stringReplacer} from "@/utils"
-
 import Spoiler from '@/components/Spoiler'
 import {Metadata} from "next"
-
 import DocumentGallery from '@/components/DocumentGallery'
 import Breadcrumbs from '@/components/Breadcrumbs'
 import Sources from '@/components/Sources'
