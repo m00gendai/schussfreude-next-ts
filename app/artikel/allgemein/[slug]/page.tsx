@@ -1,18 +1,18 @@
 import { notFound } from 'next/navigation'
 import React from 'react'
-import Link from "next/link"
 import Gallery from '@/components/Gallery'
 import {Misc} from "@/interfaces/interface_Misc"
 import {Tag} from "@/interfaces/interface_globals"
 import {getDate, convertDate, stringReplacer} from "@/utils"
-import Swiper_Similar from '@/components/Swiper_Similar'
+
 import Spoiler from '@/components/Spoiler'
 import {Metadata} from "next"
-import ArticleGallerySimilar from '@/components/ArticleGallerySimilar'
+
 import DocumentGallery from '@/components/DocumentGallery'
 import Breadcrumbs from '@/components/Breadcrumbs'
 import Sources from '@/components/Sources'
 import AdditionalLinks from '@/components/AdditionalLinks'
+import SimilarPosts from '@/components/SimilarPosts'
 
 async function getData(){
   const getData = await fetch(`https://cms.schussfreude.ch/api/content/items/misc?populate=1000`,{
@@ -126,18 +126,9 @@ export default async function Page({params}:{params:{slug:string}}) {
               </>
             )
           })}
-          {post.links ? <AdditionalLinks links={post.links} /> : null}
-          {post.sources.length > 0 ? <Sources sources={post.sources} /> : null}
-          {similarPosts.length !== 0 ?
-        <section>
-          <h2>Ähnliche Artikel</h2>
-          <div className="sliderWrapper">
-            <Swiper_Similar articles={similarPosts}/>
-          </div>
-          <ArticleGallerySimilar articles={similarPosts} />
-        </section>
-        :
-        null}
+          {post.links.length !== 0 ? <AdditionalLinks links={post.links} /> : null}
+          {post.sources.length !== 0 ? <Sources sources={post.sources} /> : null}
+          {similarPosts.length !== 0 ? <SimilarPosts similarPosts={similarPosts} /> : null}
       </article>
       
     </main>
