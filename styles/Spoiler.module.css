@@ -12,20 +12,30 @@
     }
 }
 
+.details:last-child{
+    margin: 0.25rem 1rem 2rem 1rem;
+}
+
 .summary{
     font-weight: bolder;
     width: 100%;
-    height: 3rem;
+    min-height: 3rem;
     font-size: 0.875rem;
     user-select: none;
     display: flex;
     justify-content: flex-start;
     align-items: center;
-    text-indent: 1rem;
 }
 
 .summary:hover{
     cursor: pointer;
+}
+
+.icon{
+    position: relative;
+    height: 2rem;
+    margin: 0.5rem 1rem 0.5rem 0.5rem;
+    aspect-ratio: 1/1;
 }
 
 .content{
