@@ -2,7 +2,6 @@ import React from 'react'
 import {Artifact, Script} from "@/interfaces/interface_Artifact"
 import {Metadata} from "next"
 import AncientScrolls from '@/components/AncientScrolls'
-import Breadcrumbs from '@/components/Breadcrumbs'
 
 async function getData(){
   const getData = await fetch(`https://cms.schussfreude.ch/api/content/items/artifacts?populate=1`,{
@@ -60,7 +59,6 @@ export default async function Page() {
     <main>
       <article>
         <h1>{`Zeitdokumente`}</h1>
-        <Breadcrumbs />
         <section></section>
         {
           artifacts.map(artifact =>{
