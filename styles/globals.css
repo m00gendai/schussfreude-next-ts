@@ -178,3 +178,17 @@ blockquote p{
   padding: 0.5rem;
   box-shadow: 0px 2px 2px 0px black;
 }
+
+.storeContainer{
+  position: relative;
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+  grid-gap: 1rem;
+}
+
+.store{
+  position: relative;
+  width: 100%;
+  aspect-ratio: 21/10;
+}
