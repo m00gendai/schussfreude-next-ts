@@ -3,6 +3,8 @@ import d from "@/styles/Spoiler.module.css"
 import { Script } from "@/interfaces/interface_Artifact"
 import Link from "next/link"
 import Image from "next/image"
+import Catalog from "@/public/spell-book.png"
+import Advert from "@/public/mailbox.png"
 
 interface Props{
     doc: Script
@@ -13,6 +15,16 @@ export default function ancientScrolls({doc}:Props){
     return(
         <details className={d.details}>
             <summary className={d.summary}>
+            <div className={d.icon}>
+                    <Image
+                        src={
+                            doc.type === "Kataloge" ? Catalog.src :
+                            doc.type === "Werbung" ? Advert.src : Catalog.src}
+                        alt={`Icon`}
+                        fill={true}
+                        style={{objectFit: "contain"}}
+                    />
+                </div>
                 {doc.title}
             </summary>
             <div className={s.spoiler}>
