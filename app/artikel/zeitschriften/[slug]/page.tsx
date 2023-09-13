@@ -139,9 +139,9 @@ export default async function Page({params}:{params:{slug:string}}) {
           <h2>Übersicht der Jahrgänge</h2>
           <VolumeAnchors volumes={post.volumes} />
         {
-          post.volumes.map(volume =>{
+          post.volumes.map((volume, index) =>{
             return (
-              <section className="noBorder" key={`volume_${volume.volume}`}>
+              <section className={index < post.volumes.length-1 ? "noBorder" : ""} key={`volume_${volume.volume}`}>
                 <div 
                   className="swmYear" 
                   style={
@@ -169,10 +169,29 @@ export default async function Page({params}:{params:{slug:string}}) {
                     return <MagazineGallery key={issue._id} issue={issue} />
                   }
                 })}
+                <div className="backToTop">
+                  <a className="backToTopLink" href="#volumeContainer">Zurück zu Lück</a>
+                </div>
+                
               </section>
             )
           })
         }
+        <section>
+          <h2>Preis und Verfügbarkeit</h2>
+          {post.availability?.map((item, index) =>{
+            return(
+              <>
+              {item.text ? <div key={`introText_${index}`}dangerouslySetInnerHTML={{__html: item.text}}></div> 
+              : null}
+              {item.media ? <Gallery key={`introMedia_${index}`} images={item.media} /> 
+              : null}
+              {item.documents ? <DocumentGallery key={`introDocs_${index}`} docs={item.documents} />
+              : null}
+              </>
+            )
+          })}
+        </section>
         </section>
           {similarPosts.length !== 0 ? <SimilarPosts similarPosts={similarPosts} /> : null}
       </article>
