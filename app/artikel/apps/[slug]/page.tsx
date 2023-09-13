@@ -3,7 +3,7 @@ import React from 'react'
 import Gallery from '@/components/Gallery'
 import {App} from "@/interfaces/interface_App"
 import {Tag} from "@/interfaces/interface_globals"
-import {getDate, convertDate, stringReplacer} from "@/utils"
+import {getDate, convertDate, stringReplacer, getAspectRatio} from "@/utils"
 import Spoiler from '@/components/Spoiler'
 import {Metadata} from "next"
 import DataTableApps from '@/components/DataTableApps'
@@ -12,9 +12,11 @@ import Breadcrumbs from '@/components/Breadcrumbs'
 import AdditionalLinks from '@/components/AdditionalLinks'
 import Sources from '@/components/Sources'
 import SimilarPosts from '@/components/SimilarPosts'
+import Link from 'next/link'
+import Image from "next/image"
 
 async function getData(){
-  const getData = await fetch(`https://cms.schussfreude.ch/api/content/items/apps?populate=1`,{
+  const getData = await fetch(`https://cms.schussfreude.ch/api/content/items/apps?populate=1000`,{
     "headers": {
       "api-key": process.env.CMS!
     }  
@@ -111,9 +113,9 @@ export default async function Page({params}:{params:{slug:string}}) {
         </section>
           {post.content?.map((item, index) =>{
             return (
-              <>
-              <h2>{item.title}</h2>
               <section key={item.title}>
+              <h2>{item.title}</h2>
+              
                 {item.paragraphs.map((paragraph, index) =>{
                   return (
                     <section className="subSection" key={`paragraph_${index}`}>
@@ -125,9 +127,29 @@ export default async function Page({params}:{params:{slug:string}}) {
                   )
                 })}
               </section>
-              </>
+              
             )
           })}
+          {post.download.length !== 0 ? 
+              <section>
+                <h2>Erhältlich bei</h2>
+                <div className="storeContainer">
+                {
+                  post.download.map(store=>{
+                    return(
+                      <Link href={store.link} className="store">
+                        <Image src={`https://cms.schussfreude.ch/storage/uploads/${store.appstore.icon.path}`}
+                        alt={store.appstore.name}
+                        fill={true}
+                        style={{objectFit: "contain"}}
+                        />
+                      </Link>
+                    )
+                  })
+                }
+                </div>
+              </section>
+            : null}
           {post.links.length !== 0 ? <AdditionalLinks links={post.links} /> : null}
           {post.sources.length !== 0 ? <Sources sources={post.sources} /> : null}
           {similarPosts.length !== 0 ? <SimilarPosts similarPosts={similarPosts} /> : null}
