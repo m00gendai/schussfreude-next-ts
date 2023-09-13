@@ -135,9 +135,9 @@ export default async function Page({params}:{params:{slug:string}}) {
                 <h2>Erhältlich bei</h2>
                 <div className="storeContainer">
                 {
-                  post.download.map(store=>{
+                  post.download.map((store, index)=>{
                     return(
-                      <Link href={store.link} className="store">
+                      <Link href={store.link} className="store" key={`store_${index}`}>
                         <Image src={`https://cms.schussfreude.ch/storage/uploads/${store.appstore.icon.path}`}
                         alt={store.appstore.name}
                         fill={true}
