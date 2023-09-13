@@ -162,3 +162,19 @@ blockquote p{
   background-size: cover;
   background-position: center;
 }
+
+.backToTop{
+  position: relative;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin: 1rem 0;
+}
+
+.backToTopLink{
+  text-decoration: none;
+  color: white;
+  background: red;
+  padding: 0.5rem;
+  box-shadow: 0px 2px 2px 0px black;
+}
