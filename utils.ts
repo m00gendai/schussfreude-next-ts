@@ -80,6 +80,16 @@ export function sortDataByDate(a:(Book|Misc|App|Accessory|Magazine|SWM), b:(Book
     return issueA < issueB ? -1 : issueA > issueB ? 1 : 0
   }
 
+  export function sortDataByNumber(a:number, b:number, order:string){
+    if(order === "desc"){
+        return a < b ? 1 : a > b ? -1 : 0
+    }
+    if(order === "asc"){
+        return a > b ? 1 : a < b ? -1 : 0
+    }
+    return 0
+  }
+
 export function stringReplacer(string:string){
     return string
         .replaceAll("&uuml;", "ü")

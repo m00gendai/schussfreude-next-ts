@@ -10,6 +10,9 @@ import { SWM } from '@/interfaces/interface_SWM'
 import DocumentGallery from '@/components/DocumentGallery'
 import Breadcrumbs from '@/components/Breadcrumbs'
 import SimilarPosts from '@/components/SimilarPosts'
+import VolumeAnchors from '@/components/VolumeAnchors'
+import tommy from "@/public/bg_80s.jpg"
+import cj from "@/public/bg_90s.jpg"
 
 async function getData(){
   const getData = await fetch(`https://cms.schussfreude.ch/api/content/items/magazines?populate=1`,{
@@ -134,24 +137,61 @@ export default async function Page({params}:{params:{slug:string}}) {
         </section>
         <section>
           <h2>Übersicht der Jahrgänge</h2>
-          {post.volumes.map(volume=>{
-            return <a key={`anchor_${volume.volume}`} href={`#swm_${volume.volume}`}>{volume.volume}</a>
-          })}
+          <VolumeAnchors volumes={post.volumes} />
         {
-          post.volumes.map(volume =>{
+          post.volumes.map((volume, index) =>{
             return (
-              <section key={`volume_${volume.volume}`}>
-                <h3 id={`swm_${volume.volume}`}>{volume.volume}</h3>
+              <section className={index < post.volumes.length-1 ? "noBorder" : ""} key={`volume_${volume.volume}`}>
+                <div 
+                  className="swmYear" 
+                  style={
+                    parseInt(volume.volume) > 1979 && parseInt(volume.volume) < 1990 ? 
+                      {backgroundImage: `url(${tommy.src})`}
+                    :
+                    parseInt(volume.volume) > 1989 && parseInt(volume.volume) < 2000 ? 
+                      {backgroundImage: `url(${cj.src})`}
+                    :
+                      {}
+                    }>
+                <h3 id={`swm_${volume.volume}`} style={
+                  parseInt(volume.volume) > 1979 && parseInt(volume.volume) < 1990 ? 
+                    {fontSize: "3rem", margin: "0", color: "turquoise", textShadow: "3px 3px 0px magenta"}
+                  :
+                  parseInt(volume.volume) > 1989 && parseInt(volume.volume) < 2000 ? 
+                    {fontSize: "3rem", margin: "0", color: "yellow", textShadow: "2px 2px 0px black, -2px -2px 0px black"}
+                  :
+                    {}
+                }>{volume.volume}</h3>
+                </div>
                 <Gallery images={volume.panorama} />
                 {sortedIssues.map(issue=>{
                   if(issue.year === volume.volume){
                     return <MagazineGallery key={issue._id} issue={issue} />
                   }
                 })}
+                <div className="backToTop">
+                  <a className="backToTopLink" href="#volumeContainer">Zurück zu Lück</a>
+                </div>
+                
               </section>
             )
           })
         }
+        <section>
+          <h2>Preis und Verfügbarkeit</h2>
+          {post.availability?.map((item, index) =>{
+            return(
+              <>
+              {item.text ? <div key={`introText_${index}`}dangerouslySetInnerHTML={{__html: item.text}}></div> 
+              : null}
+              {item.media ? <Gallery key={`introMedia_${index}`} images={item.media} /> 
+              : null}
+              {item.documents ? <DocumentGallery key={`introDocs_${index}`} docs={item.documents} />
+              : null}
+              </>
+            )
+          })}
+        </section>
         </section>
           {similarPosts.length !== 0 ? <SimilarPosts similarPosts={similarPosts} /> : null}
       </article>
