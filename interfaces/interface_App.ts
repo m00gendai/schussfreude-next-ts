@@ -9,6 +9,7 @@ export interface App {
   content: Content[]
   links: Link[]
   sources: Source[]
+  download: Download[]
   _modified: number
   _mby: string
   _created: number
@@ -42,4 +43,14 @@ export interface Paragraph {
   media: Medium[]
   documents: Document[]
   spoiler: Spoiler[]
+}
+
+export interface Download{
+  appstore: Appstore
+  link: string
+}
+
+export interface Appstore{
+  name: string
+  icon: Medium
 }
