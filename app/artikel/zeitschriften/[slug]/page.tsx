@@ -3,7 +3,7 @@ import React from 'react'
 import Gallery from '@/components/Gallery'
 import {Magazine} from "@/interfaces/interface_Magazine"
 import {Tag} from "@/interfaces/interface_globals"
-import {getDate, convertDate, stringReplacer} from "@/utils"
+import {getDate, convertDate, stringReplacer, sortDataByIssue} from "@/utils"
 import {Metadata} from "next"
 import MagazineGallery from '@/components/MagazineGallery'
 import { SWM } from '@/interfaces/interface_SWM'
@@ -105,6 +105,7 @@ export default async function Page({params}:{params:{slug:string}}) {
   const post: Magazine = postMatch[0]
 
   const issues: SWM[] = await getSWM()
+  const sortedIssues: SWM[] = issues.sort((a,b) =>sortDataByIssue(a,b))
 
   return (
     <main>
@@ -142,8 +143,10 @@ export default async function Page({params}:{params:{slug:string}}) {
               <section key={`volume_${volume.volume}`}>
                 <h3 id={`swm_${volume.volume}`}>{volume.volume}</h3>
                 <Gallery images={volume.panorama} />
-                {issues.map(issue=>{
-                  return <MagazineGallery key={issue._id} issue={issue} />
+                {sortedIssues.map(issue=>{
+                  if(issue.year === volume.volume){
+                    return <MagazineGallery key={issue._id} issue={issue} />
+                  }
                 })}
               </section>
             )
