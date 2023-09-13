@@ -11,9 +11,10 @@ export default function VolumeAnchors({volumes}:Props){
     const sortedVolumes:Volume[] = volumes.sort((a, b)=> sortDataByNumber(parseInt(a.volume), parseInt(b.volume), "asc"))
 
     return(
-        <div className={s.container}>
+        <div className={s.container} id={`volumeContainer`}>
         {sortedVolumes.map(volume=>{
-            return <a className={s.link} key={`anchor_${volume.volume}`} href={`#swm_${volume.volume}`}>{volume.volume}</a>
+            return <a className={s.button} key={`anchor_${volume.volume}`} href={`#swm_${volume.volume}`}>
+                <p className={s.buttonText}>{volume.volume}</p></a>
         })}
         </div>
     )   
