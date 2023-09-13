@@ -13,7 +13,7 @@ import{App} from "@/interfaces/interface_App"
 import {Accessory} from "@/interfaces/interface_Accessory"
 import {Magazine} from "@/interfaces/interface_Magazine"
 import {SWM} from "@/interfaces/interface_SWM"
-import { getCategory } from "@/utils"
+import { getCategory, magazineUrlReplacer } from "@/utils"
 
 // Import Swiper styles
 import 'swiper/css';
@@ -49,7 +49,7 @@ export default function Swiper_Similar({articles}:Props){
             sortedArticles.map(article=>{
                 return(
                     <SwiperSlide style={{width: "auto"}} key={article._id}>
-                <Link href={`/artikel/${getCategory(article.tags)}/${article.title.toLowerCase().replaceAll(" ", "-")}`} className={s.itemFrame}>
+                <Link href={`/artikel/${getCategory(article.tags)}/${magazineUrlReplacer(article.title.toLowerCase())}`} className={s.itemFrame}>
                         {article.hero ?
                     <div className={s.item}>
                         <Image

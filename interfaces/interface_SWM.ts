@@ -2,6 +2,7 @@ import {Medium, Tag, Document} from "@/interfaces/interface_globals"
 
 export interface SWM {
     title: string
+    year: string
     tags: Tag[]
     meta: string
     hero: Medium

@@ -74,6 +74,12 @@ export function sortDataByDate(a:(Book|Misc|App|Accessory|Magazine|SWM), b:(Book
     return Math.floor(new Date(b.meta).getTime() / 1000)-Math.floor(new Date(a.meta).getTime() / 1000)
   }
 
+  export function sortDataByIssue(a:SWM, b:SWM){
+    const issueA: string = a.title.replaceAll("(", "").replaceAll(")", "").split(" ")[3]
+    const issueB: string = b.title.replaceAll("(", "").replaceAll(")", "").split(" ")[3]
+    return issueA < issueB ? -1 : issueA > issueB ? 1 : 0
+  }
+
 export function stringReplacer(string:string){
     return string
         .replaceAll("&uuml;", "ü")
