@@ -1,0 +1,94 @@
+.bar{
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    min-height: 10vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    flex-wrap: wrap;
+    z-index:9999;
+}
+
+.bar::before{
+    position: absolute;
+    top: 0;
+    transform: translateY(-50%);
+    height: 0.25rem;
+    width: 100%;
+    background: red;
+    content: "";
+    z-index: 200;
+}
+
+.inner{
+    position: relative;
+    width: auto;
+    height: 100%;
+    color: black;
+    display: flex;
+    flex-wrap: wrap;
+    margin: 1rem 0;
+}
+
+@media only screen and (max-aspect-ratio: 13/9){
+    .inner{
+        width: 90%;
+    }
+  }
+
+.buttons{
+    position: relative;
+    display: flex;
+    width: auto;
+    flex-wrap: nowrap;
+    width: 12rem;
+}
+
+.accept{
+    background: lime;
+    color: black;
+    flex: 1;
+    aspect-ratio: 21/10;
+    border: 0;
+    outline: 0;
+}
+
+.decline{
+    background: red;
+    color: white;
+    flex: 1;
+    aspect-ratio: 21/10;
+    border: 0;
+    outline: 0;
+    margin: 0 1rem;
+}
+
+.tableContainer{
+    position: relative;
+    width: 100%;
+    overflow-x: scroll;
+}
+
+.table{
+    border: 1px solid black;
+    border-collapse: collapse;
+    position: relative;
+    width: 100%;
+    margin: 0 0 1rem 0;
+}
+
+.table thead > tr > th{
+    padding: 0.5rem;
+}
+
+.table tbody > tr{
+    border: 1px solid black;
+}
+
+.table tbody > tr > td{
+    border: 1px solid black;
+    padding: 0.5rem;
+    white-space: pre;
+}
