@@ -43,7 +43,7 @@ export default function Input({
         placeholder=""
         required={content[content.length - 1] === '*' ? true : false}
         pattern={pattern === undefined ? undefined : `${pattern}`}
-  
+        tabIndex={tag === "subject" ? -1 : 0}
         onBlur={(event) => {
           setFormValid({
             ...formValid,
