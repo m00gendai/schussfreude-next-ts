@@ -46,9 +46,6 @@ export default async function Dsgvo() {
   const data:DSGVO[] = await getData()
 
   const cookieStore = cookies()
-  cookieStore.getAll().map((cookie) => {
-    console.log(cookie.name)
-  })
 
   return (
     <main>
@@ -73,7 +70,7 @@ export default async function Dsgvo() {
                     {
                       cookieStore.getAll().map((cookie) => {
                         return (
-                          <tr><td>{cookie.name}</td><td>{cookie.value}</td></tr>
+                          <tr key={`cookietr_${cookie.name}`}><td>{cookie.name}</td><td>{cookie.value}</td></tr>
                         )
                       })
                     }
