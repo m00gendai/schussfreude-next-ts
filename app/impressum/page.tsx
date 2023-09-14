@@ -3,7 +3,6 @@ import React from 'react'
 import Link from "next/link"
 import {Imprint} from "@/interfaces/interface_Imprint"
 import s from "@/styles/Legal.module.css"
-import Breadcrumbs from "@/components/Breadcrumbs"
 
 async function getData(){
   const getData = await fetch(`https://cms.schussfreude.ch/api/content/items/imprint`,{
@@ -50,7 +49,6 @@ export default async function Impressum() {
     <main>
       <article>
       <h1>Impressum</h1>
-      <Breadcrumbs />
       <section>
         <div className={s.container}>
         {
