@@ -1,0 +1,144 @@
+.labelActive {
+  transform: translateY(-50%);
+  z-index: 4;
+  color: black;
+}
+
+.labelPassive {
+  color: black;
+  transform: translateY(50%);
+  z-index: 4;
+}
+
+.labelOk {
+  color: limegreen;
+  transform: translateY(-50%);
+  z-index: 4;
+}
+
+.labelNotOk {
+  color: red;
+  transform: translateY(-50%);
+  z-index: 4;
+}
+
+.form {
+  position: relative;
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 0 0 0;
+  font-family: 'Arial';
+}
+
+.containerInput,
+.containerTextarea {
+    position: relative;
+    background: var(--button);
+    position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 1rem;
+  align-content: center;
+}
+
+.containerInput::before,
+.containerTextarea::before{
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  content: "";
+  border-radius: 1rem;
+  background: var(--button);
+  filter: blur(10px);
+}
+
+@media screen and (min-width: 500px) {
+    .containerInput,
+    .containerTextarea {
+    width: calc(50% - 0.5rem);
+    margin: 0 0 1rem 0;
+  }
+}
+
+@media screen and (max-width: 499px) {
+    .containerInput,
+    .containerTextarea {
+    width: 100%;
+    margin: 0 0 1rem 0;
+  }
+}
+
+.containerTextarea {
+  width: 100%;
+}
+
+.containerInput label,
+.containerTextarea label {
+  position: absolute;
+  top: 1.5rem;
+  left: 1rem;
+    color: black;
+  transition: 0.5s;
+  background: white;
+  padding: 0 0 0 0.25rem;
+}
+
+.containerInput input,
+.containerTextarea textarea {
+  background: transparent;
+  outline: none;
+  z-index: 3;
+  transition: 0.5s;
+  width: 100%;
+  font-size: 1.5rem;
+  font-family: 'Arial';
+  flex: 1;
+  background: white;
+  padding: 2.5rem 1rem 1rem 1rem;
+  margin: 0.25rem;
+  color: black;
+  height: 100%;
+  border: 1px solid black;
+  outline: none;
+}
+
+.containerTextarea textarea {
+  min-height: 24ch;
+  resize: vertical;
+}
+
+.buttonContainerSingle{
+  position: relative;
+  display: flex;
+  justify-content: center;
+  margin: 3rem 0 3rem 0;
+  width: 100%;
+}
+
+.button{
+  position: relative;
+  height: 3rem;
+  aspect-ratio: 21/10;
+  border: none;
+  outline:none;
+  box-shadow: 0px 5px 5px 0px black;
+  background: lightgrey;
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+  align-items: center;
+  margin: 1rem 0 2rem 0;
+}
+
+.button:hover{
+  cursor: pointer;
+}
+
+.button:active{
+  height: 85%;
+  box-shadow: 0px 0px 5px 0px black;
+}
