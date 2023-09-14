@@ -15,8 +15,8 @@ async function getData(){
   return await getData.json()
 }
 
-const title:string = "Zeitdokumente des Schweizer Schützen- und Waffenwesens"
-  const desc:string = "Kataloge, Prospekte und Werbung zum Schweizer Schützen- und Waffenwesen aus längst vergangenen Zeiten für die Nachwelt erhalten."
+const title:string = "Impressum"
+  const desc:string = "Impressum von schussfreude.ch"
 
 
 export const metadata:Metadata = {
