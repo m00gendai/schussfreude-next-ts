@@ -68,7 +68,7 @@ fetch('/api/contact', {
     body: JSON.stringify(formValue)
   }).then(async (res) => {
       if (res.status === 200) {
-          setFeedback({color: "cyan", content: "Nachricht erfolgreich übermittelt. Sie haben auch eine Kopie erhalten."})
+          setFeedback({color: "green", content: "Nachricht erfolgreich übermittelt. Sie haben auch eine Kopie erhalten."})
           setCooldown(true)
           setTimeout(function(){
             setCooldown(false)
@@ -135,10 +135,10 @@ fetch('/api/contact', {
         setFormValue={setFormValue}
         setFocus={setFocus}
       />
-      <div className="buttonContainerSingle">
-        <div className="buttonBg">
-          <input type="submit" className="button" value="Abschicken" />
-        </div>
+      <div className={s.buttonContainerSingle}>
+
+          <input type="submit" className={s.button} value="Abschicken" />
+      
       </div>
       {feedbackVisible ? (
         <p style={{ color: feedback.color, width: "100%", textAlign: "center"}}>{feedback.content}</p>
