@@ -33,7 +33,7 @@ import {Metadata} from "next"
 
 
 async function getData(){
-  const getData = await fetch(`https://cms.schussfreude.ch/api/content/items/apps?populate=1`,{
+  const getData = await fetch(`https://cms.schussfreude.ch/api/content/items/apps?populate=1&fields=%7btitle%3A1%2Chero%3A1%2Cmeta%3A1%2Ctags%3A1%7D`,{
     "headers": {
       "api-key": process.env.CMS!,
     }
