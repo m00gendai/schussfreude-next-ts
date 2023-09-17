@@ -119,6 +119,12 @@ hr{
   width: 100%;
 }
 
+iframe{
+  position: relative;
+  width: 100%;
+  aspect-ratio: 21/10;
+}
+
 .metaText{
   position: relative;
   width: 100%;
