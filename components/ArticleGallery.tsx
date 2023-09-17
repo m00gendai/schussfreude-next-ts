@@ -45,29 +45,33 @@ export default function ArticleGallery({articles}:Props){
     useEffect(()=>{
         setFilters(mainTags)
     },[])
-console.log(filters)
+
     return(
         <>
         <div className={s.toolbar}>
-            <button className={s.button} onClick={()=>handleOrder()}>
+            <button className={s.button} onClick={()=>handleOrder()} style={Object.keys(filters).length > 1 ? {marginBottom: "1rem"}:{}}>
                 {orderBy === "new" ? 
                     <><MdUpdate className={s.icon} /><p className={s.buttonText}>Neueste zuerst</p></>
                     :
                     <><MdUpdate className={s.icon} style={{transform: "rotateY(180deg)"}}/><p className={s.buttonText}>Älteste zuerst</p></>
                 }
             </button>
-            <div style={{position: "relative", width: "100%"}}>
+            {Object.keys(filters).length > 1 ? 
+            <div className={s.filters}>
                 {
                     Object.keys(filters).map(mainTag=>{
                         return(
-                            <div key={`mainTagBox_${mainTag}`}>
-                                <label htmlFor={`checkbox_${mainTag}`}>{mainTag}</label>
-                                <input onChange={()=>setFilters({...filters, [mainTag]: !filters[mainTag]})} type="checkbox" id={`checkbox_${mainTag}`} name={`checkbox_${mainTag}`} value={mainTag} checked={filters[mainTag]}/>
+                            <div className={s.filterItem} key={`mainTagBox_${mainTag}`}>
+                                <div className={s.filterItemInner}>
+                                    <label htmlFor={`checkbox_${mainTag}`}>{mainTag}</label>
+                                    <input onChange={()=>setFilters({...filters, [mainTag]: !filters[mainTag]})} type="checkbox" id={`checkbox_${mainTag}`} name={`checkbox_${mainTag}`} value={mainTag} checked={filters[mainTag]}/>
+                                </div>
                             </div>
                         )
                     })
                 }
             </div>
+            : null}
         </div>
         <div className={s.grid}>
             {
