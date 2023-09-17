@@ -38,7 +38,7 @@ export const metadata:Metadata = {
 }
 
 async function getBooks(){
-  const getData = await fetch(`https://cms.schussfreude.ch/api/content/items/books?populate=1`,{
+  const getData = await fetch(`https://cms.schussfreude.ch/api/content/items/books?populate=1&fields=%7btitle%3A1%2Chero%3A1%2Cmeta%3A1%2Ctags%3A1%7D`,{
     "headers": {
       "api-key": process.env.CMS!,
     }
@@ -48,7 +48,7 @@ async function getBooks(){
   return await getData.json()
 }
 async function getMisc(){
-  const getData = await fetch(`https://cms.schussfreude.ch/api/content/items/misc?populate=1`,{
+  const getData = await fetch(`https://cms.schussfreude.ch/api/content/items/misc?populate=1&fields=%7btitle%3A1%2Chero%3A1%2Cmeta%3A1%2Ctags%3A1%7D`,{
     "headers": {
       "api-key": process.env.CMS!,
     }
@@ -58,7 +58,7 @@ async function getMisc(){
   return await getData.json()
 }
 async function getApps(){
-  const getData = await fetch(`https://cms.schussfreude.ch/api/content/items/apps?populate=1`,{
+  const getData = await fetch(`https://cms.schussfreude.ch/api/content/items/apps?populate=1&fields=%7btitle%3A1%2Chero%3A1%2Cmeta%3A1%2Ctags%3A1%7D`,{
     "headers": {
       "api-key": process.env.CMS!,
     }
@@ -68,7 +68,7 @@ async function getApps(){
   return await getData.json()
 }
 async function getAccessories(){
-  const getData = await fetch(`https://cms.schussfreude.ch/api/content/items/accessories?populate=1`,{
+  const getData = await fetch(`https://cms.schussfreude.ch/api/content/items/accessories?populate=1&fields=%7btitle%3A1%2Chero%3A1%2Cmeta%3A1%2Ctags%3A1%7D`,{
     "headers": {
       "api-key": process.env.CMS!,
     }
@@ -78,7 +78,7 @@ async function getAccessories(){
   return await getData.json()
 }
 async function getMagazines(){
-  const getData = await fetch(`https://cms.schussfreude.ch/api/content/items/magazines?populate=1`,{
+  const getData = await fetch(`https://cms.schussfreude.ch/api/content/items/magazines?populate=1&fields=%7btitle%3A1%2Chero%3A1%2Cmeta%3A1%2Ctags%3A1%7D`,{
     "headers": {
       "api-key": process.env.CMS!,
     }
@@ -88,7 +88,7 @@ async function getMagazines(){
   return await getData.json()
 }
 async function getSWMs(){
-  const getData = await fetch(`https://cms.schussfreude.ch/api/content/items/swm?populate=1`,{
+  const getData = await fetch(`https://cms.schussfreude.ch/api/content/items/swm?populate=1&fields=%7btitle%3A1%2Chero%3A1%2Cmeta%3A1%2Ctags%3A1%7D`,{
     "headers": {
       "api-key": process.env.CMS!,
     }
