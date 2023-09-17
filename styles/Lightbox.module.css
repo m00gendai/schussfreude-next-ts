@@ -2,8 +2,9 @@
     position: fixed;
     top: 0;
     left: 0;
+    bottom: 0;
     width: 100vw;
-    height: 100dvh;
+    height: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -12,11 +13,13 @@
 }
 
 .modal{
-    position: relative;
+    position: fixed;
+    top: 50%;
     width: calc(100vw - 4rem);
     height: calc(100svh - 4rem);
     background: white;
     border: 0.5rem solid black;
+    transform: translateY(-50%);
 }
 
 .imageWrapper{

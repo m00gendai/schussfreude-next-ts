@@ -121,8 +121,11 @@ export default async function Dsgvo() {
             </table>
           </div>
           <hr />
-          <p style={{whiteSpace: "pre"}}>
-            {`schussfreude.ch bezweckt mit den Cookies eine Analyse des Nutzerverhaltens.\nDies erlaubt es schussfreude.ch verschiedene Statistik zur Akquise der Nutzer und deren Verhalten auf der Webseite einzusehen.\nDies ermöglicht es, gegebenenfalls Anpassungen am Nutzererlebnis vorzunehmen.`}
+          <p style={{width: "100%"}}>
+            {`schussfreude.ch bezweckt mit den Cookies eine Analyse des Nutzerverhaltens.\n
+            Dies erlaubt es schussfreude.ch verschiedene Statistik zur Akquise der Nutzer und 
+            deren Verhalten auf der Webseite einzusehen.\n
+            Dies ermöglicht es, gegebenenfalls Anpassungen am Nutzererlebnis vorzunehmen.`}
           </p>
       </section>
       {
