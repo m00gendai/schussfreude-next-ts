@@ -9,25 +9,43 @@ import{App} from "@/interfaces/interface_App"
 import {Accessory} from "@/interfaces/interface_Accessory"
 import {Magazine} from "@/interfaces/interface_Magazine"
 import {SWM} from "@/interfaces/interface_SWM"
-import {useState} from "react"
+import {useEffect, useState} from "react"
 import { getAspectRatio, sortData, getCategory, magazineUrlReplacer, toRGB, gradientPlaceholder } from "@/utils"
 import { MdUpdate } from "react-icons/md";
+
+interface Filters{
+    [key:string]: boolean
+}
 
 interface Props{
     articles:(Book|Misc|App|Accessory|Magazine|SWM)[]
 }
 
 export default function ArticleGallery({articles}:Props){
-    const [orderBy, setOrderBy] = useState<string>("new")
-    
-    
+    const [orderBy, setOrderBy] = useState<string>("new") 
+    const [filters, setFilters] = useState<Filters>({})   
 
     function handleOrder(){
         setOrderBy(orderBy === "new" ? "old" : "new")
     }
 
     const sortedArticles:(Book|Misc|App|Accessory|Magazine|SWM)[] = articles.sort(sortData(orderBy))
+    
+    const mainTags:Filters = {}
+    articles.map(article=>{
+        article.tags.map(tag=>{
+            if(tag.type === "main"){
+                if(!mainTags[tag.item] !== undefined){
+                    {mainTags[tag.item] = true}
+                }
+            }
+        })
+    })
 
+    useEffect(()=>{
+        setFilters(mainTags)
+    },[])
+console.log(filters)
     return(
         <>
         <div className={s.toolbar}>
@@ -38,10 +56,23 @@ export default function ArticleGallery({articles}:Props){
                     <><MdUpdate className={s.icon} style={{transform: "rotateY(180deg)"}}/><p className={s.buttonText}>Älteste zuerst</p></>
                 }
             </button>
+            <div style={{position: "relative", width: "100%"}}>
+                {
+                    Object.keys(filters).map(mainTag=>{
+                        return(
+                            <div key={`mainTagBox_${mainTag}`}>
+                                <label htmlFor={`checkbox_${mainTag}`}>{mainTag}</label>
+                                <input onChange={()=>setFilters({...filters, [mainTag]: !filters[mainTag]})} type="checkbox" id={`checkbox_${mainTag}`} name={`checkbox_${mainTag}`} value={mainTag} checked={filters[mainTag]}/>
+                            </div>
+                        )
+                    })
+                }
+            </div>
         </div>
         <div className={s.grid}>
             {
             sortedArticles.map(article=>{
+               if(filters[article.tags[0].item]){
                 const rgb:string[] = article.hero.colors.map(color => toRGB(color))
                 return(
                 <Link href={`/artikel/${getCategory(article.tags)}/${magazineUrlReplacer(article.title)}`} key={article._id} className={s.itemFrame}>
@@ -64,6 +95,7 @@ export default function ArticleGallery({articles}:Props){
                     </div>
                 </Link>
                 )
+            }
             })
             }
         </div>
