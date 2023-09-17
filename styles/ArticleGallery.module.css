@@ -90,13 +90,12 @@
     justify-content: center;
     align-items: center;
     flex-wrap: wrap;
-    height: 3rem;
     margin: 0 0 3rem 0;
 }
 
 .button{
     position: relative;
-    height: 90%;
+    height: 3rem;
     aspect-ratio: 16/3;
     border: none;
     outline:none;
@@ -128,4 +127,37 @@
     position: relative;
     flex-grow: 1;
     font-size: 1rem;
+}
+
+.filters{
+    position: relative;
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    grid-gap: 1rem;
+}
+
+@media only screen and (max-aspect-ratio: 13/9){
+    .filters{
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+.filterItem{
+    position: relative;
+    border: 1px solid black;
+    height: 3rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.filterItemInner{
+    position: relative;
+    width: 100%;
+    height: 100%;
+    margin: 0.25rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
