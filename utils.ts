@@ -5,6 +5,11 @@ import {Accessory} from "@/interfaces/interface_Accessory"
 import {Magazine} from "@/interfaces/interface_Magazine"
 import {SWM} from "@/interfaces/interface_SWM"
 import {Tag, Medium} from "@/interfaces/interface_globals"
+import CZ from "@/public/CZ.svg"
+import CH from "@/public/CH.svg"
+import DE from "@/public/DE.svg"
+import IT from "@/public/IT.svg"
+import AT from "@/public/AT.svg"
 
 const date:Date = new Date()
 export const currentYear:number = date.getFullYear()
@@ -130,7 +135,7 @@ export function toRGB(hex: string) {
     return rgb;
   }
 
-  export function gradientPlaceholder(rgb:string[]){
+export function gradientPlaceholder(rgb:string[]){
     const style:React.CSSProperties = {
         background: `
             linear-gradient(72deg, rgba(${rgb[0]},0.8), rgba(${rgb[0]}, 0) 70.71%), 
@@ -141,4 +146,19 @@ export function toRGB(hex: string) {
             `,
     }
     return style
-  }
+}
+
+export function getFlag(country: string){
+    switch(country){
+        case "CZ": 
+            return CZ;
+        case "CH":
+            return CH
+        case "DE":
+            return DE
+        case "IT":
+            return IT
+        case "AT":
+            return AT
+    }
+}
