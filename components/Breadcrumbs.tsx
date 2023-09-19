@@ -5,6 +5,7 @@ import { usePathname, useRouter } from "next/navigation"
 import {SlDirections} from "react-icons/sl"
 import { AppRouterInstance } from "next/dist/shared/lib/app-router-context"
 import { BiChevronsRight } from "react-icons/bi"
+import Link from "next/link"
 
 export default function Breadcrumbs(){
 
@@ -17,7 +18,8 @@ export default function Breadcrumbs(){
         const item:number = pathArray.indexOf(path)
         const slicedPath:string[] = pathArray.slice(0,item+1)
         const breaderifiedUrl:string = slicedPath.join("/")
-        router.push(breaderifiedUrl)
+        return breaderifiedUrl
+        
     }
     return(
         <div className={s.container}>
@@ -27,7 +29,7 @@ export default function Breadcrumbs(){
                     if(index < pathArray.length-1){
                         return (
                             <>
-                            <p onClick={()=>handleClick(path)} title={`Zurück zu ${path}`}>{`${path}`}</p>
+                            <Link href={`/${handleClick(path)}`} title={`Zurück zu ${path}`}>{`${path}`}</Link>
                             {index < pathArray.length-2 ? <BiChevronsRight />: null}
                             </>
                         )

@@ -125,6 +125,8 @@ export function magazineUrlReplacer(string:string){
         .replaceAll("/", "-")
         .replaceAll("(", "")
         .replaceAll(")", "")
+        .replaceAll(",", "")
+        .replaceAll(":", "")
 }
 
 export function toRGB(hex: string) {

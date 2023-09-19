@@ -84,7 +84,7 @@ export default async function PistolCard({subCategory}:Props){
                                             <td>{data.width}</td>
                                         </tr>
                                         <tr>
-                                            <td>Abzugsgewicht</td>
+                                            <td>Abzugs<wbr />gewicht</td>
                                             <td>{data.triggerPull}</td>
                                         </tr>
                                         {data.remarks? 
