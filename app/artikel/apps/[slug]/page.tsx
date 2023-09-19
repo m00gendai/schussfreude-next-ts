@@ -29,10 +29,10 @@ async function getData(){
 export async function generateMetadata({params}:{params:{slug:string}}):Promise<Metadata>{
 
   const data: App[] = await getData()
-  const decodedSlug: string = decodeURIComponent(params.slug).toLowerCase()
+  const decodedSlug: string = decodeURIComponent(magazineUrlReplacer(params.slug))
 
   const postMatch:App[] = data.filter(item=>{
-    return decodeURIComponent(item.title).toLowerCase().replaceAll(" ", "-") === decodedSlug
+    return magazineUrlReplacer(item.title) === decodedSlug
   })
 
   if(postMatch.length === 0){ // if above filter yielded no results
