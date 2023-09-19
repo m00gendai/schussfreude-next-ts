@@ -3,7 +3,7 @@ import React from 'react'
 import Gallery from '@/components/Gallery'
 import {Misc} from "@/interfaces/interface_Misc"
 import {Tag} from "@/interfaces/interface_globals"
-import {getDate, convertDate, stringReplacer} from "@/utils"
+import {getDate, convertDate, stringReplacer, magazineUrlReplacer} from "@/utils"
 import Spoiler from '@/components/Spoiler'
 import {Metadata} from "next"
 import DocumentGallery from '@/components/DocumentGallery'
@@ -30,7 +30,7 @@ export async function generateMetadata({params}:{params:{slug:string}}):Promise<
   const decodedSlug: string = decodeURIComponent(params.slug).toLowerCase()
 
   const postMatch:Misc[] = data.filter(item=>{
-    return decodeURIComponent(item.title).toLowerCase().replaceAll(" ", "-") === decodedSlug
+    return magazineUrlReplacer(item.title) === decodedSlug
   })
 
   if(postMatch.length === 0){ // if above filter yielded no results

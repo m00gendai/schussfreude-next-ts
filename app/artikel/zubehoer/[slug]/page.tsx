@@ -3,7 +3,7 @@ import React from 'react'
 import Gallery from '@/components/Gallery'
 import {Accessory} from "@/interfaces/interface_Accessory"
 import {Tag} from "@/interfaces/interface_globals"
-import {getDate, convertDate, stringReplacer} from "@/utils"
+import {getDate, convertDate, stringReplacer, magazineUrlReplacer} from "@/utils"
 import Spoiler from '@/components/Spoiler'
 import {Metadata} from "next"
 import DataTableAccessories from '@/components/DataTableAccessories'
@@ -30,7 +30,7 @@ export async function generateMetadata({params}:{params:{slug:string}}):Promise<
   const decodedSlug: string = decodeURIComponent(params.slug).toLowerCase()
 
   const postMatch:Accessory[] = data.filter(item=>{
-    return decodeURIComponent(item.title).toLowerCase().replaceAll(" ", "-") === decodedSlug
+    return magazineUrlReplacer(item.title) === decodedSlug
   })
 
   if(postMatch.length === 0){ // if above filter yielded no results

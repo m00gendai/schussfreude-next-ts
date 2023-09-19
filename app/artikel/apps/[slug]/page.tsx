@@ -3,7 +3,7 @@ import React from 'react'
 import Gallery from '@/components/Gallery'
 import {App} from "@/interfaces/interface_App"
 import {Tag} from "@/interfaces/interface_globals"
-import {getDate, convertDate, stringReplacer, getAspectRatio} from "@/utils"
+import {getDate, convertDate, stringReplacer, getAspectRatio, magazineUrlReplacer} from "@/utils"
 import Spoiler from '@/components/Spoiler'
 import {Metadata} from "next"
 import DataTableApps from '@/components/DataTableApps'
@@ -74,7 +74,7 @@ export default async function Page({params}:{params:{slug:string}}) {
   const decodedSlug: string = decodeURIComponent(params.slug).toLowerCase()
 
   const postMatch:App[] = data.filter(item=>{
-    return decodeURIComponent(item.title).toLowerCase().replaceAll(" ", "-") === decodedSlug
+    return magazineUrlReplacer(item.title) === decodedSlug
   })
 
   if(postMatch.length === 0){ // if above filter yielded no results
