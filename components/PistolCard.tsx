@@ -41,7 +41,7 @@ export default async function PistolCard({subCategory}:Props){
         <>
         {manufacturers.map(manufacturer =>{
             return(
-                <details className={d.details}>
+                <details key={manufacturer} className={d.details}>
                     <summary className={d.summary}>
                     <div className={d.icon}>
                         <Image
@@ -59,7 +59,7 @@ export default async function PistolCard({subCategory}:Props){
                     filteredData.map(data=>{
                         if(data.manufacturer === manufacturer.split("_")[0]){
                             return (
-                            <div className={s.card}>
+                            <div className={s.card} key={data.name}>
                                 <div className={s.image}>
                                     <Image
                                         src={`https://cms.schussfreude.ch/storage/uploads/${data.image.path}`}
