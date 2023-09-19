@@ -3,7 +3,7 @@ import React from 'react'
 import Gallery from '@/components/Gallery'
 import {Magazine} from "@/interfaces/interface_Magazine"
 import {Tag} from "@/interfaces/interface_globals"
-import {getDate, convertDate, stringReplacer, sortDataByIssue} from "@/utils"
+import {getDate, convertDate, stringReplacer, sortDataByIssue, magazineUrlReplacer} from "@/utils"
 import {Metadata} from "next"
 import MagazineGallery from '@/components/MagazineGallery'
 import { SWM } from '@/interfaces/interface_SWM'
@@ -39,10 +39,10 @@ async function getSWM(){
 export async function generateMetadata({params}:{params:{slug:string}}):Promise<Metadata>{
 
   const data: Magazine[] = await getData()
-  const decodedSlug: string = decodeURIComponent(params.slug).toLowerCase()
+  const decodedSlug: string = decodeURIComponent(magazineUrlReplacer(params.slug))
 
   const postMatch:Magazine[] = data.filter(item=>{
-    return decodeURIComponent(item.title).toLowerCase().replaceAll(" ", "-") === decodedSlug
+    return magazineUrlReplacer(item.title) === decodedSlug
   })
 
   if(postMatch.length === 0){ // if above filter yielded no results
@@ -81,10 +81,10 @@ export async function generateMetadata({params}:{params:{slug:string}}):Promise<
 export default async function Page({params}:{params:{slug:string}}) {
 
   const data: Magazine[] = await getData()
-  const decodedSlug: string = decodeURIComponent(params.slug).toLowerCase()
+  const decodedSlug: string = decodeURIComponent(magazineUrlReplacer(params.slug))
 
   const postMatch:Magazine[] = data.filter(item=>{
-    return decodeURIComponent(item.title).toLowerCase().replaceAll(" ", "-") === decodedSlug
+    return magazineUrlReplacer(item.title) === decodedSlug
   })
 
   if(postMatch.length === 0){ // if above filter yielded no results

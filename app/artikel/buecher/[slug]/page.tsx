@@ -4,7 +4,7 @@ import Gallery from '@/components/Gallery'
 import DataTableBooks from '@/components/DataTableBooks'
 import {Book} from "@/interfaces/interface_Book"
 import {Tag} from "@/interfaces/interface_globals"
-import {getDate, convertDate, stringReplacer} from "@/utils"
+import {getDate, convertDate, stringReplacer, magazineUrlReplacer} from "@/utils"
 import {Metadata} from "next"
 import DocumentGallery from '@/components/DocumentGallery'
 import Breadcrumbs from '@/components/Breadcrumbs'
@@ -24,10 +24,10 @@ async function getData(){
 export async function generateMetadata({params}:{params:{slug:string}}):Promise<Metadata>{
 
   const data: Book[] = await getData()
-  const decodedSlug: string = decodeURIComponent(params.slug).toLowerCase()
+  const decodedSlug: string = decodeURIComponent(magazineUrlReplacer(params.slug))
 
   const postMatch:Book[] = data.filter(item=>{
-    return decodeURIComponent(item.title).toLowerCase().replaceAll(" ", "-") === decodedSlug
+    return magazineUrlReplacer(item.title) === decodedSlug
   })
 
   if(postMatch.length === 0){ // if above filter yielded no results
@@ -66,10 +66,10 @@ export async function generateMetadata({params}:{params:{slug:string}}):Promise<
 export default async function Page({params}:{params:{slug:string}}) {
 
   const data: Book[] = await getData()
-  const decodedSlug: string = decodeURIComponent(params.slug).toLowerCase()
+  const decodedSlug: string = decodeURIComponent(magazineUrlReplacer(params.slug))
 
   const postMatch:Book[] = data.filter(item=>{
-    return decodeURIComponent(item.title).toLowerCase().replaceAll(" ", "-") === decodedSlug
+    return magazineUrlReplacer(item.title) === decodedSlug
   })
 
   if(postMatch.length === 0){ // if above filter yielded no results
