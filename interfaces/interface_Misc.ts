@@ -26,4 +26,12 @@ export interface Paragraph {
   media: Medium[]
   documents: Document[]
   spoiler: Spoiler[]
+  assessment: Assessment
+  mainCategory: string
+  subCategory: string
+}
+
+interface Assessment{
+  pro: string
+  contra: string
 }
