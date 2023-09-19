@@ -39,7 +39,7 @@ async function getSWM(){
 export async function generateMetadata({params}:{params:{slug:string}}):Promise<Metadata>{
 
   const data: Magazine[] = await getData()
-  const decodedSlug: string = decodeURIComponent(params.slug).toLowerCase()
+  const decodedSlug: string = decodeURIComponent(magazineUrlReplacer(params.slug))
 
   const postMatch:Magazine[] = data.filter(item=>{
     return magazineUrlReplacer(item.title) === decodedSlug

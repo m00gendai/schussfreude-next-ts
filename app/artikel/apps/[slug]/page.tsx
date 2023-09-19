@@ -71,7 +71,7 @@ export async function generateMetadata({params}:{params:{slug:string}}):Promise<
 export default async function Page({params}:{params:{slug:string}}) {
 
   const data: App[] = await getData()
-  const decodedSlug: string = decodeURIComponent(params.slug).toLowerCase()
+  const decodedSlug: string = decodeURIComponent(magazineUrlReplacer(params.slug))
 
   const postMatch:App[] = data.filter(item=>{
     return magazineUrlReplacer(item.title) === decodedSlug
