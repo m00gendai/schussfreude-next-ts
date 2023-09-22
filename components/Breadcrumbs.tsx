@@ -29,7 +29,7 @@ export default function Breadcrumbs(){
                     if(index < pathArray.length-1){
                         return (
                             <>
-                            <Link href={`/${handleClick(path)}`} title={`Zurück zu ${path}`}>{`${path}`}</Link>
+                            <Link className={s.link} href={`/${handleClick(path)}`} title={`Zurück zu ${path}`}>{`${path}`}</Link>
                             {index < pathArray.length-2 ? <BiChevronsRight />: null}
                             </>
                         )
