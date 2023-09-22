@@ -82,12 +82,15 @@ export default async function Page({params}:{params:{slug:string}}) {
   const subTags:Tag[] = postMatch[0].tags.filter(item=>{
     return item.type === "sub"
   })
-  
-  const similarPosts:Misc[] = data.filter(item=>{
+
+  const similarPosts:Misc[] = []
+  data.filter(item=>{
     if(item.title !== postMatch[0].title){
-      return item.tags.map(tag=>{
-        return subTags.map(subTag=>{
-          return tag.item === subTag.item
+      subTags.map(subTag=>{
+        item.tags.map(tag=>{
+          if(!similarPosts.includes(item) && subTag.item == tag.item){
+            similarPosts.push(item)
+          }
         })
       })
     }

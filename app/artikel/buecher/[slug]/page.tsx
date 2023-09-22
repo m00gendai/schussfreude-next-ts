@@ -82,16 +82,18 @@ export default async function Page({params}:{params:{slug:string}}) {
     return subtag.item
   })
 
-  const otherBooks:Book[] = data.filter(item => item.title !== postMatch[0].title)
-
   const similarPosts:Book[] = []
-  
-  /* I dont know why it has to be with push(), but everything else (map(), filter()) just returned all books. */
-  otherBooks.filter(otherBook =>{
-    return otherBook.tags.map(tag => {
-      if(subTagNames.includes(tag.item)){
-        similarPosts.push(otherBook)
-      }})})
+  data.filter(item=>{
+    if(item.title !== postMatch[0].title){
+      subTags.map(subTag=>{
+        item.tags.map(tag=>{
+          if(!similarPosts.includes(item) && subTag.item == tag.item){
+            similarPosts.push(item)
+          }
+        })
+      })
+    }
+  })
 
   const post = postMatch[0]
 
