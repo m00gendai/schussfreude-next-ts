@@ -12,7 +12,7 @@ export default function RootLayout({
 }) {
 
   return (
-    <html lang="en">
+    <html lang="de">
       <body>
         <Navbar_Mobile />
         <Navbar />

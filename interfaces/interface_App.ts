@@ -4,6 +4,7 @@ export interface App {
   title: string
   hero: Medium
   meta: string
+  seo: string
   tags: Tag[]
   data: Data
   content: Content[]

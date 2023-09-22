@@ -45,10 +45,10 @@ export async function generateMetadata({params}:{params:{slug:string}}):Promise<
 
   return{
     title: post.title,
-    description: stringReplacer(post.content[0].paragraphs[0].text[0]),
+    description: stringReplacer(post.seo),
     openGraph: {
       title: post.title,
-      description: stringReplacer(post.content[0].paragraphs[0].text[0]),
+      description: stringReplacer(post.seo),
       images:[
         {
           url: `https://cms.schussfreude.ch/storage/uploads/${post.hero.path}`,
@@ -62,7 +62,7 @@ export async function generateMetadata({params}:{params:{slug:string}}):Promise<
     twitter: {
       card: 'summary_large_image',
       title: post.title,
-      description: stringReplacer(post.content[0].paragraphs[0].text[0]),
+      description: stringReplacer(post.seo),
       images: [`https://cms.schussfreude.ch/storage/uploads/${post.hero.path}`],
     },
   }
