@@ -10,6 +10,7 @@ import CH from "@/public/CH.svg"
 import DE from "@/public/DE.svg"
 import IT from "@/public/IT.svg"
 import AT from "@/public/AT.svg"
+import IL from "@/public/IL.svg"
 
 const date:Date = new Date()
 export const currentYear:number = date.getFullYear()
@@ -162,5 +163,7 @@ export function getFlag(country: string){
             return IT
         case "AT":
             return AT
+        case "IL":
+            return IL
     }
 }
