@@ -6,6 +6,7 @@ import {SlDirections} from "react-icons/sl"
 import { AppRouterInstance } from "next/dist/shared/lib/app-router-context"
 import { BiChevronsRight } from "react-icons/bi"
 import Link from "next/link"
+import React from "react"
 
 export default function Breadcrumbs(){
 
@@ -28,10 +29,10 @@ export default function Breadcrumbs(){
                 pathArray.map((path, index)=>{
                     if(index < pathArray.length-1){
                         return (
-                            <>
-                            <Link href={`/${handleClick(path)}`} title={`Zurück zu ${path}`}>{`${path}`}</Link>
+                            <React.Fragment key={`${path}_${index}`}>
+                            <Link className={s.link} href={`/${handleClick(path)}`} title={`Zurück zu ${path}`}>{`${path}`}</Link>
                             {index < pathArray.length-2 ? <BiChevronsRight />: null}
-                            </>
+                            </React.Fragment>
                         )
                     }
                 })

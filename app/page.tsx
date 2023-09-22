@@ -52,7 +52,7 @@ async function getCategories(){
 
 //&sort=%7B_created%3A-1%7D
 async function getBooks(){
-  const getData = await fetch(`https://cms.schussfreude.ch/api/content/items/books?populate=1&limit=5&fields=%7btitle%3A1%2Chero%3A1%2Cmeta%3A1%2Ctags%3A1%7D`,{
+  const getData = await fetch(`https://cms.schussfreude.ch/api/content/items/books?sort=%7Bmeta%3A-1%7D&fields=%7Btitle%3A1%2C+meta%3A1%2C+hero%3A1%2C+tags%3A1%7D&limit=5&populate=1`,{
     "headers": {
       "api-key": process.env.CMS!,
     }
@@ -62,7 +62,7 @@ async function getBooks(){
   return await getData.json()
 }
 async function getMisc(){
-  const getData = await fetch(`https://cms.schussfreude.ch/api/content/items/misc?populate=1&limit=5&fields=%7btitle%3A1%2Chero%3A1%2Cmeta%3A1%2Ctags%3A1%7D`,{
+  const getData = await fetch(`https://cms.schussfreude.ch/api/content/items/misc?sort=%7Bmeta%3A-1%7D&fields=%7Btitle%3A1%2C+meta%3A1%2C+hero%3A1%2C+tags%3A1%7D&limit=5&populate=1`,{
     "headers": {
       "api-key": process.env.CMS!,
     }
@@ -72,7 +72,7 @@ async function getMisc(){
   return await getData.json()
 }
 async function getApps(){
-  const getData = await fetch(`https://cms.schussfreude.ch/api/content/items/apps?populate=1&limit=5&fields=%7btitle%3A1%2Chero%3A1%2Cmeta%3A1%2Ctags%3A1%7D`,{
+  const getData = await fetch(`https://cms.schussfreude.ch/api/content/items/apps?sort=%7Bmeta%3A-1%7D&fields=%7Btitle%3A1%2C+meta%3A1%2C+hero%3A1%2C+tags%3A1%7D&limit=5&populate=1`,{
     "headers": {
       "api-key": process.env.CMS!,
     }
@@ -82,7 +82,7 @@ async function getApps(){
   return await getData.json()
 }
 async function getAccessories(){
-  const getData = await fetch(`https://cms.schussfreude.ch/api/content/items/accessories?populate=1&limit=5&fields=%7btitle%3A1%2Chero%3A1%2Cmeta%3A1%2Ctags%3A1%7D`,{
+  const getData = await fetch(`https://cms.schussfreude.ch/api/content/items/accessories?sort=%7Bmeta%3A-1%7D&fields=%7Btitle%3A1%2C+meta%3A1%2C+hero%3A1%2C+tags%3A1%7D&limit=5&populate=1`,{
     "headers": {
       "api-key": process.env.CMS!,
     }
@@ -92,7 +92,7 @@ async function getAccessories(){
   return await getData.json()
 }
 async function getMagazines(){
-  const getData = await fetch(`https://cms.schussfreude.ch/api/content/items/magazines?populate=1&fields=%7btitle%3A1%2Chero%3A1%2Cmeta%3A1%2Ctags%3A1%7D`,{
+  const getData = await fetch(`https://cms.schussfreude.ch/api/content/items/magazines?sort=%7Bmeta%3A-1%7D&fields=%7Btitle%3A1%2C+meta%3A1%2C+hero%3A1%2C+tags%3A1%7D&limit=5&populate=1`,{
     "headers": {
       "api-key": process.env.CMS!,
     }
@@ -102,7 +102,7 @@ async function getMagazines(){
   return await getData.json()
 }
 async function getSWMs(){
-  const getData = await fetch(`https://cms.schussfreude.ch/api/content/items/swm?populate=1&fields=%7btitle%3A1%2Chero%3A1%2Cmeta%3A1%2Ctags%3A1%7D`,{
+  const getData = await fetch(`https://cms.schussfreude.ch/api/content/items/swm?sort=%7Bmeta%3A-1%7D&fields=%7Btitle%3A1%2C+meta%3A1%2C+hero%3A1%2C+tags%3A1%7D&limit=5&populate=1`,{
     "headers": {
       "api-key": process.env.CMS!,
     }

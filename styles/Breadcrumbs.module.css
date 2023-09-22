@@ -7,15 +7,16 @@
     flex-wrap: wrap;
 }
 
-.container p{
+.link{
+    margin: 1rem 0;
     color: blue;
     user-select: none;
 }
 
-.container p::first-letter{
+.link::first-letter{
     text-transform: capitalize;
 }
 
-.container p:hover{
+.link:hover{
     cursor: pointer;
 }
