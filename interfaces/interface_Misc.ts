@@ -5,6 +5,7 @@ export interface Misc {
   hero: Medium
   meta: string
   tags: Tag[]
+  seo:string
   content: Content[]
   links: LinkUrl[]
   sources: Source[]

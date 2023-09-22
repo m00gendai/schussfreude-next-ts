@@ -4,6 +4,7 @@ import {SWM} from "@/interfaces/interface_SWM"
 export interface Magazine {
   title: string
   hero: Medium
+  seo:string
   meta: string
   tags: Tag[]
   intro: Intro[]
