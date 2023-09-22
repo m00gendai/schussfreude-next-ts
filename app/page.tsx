@@ -121,7 +121,7 @@ export default async function Home() {
   const magazines:Magazine[] = await getMagazines()
   const swms:SWM[] = await getSWMs()
   const cats:Tag[] = await getCategories()
-  misc.map(article => console.log(article.title))
+
   const articles:(Book|Misc|App|Accessory|Magazine|SWM)[]= [...books, ...misc, ...apps, ...accesories, ...magazines, ...swms].sort((a,b) => sortDataByDate(a, b))
 
   return (
