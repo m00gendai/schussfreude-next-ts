@@ -12,10 +12,7 @@ import {SWM} from "@/interfaces/interface_SWM"
 import {useEffect, useState} from "react"
 import { getAspectRatio, sortData, getCategory, magazineUrlReplacer, toRGB, gradientPlaceholder } from "@/utils"
 import { MdUpdate } from "react-icons/md";
-
-interface Filters{
-    [key:string]: boolean
-}
+import { MultiSelect } from "@mantine/core"
 
 interface Props{
     articles:(Book|Misc|App|Accessory|Magazine|SWM)[]
@@ -23,7 +20,7 @@ interface Props{
 
 export default function ArticleGallery({articles}:Props){
     const [orderBy, setOrderBy] = useState<string>("new") 
-    const [filters, setFilters] = useState<Filters>({})   
+    const [filters, setFilters] = useState<string[]>([])   
 
     function handleOrder(){
         setOrderBy(orderBy === "new" ? "old" : "new")
@@ -31,12 +28,16 @@ export default function ArticleGallery({articles}:Props){
 
     const sortedArticles:(Book|Misc|App|Accessory|Magazine|SWM)[] = articles.sort(sortData(orderBy))
     
-    const mainTags:Filters = {}
+    function select(){
+
+    }
+
+    const mainTags:string[] = []
     articles.map(article=>{
         article.tags.map(tag=>{
             if(tag.type === "main"){
-                if(!mainTags[tag.item] !== undefined){
-                    {mainTags[tag.item] = true}
+                if(!mainTags.includes(tag.item)){
+                    mainTags.push(tag.item)
                 }
             }
         })
@@ -44,7 +45,7 @@ export default function ArticleGallery({articles}:Props){
 
     useEffect(()=>{
         setFilters(mainTags)
-    },[])
+    },[]) 
 
     return(
         <>
@@ -56,27 +57,21 @@ export default function ArticleGallery({articles}:Props){
                     <><MdUpdate className={s.icon} style={{transform: "rotateY(180deg)"}}/><p className={s.buttonText}>Älteste zuerst</p></>
                 }
             </button>
-            {Object.keys(filters).length > 1 ? 
-            <div className={s.filters}>
-                {
-                    Object.keys(filters).map(mainTag=>{
-                        return(
-                            <div className={s.filterItem} key={`mainTagBox_${mainTag}`}>
-                                <div className={s.filterItemInner}>
-                                    <label htmlFor={`checkbox_${mainTag}`}>{mainTag}</label>
-                                    <input onChange={()=>setFilters({...filters, [mainTag]: !filters[mainTag]})} type="checkbox" id={`checkbox_${mainTag}`} name={`checkbox_${mainTag}`} value={mainTag} checked={filters[mainTag]}/>
-                                </div>
-                            </div>
-                        )
-                    })
-                }
-            </div>
-            : null}
-        </div>
+            <MultiSelect
+      label="Nach Kategorien filtern"
+      data={mainTags}
+      value={filters}
+      onChange={setFilters}
+      styles={{
+        root:{position: "relative", width: "100%"}
+      }}
+    />
+    </div>
+
         <div className={s.grid}>
             {
             sortedArticles.map(article=>{
-               if(filters[article.tags[0].item]){
+               if(filters.includes(article.tags[0].item)){
                 const rgb:string[] = article.hero.colors.map(color => toRGB(color))
                 return(
                 <Link href={`/artikel/${getCategory(article.tags)}/${magazineUrlReplacer(article.title)}`} key={article._id} className={s.itemFrame}>
