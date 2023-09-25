@@ -203,3 +203,33 @@ iframe{
   width: 100%;
   aspect-ratio: 21/10;
 }
+
+table{
+  border: 1px solid black;
+  border-collapse: collapse;
+  margin: 0;
+  padding: 0;
+}
+
+table > tbody > tr:first-child > td{
+  padding: 0.5rem;
+  text-align: center;
+}
+
+table > tbody tr{
+  border: none;
+}
+
+table > tbody tr td{
+  padding: 0.5rem;
+}
+
+table > tbody tr:nth-child(odd){
+  background: lightgrey;
+}
+
+table > tbody > tr:first-child{
+  font-weight: bolder;
+  background: red;
+  color: white;
+}
