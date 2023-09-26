@@ -11,7 +11,7 @@ export async function POST(req: NextRequest, res: NextResponse){
         port: 465,     
         host: "mail.cyon.ch",
           auth: {
-            user: "info@mrweber.ch",
+            user: "info@schussfreude.ch",
             pass: process.env.PW!,
           },
         secure: true,
@@ -19,7 +19,7 @@ export async function POST(req: NextRequest, res: NextResponse){
         
       const mailData = {
           from: data.mail,
-          to: `info@mrweber.ch`,
+          to: `info@schussfreude.ch`,
           cc: data.mail,
           subject: `schussfreude: Nachricht von ${data.name}`,
           text: data.message,

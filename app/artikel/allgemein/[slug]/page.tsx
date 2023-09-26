@@ -12,6 +12,7 @@ import Sources from '@/components/Sources'
 import AdditionalLinks from '@/components/AdditionalLinks'
 import SimilarPosts from '@/components/SimilarPosts'
 import Cards from '@/components/Cards'
+import Assessment from '@/components/Assessment'
 
 async function getData(){
   const getData = await fetch(`https://cms.schussfreude.ch/api/content/items/misc?populate=1000`,{
@@ -122,6 +123,7 @@ export default async function Page({params}:{params:{slug:string}}) {
                       {paragraph.documents ? <DocumentGallery key={`outsideDocument_${index}`} docs={paragraph.documents} /> : null}
                       {paragraph.spoiler ? paragraph.spoiler.map((spoiler, index) => <Spoiler key={`spoiler_${index}`} content={spoiler} />) : null}
                       {paragraph.mainCategory ? <Cards mainCategory={paragraph.mainCategory} subCategory={paragraph.subCategory} /> : null}
+                      {paragraph.assessment.pro ? <Assessment assessment={paragraph.assessment} /> : null}
                     </section>
                   )
                 })}

@@ -32,7 +32,7 @@ export interface Paragraph {
   subCategory: string
 }
 
-interface Assessment{
+export interface Assessment{
   pro: string
   contra: string
 }

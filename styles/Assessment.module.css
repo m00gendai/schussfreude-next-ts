@@ -1,0 +1,22 @@
+.container{
+    position: relative;
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-gap: 1rem;
+    margin: 1rem 0;
+}
+
+.pro{
+    padding: 1rem;
+    position: relative;
+    background: green;
+    color: white;
+}
+
+.contra{
+    padding: 1rem;
+    position: relative;
+    background: red;
+    color: white;
+}
