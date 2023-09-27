@@ -123,7 +123,7 @@ export default async function Page({params}:{params:{slug:string}}) {
                       {paragraph.documents ? <DocumentGallery key={`outsideDocument_${index}`} docs={paragraph.documents} /> : null}
                       {paragraph.spoiler ? paragraph.spoiler.map((spoiler, index) => <Spoiler key={`spoiler_${index}`} content={spoiler} />) : null}
                       {paragraph.mainCategory ? <Cards mainCategory={paragraph.mainCategory} subCategory={paragraph.subCategory} /> : null}
-                      {paragraph.assessment.pro ? <Assessment assessment={paragraph.assessment} /> : null}
+                      {paragraph.assessment?.pro ? <Assessment assessment={paragraph.assessment} /> : null}
                     </section>
                   )
                 })}
