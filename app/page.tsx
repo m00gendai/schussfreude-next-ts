@@ -126,16 +126,7 @@ export default async function Home() {
 
   return (
     <main>
-      {/* TODO: This section will be removed on prod */}
-      <div className={s.notice}>
-        <h1 className={s.h1}>schussfreude.ch - Die Schweizer Waffenseite!</h1>
-        <p className={s.p}>Die Seite ist in der Beta! Bitte das <Link href="/kontakt">Kontaktformular</Link> für Rückmeldungen nutzen oder via <Link href="https://waffenforum.ch/forum/index.php?thread/2384-schussfreude-2-0-neubau-der-webseite/" target="_blank">waffenforum.ch</Link> gehen!</p>
-        <Link style={{display: "block", textAlign: "center"}} href="https://trello.com/b/HtQ0vFoJ/schussfreudech" target="_blank" title="Status">
-          Status Fortschritt (Englisch)
-        </Link>
-        <div style={{width: "100%"}}></div>
-      </div>
-      {/* TODO: This will remain in prod. Delete comment then */}
+      <h1 style={{width: "100%", textAlign: "center"}}>schussfreude.ch - Die Schweizer Waffenseite</h1>
       <div className={s.desktop}>
         <Hero articles={articles}/>
         <Categories cats={cats}/>
