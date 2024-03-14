@@ -61,10 +61,10 @@ export default function ArticleGallery({articles}:Props){
                 {
                     Object.keys(filters).map(mainTag=>{
                         return(
-                            <div className={s.filterItem} key={`mainTagBox_${mainTag}`}>
+                            <div className={s.filterItem} key={`mainTagBox_${mainTag}`} >
                                 <div className={s.filterItemInner}>
-                                    <label htmlFor={`checkbox_${mainTag}`}>{mainTag}</label>
-                                    <input onChange={()=>setFilters({...filters, [mainTag]: !filters[mainTag]})} type="checkbox" id={`checkbox_${mainTag}`} name={`checkbox_${mainTag}`} value={mainTag} checked={filters[mainTag]}/>
+                                    <label className={s.label} htmlFor={`checkbox_${mainTag}`} >{mainTag}</label>
+                                    <input className={s.check} type="checkbox" id={`checkbox_${mainTag}`} onChange={()=>setFilters({...filters, [mainTag]: !filters[mainTag]})} name={`checkbox_${mainTag}`} value={mainTag} checked={filters[mainTag]}/>
                                 </div>
                             </div>
                         )
