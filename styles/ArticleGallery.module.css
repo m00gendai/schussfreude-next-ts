@@ -34,9 +34,6 @@
     .grid{
         grid-template-columns: 1fr;
     }
-    .itemFrame{
-        aspect-ratio: 21/10;
-    }
     .itemContainer{
         aspect-ratio: 21/10;
     }
