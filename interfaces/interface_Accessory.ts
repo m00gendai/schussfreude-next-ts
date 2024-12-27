@@ -2,6 +2,7 @@ import {Medium, Tag, Document, Spoiler, Source} from "@/interfaces/interface_glo
 
 export interface Accessory {
   title: string
+  transparency?: string
   hero: Medium
   meta: string
   seo: string
