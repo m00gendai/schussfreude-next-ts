@@ -32,17 +32,11 @@ async function getDocs(){
   next: { revalidate: 10 } }) // TODO: Increase in prod
   
     const data = await getData.json()
-
-    const sortedData:Script[] = data.sort((a:Script, b:Script) =>{
-      const x = a.title
-      const y = b.title
-
-      return x > y ? 1 : x < y ? -1 : 0
-    })
-
+    const sortedData:Script[] = data.sort((a:Script, b:Script) =>
+      a.title.localeCompare(b.title, undefined, { numeric: true, sensitivity: 'base' })
+    )
   return sortedData
 }
-
 const title:string = "Zeitdokumente des Schweizer Schützen- und Waffenwesens"
   const desc:string = "Kataloge, Prospekte und sonstiges Nostalgisches zum Schweizer Schützen- und Waffenwesen, Rüstungsindustrie und Armee aus längst vergangenen Zeiten für die Nachwelt erhalten."
 
