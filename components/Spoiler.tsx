@@ -1,10 +1,10 @@
 import s from "@/styles/Spoiler.module.css"
-import {Spoiler} from "@/interfaces/interface_globals"
+import {Spoiler as SpoilerType} from "@/interfaces/interface_globals"
 import Gallery from "@/components/Gallery"
 import Image from "next/image"
 
 interface Props{
-    content:Spoiler
+    content:SpoilerType
 }
 
 export default function Spoiler({content}:Props){
