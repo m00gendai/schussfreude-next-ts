@@ -11,7 +11,16 @@ async function getData(){
   ,
   next: { revalidate: 10 } }) // TODO: Increase in prod
   
-  return await getData.json()
+  const data = await getData.json()
+
+    const sortedData:Artifact[] = data.sort((a:Artifact, b:Artifact) =>{
+      const x = a.priority
+      const y = b.priority
+
+      return x > y ? 1 : x < y ? -1 : 0
+    })
+
+    return sortedData
 }
 
 async function getDocs(){
@@ -22,11 +31,20 @@ async function getDocs(){
   ,
   next: { revalidate: 10 } }) // TODO: Increase in prod
   
-  return await getData.json()
+    const data = await getData.json()
+
+    const sortedData:Script[] = data.sort((a:Script, b:Script) =>{
+      const x = a.title
+      const y = b.title
+
+      return x > y ? 1 : x < y ? -1 : 0
+    })
+
+  return sortedData
 }
 
 const title:string = "Zeitdokumente des Schweizer Schützen- und Waffenwesens"
-  const desc:string = "Kataloge, Prospekte und Werbung zum Schweizer Schützen- und Waffenwesen aus längst vergangenen Zeiten für die Nachwelt erhalten."
+  const desc:string = "Kataloge, Prospekte und sonstiges Nostalgisches zum Schweizer Schützen- und Waffenwesen, Rüstungsindustrie und Armee aus längst vergangenen Zeiten für die Nachwelt erhalten."
 
   export const metadata:Metadata = {
     title: title,
@@ -67,13 +85,13 @@ export default async function Page() {
                 <section key={`${element.type}_${index}`}>
                 <h2>{element.type}</h2>
                 <div dangerouslySetInnerHTML={{__html: element.intro}}></div>
-                {
-                  documents.map(doc=>{
-                    if(doc.type === element.type){
-                      return <AncientScrolls doc={doc} key={doc._id}/>
-                    }
-                  })
-                }
+                  {
+                    documents.map(doc=>{
+                      if(doc.type === element.type){
+                        return <AncientScrolls doc={doc} key={doc._id}/>
+                      }
+                    })
+                  }
                 </section>
               )
             })

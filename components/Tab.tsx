@@ -11,7 +11,6 @@ import s from "@/styles/Tab.module.css"
 import Categories from "@/components/Categories"
 import Hero from "@/components/Hero"
 import {TouchEvent, TouchEventHandler, useState} from "react"
-import { render } from "react-dom"
 import { BiChevronLeft, BiChevronRight } from "react-icons/bi"
 
 interface Props{

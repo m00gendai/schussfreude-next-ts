@@ -1,4 +1,3 @@
-import { MdOutlineNoStroller } from "react-icons/md"
 import PistolCard from "./PistolCard"
 
 interface Props{
@@ -12,7 +11,6 @@ export default function Cards({mainCategory, subCategory}:Props){
         <>
          
         {mainCategory === "Pistolen" ? 
-        /* @ts-expect-error */
             subCategory === "Weitere" ? <PistolCard subCategory={subCategory} /> :
             null
         : null}

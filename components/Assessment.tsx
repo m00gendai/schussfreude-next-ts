@@ -1,8 +1,8 @@
-import {Assessment} from "@/interfaces/interface_Misc"
+import {Assessment as AssessmentType} from "@/interfaces/interface_Misc"
 import s from "@/styles/Assessment.module.css"
 
 interface Props{
-    assessment: Assessment
+    assessment: AssessmentType
 }
 
 export default function Assessment({assessment}:Props){
