@@ -5,6 +5,9 @@ import Link from "next/link"
 import Image from "next/image"
 import Catalog from "@/public/spell-book.png"
 import Advert from "@/public/mailbox.png"
+import Company from "@/public/factory.png"
+import Lists from "@/public/money-stack.png"
+import Misc from "@/public/bookshelf.png"
 
 interface Props{
     doc: Script
@@ -19,7 +22,11 @@ export default function ancientScrolls({doc}:Props){
                     <Image
                         src={
                             doc.type === "Kataloge" ? Catalog.src :
-                            doc.type === "Werbung" ? Advert.src : Catalog.src}
+                            doc.type === "Werbung" ? Advert.src : 
+                            doc.type === "Preislisten" ? Lists.src :
+                            doc.type === "Firmeninformationen" ? Company.src :
+                            doc.type === "Diverses" ? Misc.src : 
+                            Catalog.src}
                         alt={`Icon`}
                         fill={true}
                         style={{objectFit: "contain"}}
