@@ -8,6 +8,8 @@ export interface Artifact {
   _cby: string;
   _id: string;
   item: Item[];
+  title: string;
+  priority: number;
 }
 
 export interface Item {
