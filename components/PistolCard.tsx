@@ -1,4 +1,4 @@
-import { PistolCard} from "@/interfaces/interface_Cards"
+import { PistolCard as PistolCardType} from "@/interfaces/interface_Cards"
 import s from "@/styles/Cards.module.css"
 import d from "@/styles/Spoiler.module.css"
 import Image from "next/image"
@@ -21,15 +21,15 @@ async function getData(){
 
 export default async function PistolCard({subCategory}:Props){
 
-    function sortByManufacturer(a:PistolCard,b:PistolCard){
+    function sortByManufacturer(a:PistolCardType,b:PistolCardType){
         const x:string = a.manufacturer
         const y:string = b.manufacturer
         return x < y ? 1 : x > y ? -1 : 0
     }
 
-    const data: PistolCard[] = await getData()
-    const sortedData: PistolCard[] = data.sort((a:PistolCard,b:PistolCard)=>sortByManufacturer(a,b))
-    const filteredData: PistolCard[] = sortedData.filter(data => data.subCategory === subCategory)
+    const data: PistolCardType[] = await getData()
+    const sortedData: PistolCardType[] = data.sort((a:PistolCardType,b:PistolCardType)=>sortByManufacturer(a,b))
+    const filteredData: PistolCardType[] = sortedData.filter(data => data.subCategory === subCategory)
     const manufacturers: string[] = []
     filteredData.map(data => {
         if(!manufacturers.includes(`${data.manufacturer}_${data.country}`)){
