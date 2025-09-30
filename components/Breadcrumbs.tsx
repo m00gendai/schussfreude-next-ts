@@ -3,14 +3,12 @@
 import s from "@/styles/Breadcrumbs.module.css"
 import { usePathname, useRouter } from "next/navigation"
 import {SlDirections} from "react-icons/sl"
-import { AppRouterInstance } from "next/dist/shared/lib/app-router-context"
 import { BiChevronsRight } from "react-icons/bi"
 import Link from "next/link"
 import React from "react"
 
 export default function Breadcrumbs(){
 
-    const router:AppRouterInstance = useRouter()
     const pathName = usePathname()
     const pathArray = pathName.substring(1, pathName.length-1).split("/")
 
