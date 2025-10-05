@@ -35,10 +35,12 @@
     justify-content: center;
     align-items: flex-start;
     align-content: flex-start;
-    box-shadow: 0px 0px 5px 0px black;
     flex-wrap: wrap;
     text-decoration: none;
-    color: var(--mainFontColorLight);
+    box-shadow: var(--imageFrameShadow);
+    border: var(--imageFrameBorder);
+    background: var(--imageFrameBackground);
+    color: var(--backgroundItemFont);
 }
 
 .itemContainer{
@@ -120,23 +122,18 @@
     position: relative;
     height: 90%;
     aspect-ratio: 16/3;
-    border: none;
+    border: var(--primaryButtonBorder);
     outline:none;
-    box-shadow: 0px 5px 5px 0px black;
-    background: lightgrey;
+    background: var(--primaryButtonBackgroundUnselected);
     display: flex;
     flex-wrap: nowrap;
-    justify-content: flex-start;
+    justify-content: center;
     align-items: center;
+    color: var(--primaryButtonFontUnselected);
 }
 
 .button:hover{
     cursor: pointer;
-}
-
-.button:active{
-    height: 85%;
-    box-shadow: 0px 0px 5px 0px black;
 }
 
 .icon{
