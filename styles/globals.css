@@ -1,18 +1,57 @@
 :root {
   padding: 0;
   margin: 0;
-  /* Light mode */
-  --mainColorLight: red; /* Navbar, Footer Divider, etc */
-  --mainColorFontLight: white; /* Mainly concerns Navbar links */
-  --mainColorBackgroundLight: white; /* Page content background */
-  --mainFontColorLight: black; /* Page content font color */
-  --mainTitleColorLight: black;
-  /* Dark mode (for future use */
-  --mainColorDark: darkred; /* Navbar, Footer Divider, etc */
-  --mainColorFontDark: gray; /* Mainly concerns Navbar links */
-  --mainColorBackgroundDark: black; /* Page content background */
-  --mainFontColorDark: lightgrey; /* Page content font color */
-  --mainTitleColorDark: lightgrey;
+  --primary: red; /* Navbar, Footer Divider, etc */
+  --onPrimaryFont: white; /* Mainly concerns Navbar links */
+  --background: #fafafa; /* Page content background */
+  --backgroundItem: #fafafa;
+  --onBackgroundFont: black; /* Page content font color */
+  --backgroundItemFont: #black;
+  --titleColor: black;
+  --categoryOverlay: white;
+  --onCategoryOverlayFont: white;
+  --primaryButtonBorder: 2px solid var(--primary);
+  --primaryButtonBackgroundUnselected: var(--backgroundItem);
+  --primaryButtonFontUnselected: var(--onBackgroundItemFont);
+  --primaryButtonFontSelected: var(--onPrimaryFont);
+  --primaryButtonBackgroundSelected: var(--primary);
+  --spoilerBackground: lightgrey;
+  --spoilerBorder: 2px solid var(--spoilerBackground);
+  --imageFrameBackground: white;
+  --imageFrameShadow: 0px 0px 5px 0px black;
+  --imageFrameBorder: none;
+  --cardBackground: white;
+  --cardShadow: 0px 0px 5px 0px black;
+  --cardBorder: none;
+  --tableRowHighlight: #efefef;
+}
+
+[data-theme='dark']{
+  padding: 0;
+  margin: 0;
+  --primary: darkred; /* Navbar, Footer Divider, etc */
+  --onPrimaryFont: #e0e0e0; /* Mainly concerns Navbar links */
+  --background: #2f2f2f; /* Page content background */
+  --backgroundItem: black;
+  --onBackgroundFont: #e0e0e0; /* Page content font color */
+  --backgroundItemFont: #e0e0e0;
+  --titleColor: lightgrey;
+  --categoryOverlay: #e0e0e0;
+  --onCategoryOverlayFont: #e0e0e0;
+  --primaryButtonBorder: 2px solid var(--primary);
+  --primaryButtonBackgroundUnselected: var(--background);
+  --primaryButtonFontUnselected: var(--onBackgroundItemFont);
+  --primaryButtonFontSelected: var(--onPrimaryFont);
+  --primaryButtonBackgroundSelected: var(--primary);
+  --spoilerBackground: darkslategrey;
+  --spoilerBorder: 2px solid var(--spoilerBackground);
+  --imageFrameBackground: black;
+  --imageFrameShadow: none;
+  --imageFrameBorder: none;
+  --cardBackground: black;
+  --cardShadow: none;
+  --cardBorder: none;
+  --tableRowHighlight: #2f2f2f;
 }
 
 body{
@@ -22,8 +61,8 @@ body{
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  background: var(--mainColorBackgroundLight);
-  color: var(--mainFontColorLight);
+  background: var(--background);
+  color: var(--onBackgroundFont);
   font-family: Arial, Helvetica, sans-serif;
 }
 
@@ -61,9 +100,9 @@ section{
   flex-wrap: wrap;
   justify-content: flex-start;
   align-items: flex-start;
-  border-bottom: 5px solid red;
+  border-bottom: 5px solid var(--primary);
   padding: 0 0 2rem 0;
-  color: var(--mainFontColorLight);
+  color: var(--onBackgroundFont);
 }
 
 section:last-child{
@@ -75,7 +114,7 @@ h1{
   width: 100%;
   margin: 3rem 0 0 0;
   font-size: 2rem;
-  color: var(--mainTitleColorLight);
+  color: var(--titleColor);
 }
 
 h2{
@@ -83,7 +122,7 @@ h2{
   width: 100%;
   margin-top: 3rem;
   font-size: 1.5rem;
-  color: var(--mainTitleColorLight);
+  color: var(--titleColor);
 }
 
 h3{
@@ -91,7 +130,7 @@ h3{
   width: 100%;
   margin-top: 2rem;
   font-size: 1.25rem;
-  color: var(--mainTitleColorLight);
+  color: var(--titleColor);
 }
 
 h4{
@@ -101,12 +140,12 @@ h4{
   padding-top: 1.5rem;
   border-top: 1px solid lightgrey;
   font-size: 1.125rem;
-  color: var(--mainTitleColorLight);
+  color: var(--titleColor);
 }
 
 blockquote{
   margin: 1rem 0;
-  border-left: 5px solid red;
+  border-left: 5px solid var(--primary);
   font-style: italic;
 }
 
@@ -205,31 +244,36 @@ iframe{
 }
 
 .genericTable{
-  border: 1px solid black;
   border-collapse: collapse;
   margin: 0;
   padding: 0;
+  border: 5px solid var(--primary);
 }
+
+
 
 .genericTable > tbody > tr:first-child > td{
   padding: 0.5rem;
   text-align: center;
+  background: var(--primary);
 }
 
 .genericTable > tbody tr{
   border: none;
+  border-color: transparent;
+  background: var(--cardBackground);
 }
 
 .genericTable > tbody tr td{
   padding: 0.5rem;
 }
 
-.genericTable > tbody tr:nth-child(odd){
-  background: lightgrey;
+.genericTable > tbody tr:nth-child(even){
+  background: var(--tableRowHighlight);
 }
 
 .genericTable > tbody > tr:first-child{
   font-weight: bolder;
-  background: red;
-  color: white;
+  background: var(--primary);
+  color: var(--onPrimaryFont);
 }
