@@ -47,7 +47,7 @@ export default function ancientScrolls({doc}:Props){
                         src={`https://cms.schussfreude.ch/storage/uploads/${doc.thumbnail?.path}`}
                         alt={doc.title}
                         fill={true}
-                        style={{objectFit: "contain"}}
+                        style={{objectFit: "contain", objectPosition: "top"}}
                     />
                 </Link>
             </div>
