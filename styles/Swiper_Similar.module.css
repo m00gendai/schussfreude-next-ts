@@ -4,10 +4,11 @@
     width: 40vw;
     justify-content: center;
     align-items: center;
-    box-shadow: 0px 0px 5px 0px black;
     flex-wrap: wrap;
     text-decoration: none;
-    color: var(--mainFontColorLight);
+    box-shadow: var(--imageFrameShadow);
+    border: var(--imageFrameBorder);
+    background: var(--imageFrameBackground);
     margin: 0.5rem;
 }
 
@@ -27,6 +28,7 @@
     align-items: center;
     text-align: left;
     flex-wrap: wrap;
+    color: var(--backgroundItemFont);
 }
 
 .title{
