@@ -35,7 +35,6 @@ export default function CookieProvider({children}:Props){
                 location="bottom"
                 buttonText="Jo!"
                 cookieName="schussfreude_analytics"
-                style={{background: "white"}}
                 containerClasses={c.bar}
                 contentClasses={c.inner}
                 buttonWrapperClasses={c.buttons}
