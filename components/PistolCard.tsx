@@ -65,7 +65,7 @@ export default async function PistolCard({subCategory}:Props){
                                         src={`https://cms.schussfreude.ch/storage/uploads/${data.image.path}`}
                                         alt={data.name}
                                         fill={true}
-                                        style={{objectFit: "contain"}}
+                                        style={{objectFit: "contain", objectPosition: "top"}}
                                     />
                                 </div>
                                 <div className={s.model}>{data.name}</div>
