@@ -31,7 +31,7 @@
   margin: 0;
   --primary: darkred; /* Navbar, Footer Divider, etc */
   --onPrimaryFont: #e0e0e0; /* Mainly concerns Navbar links */
-  --background: #2f2f2f; /* Page content background */
+  --background: #202020; /* Page content background */
   --backgroundItem: black;
   --onBackgroundFont: #e0e0e0; /* Page content font color */
   --backgroundItemFont: #e0e0e0;
