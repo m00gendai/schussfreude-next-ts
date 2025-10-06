@@ -15,7 +15,9 @@
 .card{
     position: relative;
     width: 100%;
-    box-shadow: 0px 0px 5px 0px black;
+    box-shadow: var(--cardShadow);
+    background: var(--cardBackground);
+    border: var(--cardBorder);
     display: flex;
     justify-content: center;
     align-items: flex-start;
@@ -29,6 +31,9 @@
     width: 100%;
     margin: 0.25rem;
     aspect-ratio: 1/1;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
 }
 
 .model{
@@ -47,7 +52,7 @@
 }
 
 .table > tbody > tr:nth-child(even){
-    background: lightgrey;
+    background: var(--tableRowHighlight);
 }
 
 .table > tbody > tr > td{

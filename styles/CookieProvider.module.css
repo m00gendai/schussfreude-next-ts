@@ -9,6 +9,8 @@
     align-content: center;
     flex-wrap: wrap;
     z-index:9999;
+    background-color: light-dark(white, black);
+    color: light-dark(black, white);
 }
 
 .bar::before{
@@ -30,6 +32,7 @@
     display: flex;
     flex-wrap: wrap;
     margin: 1rem 0;
+    color: light-dark(black, white);
 }
 
 @media only screen and (max-aspect-ratio: 13/9){

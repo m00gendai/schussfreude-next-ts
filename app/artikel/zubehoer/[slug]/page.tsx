@@ -12,6 +12,7 @@ import Breadcrumbs from '@/components/Breadcrumbs'
 import AdditionalLinks from '@/components/AdditionalLinks'
 import Sources from '@/components/Sources'
 import SimilarPosts from '@/components/SimilarPosts'
+import TransparencyNotice from '@/components/TransparencyNotice'
 
 async function getData(){
   const getData = await fetch(`https://cms.schussfreude.ch/api/content/items/accessories?populate=1`,{
@@ -107,7 +108,7 @@ export default async function Page({params}:{params:{slug:string}}) {
           <p className={"metaText"}>{`Erstpublikation am: ${convertDate(post.meta)}`}</p>
           <p className={"metaText"}>{`Zuletzt geändert am: ${getDate(post._modified)}`}</p>
           <p className={"metaText"}>{`Kategorien: `}{post.tags.map((tag, index)=>{return <span key={`tagSpan_${index}`}>{`${tag.item}${index < post.tags.length-1 ? ", " : ""}`}</span>})}</p>
-          {post.transparency ? <span dangerouslySetInnerHTML={{__html: post.transparency}} style={{backgroundColor: "lime", color: "black", padding: "0.5rem", margin: "1rem 0 0 0", border: "2px solid green"}}></span> : null}
+          {post.transparency ? <TransparencyNotice content={post.transparency} /> : null}
         </section>
         <section>
           <h2>Eckdaten</h2>

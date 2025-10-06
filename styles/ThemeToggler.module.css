@@ -1,0 +1,19 @@
+.button{
+    position: relative;
+    height: 100%;
+    aspect-ratio: 1/1;
+    border: none;
+    outline: none;
+    background: transparent;
+    font-size: 2rem;
+    margin: 0 1rem 0 0;
+    color: var(--onPrimaryFont);
+    font-weight: bold;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.button:hover{
+    cursor: pointer;
+}

@@ -6,6 +6,7 @@ import s from "../styles/Navbar.module.css"
 import {GiHamburgerMenu} from "react-icons/gi"
 import {useState} from "react"
 import Logo from "../public/logoSq.png"
+import ThemeToggler from "./ThemeToggler"
 
 export default function Navbar_Mobile(){
 
@@ -28,8 +29,9 @@ export default function Navbar_Mobile(){
                 />
             </Link>
         </div>
-        <div className={s.tagline}>schussfreude.ch</div>
+        <div className={s.tagline}></div>
         <div className={s.container}>
+            <ThemeToggler />
             <GiHamburgerMenu className={`${s.burger}`} style={rotate ? {transform: "rotate(90deg)"} : {}} onClick={()=>handleHamburgerOpen()}/>
             {hamburgerOpen ? <div className={s.subcontainer}>
                 <Link className={s.sublink} onClick={()=>handleHamburgerOpen()} href="/">Home</Link>

@@ -14,7 +14,9 @@
     flex-wrap: wrap;
     justify-content: center;
     align-items: center;
-    box-shadow: 0px 0px 5px 0px black;
+    border: var(--primaryButtonBorder);
+    background: var(--primaryButtonBackgroundUnselected);
+    color: var(--primaryButtonFontUnselected);
     margin: 0 0.5rem;
     text-decoration: none;
 }
@@ -24,7 +26,6 @@
 }
 
 .link{
-    color: black;
     text-align: center;
     margin: 0.5rem;
 }

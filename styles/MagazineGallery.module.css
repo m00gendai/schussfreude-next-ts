@@ -3,7 +3,7 @@
     width: 100%;
     display: flex;
     flex-wrap: wrap;
-    background: var(--mainColorBackgroundLight);
+    background: var(--background);
 }
 
 .container{
@@ -13,7 +13,7 @@
     width: 100%;
 
     text-decoration: none;
-    color: var(--mainFontColorLight);
+    color: var(--onBackgroundFont);
 }
 
 @media only screen and (max-aspect-ratio: 13/9){
