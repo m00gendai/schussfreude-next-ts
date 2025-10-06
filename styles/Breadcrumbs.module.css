@@ -9,7 +9,7 @@
 
 .link{
     margin: 1rem 0;
-    color: blue;
+    color: light-dark(blue, cyan);
     user-select: none;
 }
 

@@ -10,13 +10,13 @@
 .pro{
     padding: 1rem;
     position: relative;
-    background: green;
+    background: light-dark(green, darkgreen);
     color: white;
 }
 
 .contra{
     padding: 1rem;
     position: relative;
-    background: red;
+    background: light-dark(red, darkred);
     color: white;
 }

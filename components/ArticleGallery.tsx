@@ -13,9 +13,8 @@ import {useEffect, useState} from "react"
 import { getAspectRatio, sortData, getCategory, magazineUrlReplacer, toRGB, gradientPlaceholder } from "@/utils"
 import { MdUpdate } from "react-icons/md";
 
-interface Filters{
-    [key:string]: boolean
-}
+type Filter = "Alle Artikel" | "Book" | "Misc" | "App" | "Accessory" | "Magazine" | "SWM"
+const categoryTypes = ["Alle Artikel", "Bücher", "Allgemein", "Apps", "Zubehör / Hilfsmittel", "Zeitschriften", "SWM"]
 
 interface Props{
     articles:(Book|Misc|App|Accessory|Magazine|SWM)[]
@@ -23,60 +22,43 @@ interface Props{
 
 export default function ArticleGallery({articles}:Props){
     const [orderBy, setOrderBy] = useState<string>("new") 
-    const [filters, setFilters] = useState<Filters>({})   
+    const [filter, setFilter] = useState<Filter>("Alle Artikel")   
 
     function handleOrder(){
         setOrderBy(orderBy === "new" ? "old" : "new")
     }
 
     const sortedArticles:(Book|Misc|App|Accessory|Magazine|SWM)[] = articles.sort(sortData(orderBy))
-    
-    const mainTags:Filters = {}
-    articles.map(article=>{
-        article.tags.map(tag=>{
-            if(tag.type === "main"){
-                if(!mainTags[tag.item] !== undefined){
-                    {mainTags[tag.item] = true}
-                }
-            }
-        })
-    })
-
-    useEffect(()=>{
-        setFilters(mainTags)
-    },[])
-
+    console.log(sortedArticles.map(article => article.tags))
     return(
         <>
         <div className={s.toolbar}>
-            <button className={s.button} onClick={()=>handleOrder()} style={Object.keys(filters).length > 1 ? {marginBottom: "1rem"}:{}}>
+            {/*<button className={s.button} onClick={()=>handleOrder()} style={{marginBottom: "1rem"}}>
                 {orderBy === "new" ? 
                     <><MdUpdate className={s.icon} /><p className={s.buttonText}>Neueste zuerst</p></>
                     :
                     <><MdUpdate className={s.icon} style={{transform: "rotateY(180deg)"}}/><p className={s.buttonText}>Älteste zuerst</p></>
                 }
-            </button>
-            {Object.keys(filters).length > 1 ? 
+            </button>*/}
             <div className={s.filters}>
                 {
-                    Object.keys(filters).map(mainTag=>{
+                    categoryTypes.map(mainTag=>{
                         return(
-                            <div className={s.filterItem} key={`mainTagBox_${mainTag}`} >
+                            <div className={filter === mainTag ? s.filterItemSelected : s.filterItem} key={`mainTagBox_${mainTag}`}>
                                 <div className={s.filterItemInner}>
                                     <label className={s.label} htmlFor={`checkbox_${mainTag}`} >{mainTag}</label>
-                                    <input className={s.check} type="checkbox" id={`checkbox_${mainTag}`} onChange={()=>setFilters({...filters, [mainTag]: !filters[mainTag]})} name={`checkbox_${mainTag}`} value={mainTag} checked={filters[mainTag]}/>
+                                    <input className={s.check} type="radio" id={`checkbox_${mainTag}`} onChange={()=>setFilter(`${mainTag as Filter}`)} name={`checkbox_${mainTag}`} value={mainTag} checked={filter === mainTag ? true : false}/>
                                 </div>
                             </div>
                         )
                     })
                 }
             </div>
-            : null}
         </div>
         <div className={s.grid}>
             {
             sortedArticles.map(article=>{
-               if(filters[article.tags[0].item]){
+               if(filter === article.tags[0].item || filter === "Alle Artikel"){
                 const rgb:string[] = article.hero.colors.map(color => toRGB(color))
                 return(
                 <Link href={`/artikel/${getCategory(article.tags)}/${magazineUrlReplacer(article.title)}`} key={article._id} className={s.itemFrame}>

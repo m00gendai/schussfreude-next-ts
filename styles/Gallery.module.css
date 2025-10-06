@@ -86,7 +86,9 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    box-shadow: 0px 0px 5px 0px black;
+    box-shadow: var(--imageFrameShadow);
+    border: var(--imageFrameBorder);
+    background: var(--imageFrameBackground);
 }
 
 .itemFrame:hover{

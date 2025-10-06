@@ -2,8 +2,13 @@ import Link from "next/link"
 import Image from "next/image"
 import s from "../styles/Navbar.module.css"
 import Logo from "../public/logoSq.png"
+import ThemeToggler from "./ThemeToggler"
+
 
 export default function Navbar(){
+
+    
+
     return(
         <nav className={s.nav}>
         <div className={s.logoContainer}>
@@ -20,6 +25,7 @@ export default function Navbar(){
             <Link className={s.link} href="/artikel">Artikel</Link>
             <Link className={s.link} href="/zeitdokumente">Zeitdokumente</Link>
             <Link className={s.link} href="https://www.waffenforum.ch" target="_blank">waffenforum.ch</Link>
+            <ThemeToggler />
         </div>
         </nav>
     )
