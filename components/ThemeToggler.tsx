@@ -7,7 +7,7 @@ import s from "../styles/ThemeToggler.module.css"
 
 export default function ThemeToggler(){
 
-    const { theme, setTheme } = useTheme()
+    const { theme, setTheme, resolvedTheme } = useTheme()
     const [mounted, setMounted] = useState(false)
 
     useEffect(() => {
@@ -19,10 +19,10 @@ export default function ThemeToggler(){
     }
 
     function toggleTheme(){
-        theme === "dark" ? setTheme("light") : setTheme("dark")
+        theme === "dark" || resolvedTheme === "dark" ? setTheme("light") : setTheme("dark")
     }
 
     return(
-        <button className={s.button} onClick={toggleTheme}>{theme === "dark" ? <RxMoon/> : <RxSun/>}</button>
+        <button className={s.button} onClick={toggleTheme}>{theme === "dark" || resolvedTheme === "dark" ? <RxMoon/> : <RxSun/>}</button>
     )
 }
