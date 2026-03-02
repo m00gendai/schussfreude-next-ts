@@ -25,6 +25,7 @@ export default function Navbar(){
             <Link className={s.link} href="/artikel">Artikel</Link>
             <Link className={s.link} href="/zeitdokumente">Zeitdokumente</Link>
             <Link className={s.link} href="https://www.waffenforum.ch" target="_blank">waffenforum.ch</Link>
+            <Link className={s.link} href="https://arsenal-app.ch" target="_blank">Arsenal App</Link>
             <ThemeToggler />
         </div>
         </nav>
