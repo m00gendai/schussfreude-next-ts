@@ -38,6 +38,7 @@ export default function Navbar_Mobile(){
                 <Link className={s.sublink} onClick={()=>handleHamburgerOpen()} href="/artikel">Artikel</Link>
                 <Link className={s.sublink} onClick={()=>handleHamburgerOpen()} href="/zeitdokumente">Zeitdokumente</Link>
                 <Link className={s.sublink} onClick={()=>handleHamburgerOpen()} href="https://www.waffenforum.ch" target="_blank">waffenforum.ch</Link>
+                <Link className={s.sublink} onClick={()=>handleHamburgerOpen()} href="https://arsenal-app.ch" target="_blank">Arsenal App</Link>
             </div> : null}
         </div>
         </nav>
